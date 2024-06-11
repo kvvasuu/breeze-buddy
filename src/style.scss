@@ -1,5 +1,11 @@
 $background-color: #9fffff;
 $font-size: 16px;
+$font-color: rgb(36, 36, 36);
+
+@font-face {
+  font-family: Helvetica Black;
+  src: url(./assets/fonts/HelveticaNeueBlack.otf);
+}
 
 :root {
   font-size: $font-size;
@@ -14,12 +20,73 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  min-width: 300px;
+  min-height: 100dvh;
+  overflow-y: hidden;
+  font-size: $font-size;
+  font-family: "Helvetica Neue", sans-serif;
+  color: $font-color;
+}
 
+#app {
+  width: 60rem;
+  height: 50rem;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
   #app {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
+    width: 36rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #app {
+    height: 100dvh;
+    width: 100dvw;
+    border-radius: 0;
+  }
+  body {
+    overflow-y: auto;
+  }
+}
+
+//Transitions
+
+.slide-fade-enter-active {
+  animation: slide-in 0.8s ease;
+}
+.slide-fade-leave-active {
+  animation: slide-out 1s ease;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(50rem);
+    opacity: 0;
+  }
+  90% {
+    transform: translateY(-2rem);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(2rem);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50rem);
+    opacity: 0;
   }
 }

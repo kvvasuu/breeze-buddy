@@ -12,15 +12,14 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .main-container {
-  min-width: 20rem;
-  height: 40rem;
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(
     160deg,
     rgba(0, 116, 184, 0.3) 0%,
     rgba(107, 173, 166, 0.3) 100%
   );
-  border-radius: 2rem;
-  backdrop-filter: blur(30px);
+  border-radius: inherit;
   box-shadow: 0.2rem 1rem 2rem rgba(0, 0, 0, 0.3);
 }
 </style>

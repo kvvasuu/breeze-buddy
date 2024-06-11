@@ -1,9 +1,11 @@
 <template>
-  <WelcomeScreen
-    v-if="showWelcomeScreen"
-    @welcome-screen-toggle="welcomeScreenToggle"
-  ></WelcomeScreen>
-  <MainScreen v-else></MainScreen>
+  <Transition name="slide-fade" mode="out-in" appear>
+    <WelcomeScreen
+      v-if="showWelcomeScreen"
+      @welcome-screen-toggle="welcomeScreenToggle"
+    ></WelcomeScreen>
+    <MainScreen v-else></MainScreen>
+  </Transition>
 </template>
 
 <script lang="ts">
