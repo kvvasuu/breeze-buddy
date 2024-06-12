@@ -9,3 +9,4 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 https://www.weatherapi.com/my/
 API Key: e4ee231ca8574dfc85f123549241106
 vue-dragscroll
+font-awesome

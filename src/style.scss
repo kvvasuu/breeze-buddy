@@ -37,8 +37,7 @@ body {
 
 #app {
   width: 60rem;
-  height: 50rem;
-  margin: 0 auto;
+  margin: 2rem auto;
   text-align: center;
   border-radius: 2rem;
 }
@@ -54,6 +53,7 @@ body {
     height: 100dvh;
     width: 100dvw;
     border-radius: 0;
+    margin: 0;
   }
   body {
     overflow-y: auto;
@@ -99,6 +99,19 @@ body {
 }
 
 //Scrollbar
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #9fffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 139, 139, 0.767);
+  border-radius: 6px;
+}
 
 ::-webkit-scrollbar-button {
   display: none;
