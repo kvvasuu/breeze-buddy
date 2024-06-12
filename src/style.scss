@@ -27,7 +27,9 @@ body {
   background-size: cover;
   margin: 0;
   display: flex;
-  place-items: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   min-height: 100dvh;
   font-size: $font-size;
   font-family: "Helvetica Neue", sans-serif;
@@ -121,6 +123,7 @@ button {
 
 @media only screen and (max-width: 600px) {
   #app {
+    /* height: 30rem; */
     width: 100dvw;
     border-radius: 0;
     margin: 0;
