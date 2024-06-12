@@ -4,7 +4,7 @@
     <div class="icon-container">
       <img
         class="icon"
-        src="../../../favicon.png"
+        src="../../assets/favicon.png"
         alt="Breeze Buddy"
         draggable="false"
       />
