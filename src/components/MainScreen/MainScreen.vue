@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import { get } from "underscore";
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
@@ -196,6 +195,7 @@ $font-color: rgb(250, 250, 250);
   color: $font-color;
   height: 2rem;
   transition: all 0.3s ease;
+  filter: drop-shadow(0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.603));
   cursor: pointer;
   svg {
     height: 2rem;
