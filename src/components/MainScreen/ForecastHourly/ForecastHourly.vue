@@ -104,6 +104,9 @@ hr {
   user-select: none;
   cursor: grab;
 }
+
+//@media
+
 @media only screen and (max-width: 1000px) {
   .forecast-hourly {
     width: 28rem;

@@ -12,8 +12,8 @@
     <div class="temperature">19</div>
     <div class="conditions">Mostly Clear</div>
     <div class="temperature-range">
-      <div class="temperature-high temp">H: 23&deg</div>
       <div class="temperature-low temp">L: 11&deg</div>
+      <div class="temperature-high temp">H: 23&deg</div>
     </div>
   </div>
 </template>
