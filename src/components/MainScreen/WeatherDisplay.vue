@@ -4,7 +4,7 @@
     <div class="icon-container">
       <img
         class="icon"
-        src="../../favicon.png"
+        src="../../../favicon.png"
         alt="Breeze Buddy"
         draggable="false"
       />
@@ -26,7 +26,7 @@ export default {};
 .weather-display {
   width: auto;
   height: auto;
-  margin: 1rem;
+  margin: 2rem 1rem 1rem 1rem;
 }
 
 .location {
@@ -42,12 +42,14 @@ export default {};
 }
 
 .temperature {
+  position: relative;
   font-size: 6rem;
   text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
 .temperature::after {
   position: absolute;
+  font-size: 5rem;
   content: "\00B0";
 }
 

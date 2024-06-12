@@ -10,7 +10,7 @@
 
 <script>
 import WelcomeScreen from "./components/WelcomeScreen.vue";
-import MainScreen from "./components/MainScreen.vue";
+import MainScreen from "./components/MainScreen/MainScreen.vue";
 
 export default {
   name: "App",
