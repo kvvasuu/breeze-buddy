@@ -72,6 +72,7 @@ hr {
     rgba(240, 240, 240, 0.5) 90%,
     rgba(0, 0, 0, 0) 100%
   );
+  margin-bottom: 0;
 }
 
 .days-container {

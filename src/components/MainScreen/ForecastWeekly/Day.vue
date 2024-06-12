@@ -24,22 +24,21 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 3rem;
-  margin: 0.2rem 2;
+  margin: 0.2rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 0.8rem;
-  background-image: linear-gradient(
-    30deg,
-    rgba(0, 116, 184, 0.3) 0%,
-    rgba(107, 173, 166, 0.3) 100%
-  );
-  &:nth-of-type(even) {
-    background-image: linear-gradient(
-      180deg,
-      rgba(0, 116, 184, 0.3) 0%,
-      rgba(107, 173, 166, 0.3) 100%
-    );
+  border-bottom: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(240, 240, 240, 0.5) 10%,
+      rgba(240, 240, 240, 0.5) 90%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
+  &:last-of-type {
+    border: none;
   }
   padding: 0 1.6rem;
 }
