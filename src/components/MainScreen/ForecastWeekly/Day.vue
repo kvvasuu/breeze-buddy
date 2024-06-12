@@ -4,7 +4,7 @@
     <div class="icon-container">
       <img
         class="icon"
-        src="../../../../favicon.png"
+        src="../../../assets/favicon.png"
         alt="Breeze Buddy"
         draggable="false"
       />
@@ -45,6 +45,8 @@ export default {
 
 <style lang="scss" scoped>
 .day-container {
+  font-family: "Helvetica Bold";
+  letter-spacing: 1px;
   box-sizing: border-box;
   width: 100%;
   height: 3rem;
@@ -52,6 +54,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
   border-bottom: 1px solid;
   border-image: linear-gradient(
       to right,
@@ -61,9 +64,20 @@ export default {
       rgba(0, 0, 0, 0) 100%
     )
     1;
+  &:first-of-type {
+    border-top: 1px solid;
+    background-image: linear-gradient(
+      to right,
+      hsla(0, 0%, 100%, 0) 0%,
+      rgba(240, 240, 240, 0.2) 10%,
+      rgba(240, 240, 240, 0.2) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
   &:last-of-type {
     border: none;
   }
+
   padding: 0 0.6rem;
 }
 

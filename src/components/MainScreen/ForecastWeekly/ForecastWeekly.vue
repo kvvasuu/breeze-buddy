@@ -12,7 +12,6 @@
       </svg>
       Forecast (10 days)
     </div>
-    <hr />
     <div class="days-container">
       <Day v-for="(day, index) in 10" :day="index"></Day>
     </div>

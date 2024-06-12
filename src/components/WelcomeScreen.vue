@@ -3,7 +3,7 @@
     <div class="logo-container">
       <img
         class="logo"
-        src="../../favicon.png"
+        src="../assets/favicon.png"
         alt="Breeze Buddy"
         draggable="false"
       />
