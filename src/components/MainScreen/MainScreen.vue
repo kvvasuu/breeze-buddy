@@ -68,6 +68,7 @@ import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import axios from "axios";
+import { latinise, Latinise } from "../../latinise";
 
 export default {
   components: {
@@ -104,29 +105,29 @@ export default {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.coords.lat},${this.coords.long}`;
-      } else q = value;
-
-      try {
-        const response = await axios.get(
-          "https://api.weatherapi.com/v1/current.json",
-          {
-            params: {
-              key: "e4ee231ca8574dfc85f123549241106",
-              q: q,
-              aqi: "no",
-              lang: "en",
-            },
+      } else q = latinise(value).trim();
+      if (q !== "")
+        try {
+          const response = await axios.get(
+            "https://api.weatherapi.com/v1/current.json",
+            {
+              params: {
+                key: "e4ee231ca8574dfc85f123549241106",
+                q: q,
+                aqi: "no",
+                lang: "en",
+              },
+            }
+          );
+          this.currentWeather = response.data;
+          this.isWeatherDataDone = true;
+          this.searchInput = "";
+          if (this.showSearchInput) {
+            this.toggleShowSearchInput();
           }
-        );
-        this.currentWeather = response.data;
-        this.isWeatherDataDone = true;
-        console.log(response);
-        if (this.showSearchInput) {
-          this.toggleShowSearchInput();
+        } catch (error) {
+          console.error(error);
         }
-      } catch (error) {
-        console.error(error);
-      }
     },
     async getLocationWeather() {
       if ("geolocation" in navigator) {
@@ -179,6 +180,7 @@ $font-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: column;
   align-items: center;
+  backdrop-filter: blur(6rem);
 }
 
 .buttons {
