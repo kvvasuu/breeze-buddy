@@ -42,6 +42,11 @@ body {
   border-radius: 2rem;
 }
 
+input,
+button {
+  -webkit-appearance: none !important;
+}
+
 //Transitions
 
 .slide-fade-enter-active {
