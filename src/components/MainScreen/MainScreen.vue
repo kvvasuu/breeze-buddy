@@ -17,6 +17,7 @@
         <Transition name="bounce" mode="out-in">
           <input
             class="search-input"
+            id="search"
             type="text"
             placeholder="Search"
             v-if="showSearchInput"

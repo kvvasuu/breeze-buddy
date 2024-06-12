@@ -49,8 +49,8 @@ export default {
   letter-spacing: 1px;
   box-sizing: border-box;
   width: 100%;
-  height: 3rem;
-  margin: 0.2rem 0;
+  height: 3.2rem;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,6 +76,15 @@ export default {
   }
   &:last-of-type {
     border: none;
+  }
+  &:hover {
+    background-image: linear-gradient(
+      to right,
+      hsla(0, 0%, 100%, 0) 0%,
+      rgba(240, 240, 240, 0.2) 10%,
+      rgba(240, 240, 240, 0.2) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
   padding: 0 0.6rem;
