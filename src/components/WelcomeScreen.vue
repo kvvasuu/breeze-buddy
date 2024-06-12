@@ -62,11 +62,13 @@ $font-color-second: rgb(36, 36, 36);
     font-weight: bold;
     font-family: "Helvetica Black";
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+    color: rgb(36, 36, 36);
   }
 }
 
 .button-1 {
   font-size: 1.6rem;
+  color: rgb(36, 36, 36);
   font-weight: bold;
   font-family: "Helvetica Black";
   letter-spacing: 1px;
