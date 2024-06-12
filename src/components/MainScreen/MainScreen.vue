@@ -212,5 +212,12 @@ $font-color: rgb(250, 250, 250);
   .buttons {
     width: 20rem;
   }
+  .main-container {
+    background-image: linear-gradient(
+      160deg,
+      rgba(0, 116, 184, 0.1) 0%,
+      rgba(107, 173, 166, 0.1) 100%
+    );
+  }
 }
 </style>
