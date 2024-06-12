@@ -8,28 +8,27 @@
   </Transition>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script>
 import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen.vue";
 
-export default defineComponent({
+export default {
   name: "App",
   components: {
     WelcomeScreen,
     MainScreen,
   },
-  data(): { showWelcomeScreen: boolean } {
+  data() {
     return {
       showWelcomeScreen: true,
     };
   },
   methods: {
-    welcomeScreenToggle(): void {
+    welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

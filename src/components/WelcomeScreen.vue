@@ -13,21 +13,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
+<script>
+export default {
   emits: ["welcome-screen-toggle"],
   methods: {
-    welcomeScreenHide(): void {
+    welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>
+$font-color-second: rgb(36, 36, 36);
+
 .welcome-container {
+  color: $font-color-second;
   width: 100%;
   height: 100%;
   background: transparent;
@@ -48,15 +49,18 @@ export default defineComponent({
     filter: drop-shadow(0.2rem 1rem 1rem rgba(0, 0, 0, 0.5));
     margin: 2rem;
     transition: all 0.6s ease;
+    animation: tilt 1.2s ease;
+    animation-delay: 1.2s;
   }
   .logo:hover {
     transform: rotate(3deg);
   }
   .title {
-    margin: 3rem 0 1rem 0;
-    font-size: 2.6rem;
+    margin: 4rem 0 0 0;
+    font-size: 2.5rem;
     font-weight: bold;
     font-family: "Helvetica Black";
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -64,7 +68,6 @@ export default defineComponent({
   font-size: 1.6rem;
   font-weight: bold;
   font-family: "Helvetica Black";
-  color: rgb(36, 36, 36);
   letter-spacing: 1px;
   padding: 1rem 3rem 1rem 3rem;
   border-radius: 10rem;
@@ -79,5 +82,19 @@ export default defineComponent({
 .button-1:hover {
   transform: translateY(-0.1rem);
   text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
+}
+
+//Transitions
+
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 </style>
