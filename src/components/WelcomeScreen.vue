@@ -40,6 +40,7 @@ $font-color-second: rgb(36, 36, 36);
 }
 
 .logo-container {
+  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
