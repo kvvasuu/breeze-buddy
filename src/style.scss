@@ -20,8 +20,10 @@ $font-color-second: rgb(36, 36, 36);
 
 body {
   background-color: $background-color;
-  background-image: url("./assets/clouds.jpeg");
-  background-repeat: no-repeat;
+  background: url("./assets/clouds.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
   margin: 0;
   display: flex;

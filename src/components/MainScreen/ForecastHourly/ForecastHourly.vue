@@ -5,7 +5,12 @@
       <div class="date">{{ passCurrentDate }}</div>
     </div>
     <hr />
-    <div class="hours-container show-scrollbar" v-dragscroll.x>
+    <div
+      class="hours-container"
+      v-dragscroll.x
+      v-on:dragscrollstart="grabCursor"
+      v-on:dragscrollend="grabCursor"
+    >
       <Hour v-for="(hour, index) in 12" :hour="index"></Hour>
     </div>
   </div>
@@ -44,14 +49,20 @@ export default {
       return `${this.months[month]}, ${day}`;
     },
   },
+  methods: {
+    grabCursor() {
+      if (document.body.style.cursor === "grab") {
+        document.body.style.cursor = "default";
+      } else document.body.style.cursor = "grab";
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .forecast-hourly {
   width: 52rem;
-  height: auto;
-  margin: 2rem;
+  margin: 2rem 0 0 0;
   border-radius: 1.6rem;
   background-image: linear-gradient(
     30deg,
@@ -90,6 +101,7 @@ hr {
   justify-content: flex-start;
   margin: 0 -1rem 0 -1rem;
   user-select: none;
+  cursor: grab;
 }
 @media only screen and (max-width: 1000px) {
   .forecast-hourly {

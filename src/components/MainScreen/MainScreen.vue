@@ -3,18 +3,21 @@
     <div class="inside-container">
       <WeatherDisplay></WeatherDisplay>
       <ForecastHourly></ForecastHourly>
+      <ForecastWeekly></ForecastWeekly>
     </div>
   </div>
 </template>
 
 <script>
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
+import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 
 export default {
   components: {
     WeatherDisplay,
     ForecastHourly,
+    ForecastWeekly,
   },
   data() {
     return {};
@@ -26,7 +29,7 @@ export default {
 .main-container {
   position: relative;
   width: 100%;
-  height: 100%;
+
   background-image: linear-gradient(
     160deg,
     rgba(0, 116, 184, 0.3) 0%,

@@ -4,12 +4,12 @@
     <div class="icon-container">
       <img
         class="icon"
-        src="../../../../public/favicon.png"
+        src="../../../../favicon.png"
         alt="Breeze Buddy"
         draggable="false"
       />
     </div>
-    <div class="temperature">2{{ hour }}&deg</div>
+    <div class="temperature">2{{ hour }}</div>
   </div>
 </template>
 
@@ -36,7 +36,13 @@ export default {
 }
 
 .temperature {
-  font-size: 2rem;
+  position: relative;
+  font-size: 1.8rem;
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+}
+
+.temperature::after {
+  position: absolute;
+  content: "\00B0";
 }
 </style>
