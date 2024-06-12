@@ -29,6 +29,7 @@
             v-if="showSearchInput"
             v-model="searchInput"
             @keydown.enter="getCurrentWeather(searchInput)"
+            @blur="getCurrentWeather(searchInput)"
             autocomplete="off"
           />
           <div class="icon" v-else @click="toggleShowSearchInput">
@@ -131,7 +132,9 @@ export default {
       if ("geolocation" in navigator) {
         this.isGeolocationPossible = true;
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
-          if (result.state === "granted") {
+          if (result.state === "denied") {
+            console.log(`Geolocation permission:` + result.state);
+          } else {
             navigator.geolocation.getCurrentPosition(
               (position) => {
                 this.isGeolocationDone = true;
@@ -142,12 +145,9 @@ export default {
               () => {
                 this.isGeolocationDone = false;
                 console.log("Location must by on.");
-              }
+              },
+              { enableHighAccuracy: true, maximumAge: 10000000 }
             );
-          } else if (result.state === "prompt") {
-            console.log(`Geolocation permission:` + result.state);
-          } else if (result.state === "denied") {
-            console.log(`Geolocation permission:` + result.state);
           }
         });
       } else {
