@@ -45,6 +45,7 @@ $font-color-second: rgb(36, 36, 36);
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  appearance: none;
   -webkit-appearance: none;
   .logo {
     height: 16rem;
@@ -76,6 +77,7 @@ $font-color-second: rgb(36, 36, 36);
   text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.3s ease;
+  appearance: none;
   -webkit-appearance: none;
 }
 .button-1:hover {
