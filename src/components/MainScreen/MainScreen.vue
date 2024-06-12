@@ -1,8 +1,14 @@
 <template>
   <div class="main-container">
-    <WeatherDisplay></WeatherDisplay>
+    <WeatherDisplay :currentWeather="currentWeather"></WeatherDisplay>
     <div class="buttons">
-      <div class="icon" :class="{ 'location-icon-shake': !isGeolocationOn }">
+      <div
+        class="icon"
+        :class="{
+          'location-icon-shake': !isGeolocationDone,
+        }"
+        @click="getLocationWeather"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 384 512"
@@ -21,7 +27,9 @@
             type="text"
             placeholder="Search"
             v-if="showSearchInput"
-            @keydown.enter="toggleShowSearchInput"
+            v-model="searchInput"
+            @keydown.enter="getCurrentWeather(searchInput)"
+            autocomplete="off"
           />
           <div class="icon" v-else @click="toggleShowSearchInput">
             <svg
@@ -55,9 +63,11 @@
 </template>
 
 <script>
+import { get } from "underscore";
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
+import axios from "axios";
 
 export default {
   components: {
@@ -68,13 +78,87 @@ export default {
   data() {
     return {
       showSearchInput: false,
-      isGeolocationOn: false,
+      isGeolocationPossible: false,
+      isGeolocationDone: false,
+      coords: {},
+      isWeatherDataDone: false,
+      currentWeather: {
+        location: {
+          name: "My Location",
+        },
+        current: {
+          temp_c: "0",
+          condition: {
+            text: "Unknown",
+          },
+        },
+      },
+      searchInput: "",
     };
   },
   methods: {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
     },
+    async getCurrentWeather(value) {
+      let q = "";
+      if (value === undefined && this.isGeolocationDone) {
+        q = `${this.coords.lat},${this.coords.long}`;
+      } else q = value;
+
+      try {
+        const response = await axios.get(
+          "http://api.weatherapi.com/v1/current.json",
+          {
+            params: {
+              key: "e4ee231ca8574dfc85f123549241106",
+              q: q,
+              aqi: "no",
+              lang: "en",
+            },
+          }
+        );
+        this.currentWeather = response.data;
+        this.isWeatherDataDone = true;
+        console.log(response);
+        if (this.showSearchInput) {
+          this.toggleShowSearchInput();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getLocationWeather() {
+      if ("geolocation" in navigator) {
+        this.isGeolocationPossible = true;
+        navigator.permissions.query({ name: "geolocation" }).then((result) => {
+          if (result.state === "granted") {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                this.isGeolocationDone = true;
+                this.coords.lat = position.coords.latitude;
+                this.coords.long = position.coords.longitude;
+                this.getCurrentWeather();
+              },
+              () => {
+                this.isGeolocationDone = false;
+                console.log("Location must by on.");
+              }
+            );
+          } else if (result.state === "prompt") {
+            console.log(`Geolocation permission:` + result.state);
+          } else if (result.state === "denied") {
+            console.log(`Geolocation permission:` + result.state);
+          }
+        });
+      } else {
+        this.isGeolocationPossible = false;
+        console.log("Geolocation impossible.");
+      }
+    },
+  },
+  beforeMount() {
+    this.getLocationWeather();
   },
 };
 </script>
@@ -124,7 +208,7 @@ $font-color: rgb(250, 250, 250);
 }
 
 .location-icon-shake {
-  animation: shake 1s 1;
+  animation: shake 1s infinite;
   transform-origin: bottom;
 }
 
