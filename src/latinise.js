@@ -993,15 +993,5 @@ Latinise.latin_map = {
   ₓ: "x", // LATIN SUBSCRIPT SMALL LETTER X
 };
 
-function latinise(str) {
-  return str.replace(/[^A-Za-z0-9\[\] ]/g, function (x) {
-    return Latinise.latin_map[x] || x;
-  });
-}
-
-// American English spelling :)
-String.prototype.latinize = String.prototype.latinise;
-
-String.prototype.isLatin = function () {
-  return this == this.latinise();
-};
+const latinise = (str) =>
+  str.replace(/[^A-Za-z0-9\[\] ]/g, (x) => Latinise.latin_map[x] || x);

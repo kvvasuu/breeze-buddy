@@ -79,10 +79,8 @@ export default {
   data() {
     return {
       showSearchInput: false,
-      isGeolocationPossible: false,
       isGeolocationDone: false,
       coords: {},
-      isWeatherDataDone: false,
       currentWeather: {
         location: {
           name: "My Location",
@@ -120,7 +118,6 @@ export default {
             }
           );
           this.currentWeather = response.data;
-          this.isWeatherDataDone = true;
           this.searchInput = "";
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
@@ -131,7 +128,6 @@ export default {
     },
     async getLocationWeather() {
       if ("geolocation" in navigator) {
-        this.isGeolocationPossible = true;
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
           if (result.state === "denied") {
             console.log(`Geolocation permission:` + result.state);
@@ -152,7 +148,6 @@ export default {
           }
         });
       } else {
-        this.isGeolocationPossible = false;
         console.log("Geolocation impossible.");
       }
     },
@@ -277,13 +272,13 @@ $font-color: rgb(250, 250, 250);
     transform: rotate(0);
   }
   40% {
-    transform: rotate(6deg);
+    transform: rotate(4deg);
   }
   50% {
-    transform: rotate(-6deg);
+    transform: rotate(-4deg);
   }
   60% {
-    transform: rotate(6deg);
+    transform: rotate(4deg);
   }
   100% {
     transform: rotate(0);
