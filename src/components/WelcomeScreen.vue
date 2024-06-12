@@ -50,12 +50,6 @@ $font-color-second: rgb(36, 36, 36);
     height: 16rem;
     filter: drop-shadow(0.2rem 1rem 0.6rem rgba(0, 0, 0, 0.3));
     margin: 2rem;
-    transition: all 0.6s ease;
-    animation: tilt 1.2s ease;
-    animation-delay: 1.2s;
-  }
-  .logo:hover {
-    transform: rotate(3deg);
   }
   .title {
     margin: 4rem 0 0 0;
