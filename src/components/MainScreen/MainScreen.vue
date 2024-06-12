@@ -102,23 +102,25 @@ export default {
     async getCurrentWeather(value) {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
-        q = `${this.coords.lat},${this.coords.long}`;
+        q = `${this.coords.lat},${this.coords.lon}`;
       } else q = latinise(value).trim();
       if (q !== "")
         try {
           const response = await axios.get(
-            "https://api.weatherapi.com/v1/current.json",
+            "https://api.weatherapi.com/v1/forecast.json",
             {
               params: {
                 key: "e4ee231ca8574dfc85f123549241106",
                 q: q,
                 aqi: "no",
                 lang: "en",
+                days: 3,
               },
             }
           );
           this.currentWeather = response.data;
           this.searchInput = "";
+          console.log(this.currentWeather);
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
           }
@@ -136,7 +138,7 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 this.coords.lat = position.coords.latitude;
-                this.coords.long = position.coords.longitude;
+                this.coords.lon = position.coords.longitude;
                 this.getCurrentWeather();
               },
               () => {
@@ -151,6 +153,25 @@ export default {
         console.log("Geolocation impossible.");
       }
     },
+    /* async getHourForecast() {
+      const q = `${this.coords.lat},${this.coords.lon}`;
+      try {
+        const response = await axios.get(
+          "https://api.weatherapi.com/v1/forecast.json",
+          {
+            params: {
+              key: "e4ee231ca8574dfc85f123549241106",
+              q: q,
+              days: 3,
+            },
+          }
+        );
+        this.forecastWeather = response.data;
+        console.log(this.forecastWeather);
+      } catch (error) {
+        console.error(error);
+      }
+    }, */
   },
   beforeMount() {
     this.getLocationWeather();
