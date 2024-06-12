@@ -5,7 +5,12 @@
       <div class="date">{{ passCurrentDate }}</div>
     </div>
     <hr />
-    <div class="hours-container">
+    <div
+      class="hours-container"
+      v-dragscroll.x
+      v-on:dragscrollstart="grabCursor"
+      v-on:dragscrollend="grabCursor"
+    >
       <Hour v-for="(hour, index) in 12" :hour="index"></Hour>
     </div>
   </div>
