@@ -57,7 +57,7 @@ $font-color-second: rgb(36, 36, 36);
     font-size: 2.5rem;
     font-weight: bold;
     font-family: "Helvetica Bold";
-    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+    text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
     color: rgb(51, 51, 51);
   }
 }
@@ -74,15 +74,15 @@ $font-color-second: rgb(36, 36, 36);
   background: rgb(255, 210, 0);
   margin: 2rem;
   box-shadow: 0.2rem 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
-  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease;
   appearance: none;
   -webkit-appearance: none;
-}
-.button-1:hover {
-  transform: translateY(-0.1rem);
-  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
+  &:hover {
+    transform: translateY(-0.1rem);
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3);
+  }
 }
 
 //Transitions
