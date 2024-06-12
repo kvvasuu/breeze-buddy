@@ -11,7 +11,11 @@
       v-on:dragscrollstart="grabCursor"
       v-on:dragscrollend="grabCursor"
     >
-      <Hour v-for="(hour, index) in 12" :hour="index"></Hour>
+      <Hour
+        v-for="(hour, index) in pass24Hours"
+        :hour="hour"
+        :key="index"
+      ></Hour>
     </div>
   </div>
 </template>
@@ -23,6 +27,7 @@ export default {
   components: {
     Hour,
   },
+  props: ["weather"],
   data() {
     return {
       currentDate: new Date(),
@@ -48,6 +53,14 @@ export default {
       const month = this.currentDate.getMonth();
       return `${this.months[month]}, ${day}`;
     },
+    pass24Hours() {
+      if (this.weather !== undefined) {
+        const currentHour = this.currentDate.getHours();
+        let firstDay = this.weather[0].hour.slice(currentHour, 24);
+        let secondDay = this.weather[1].hour.slice(0, currentHour);
+        return firstDay.concat(secondDay);
+      } else return [];
+    },
   },
   methods: {
     grabCursor() {
@@ -62,7 +75,7 @@ export default {
 <style lang="scss" scoped>
 .forecast-hourly {
   width: 52rem;
-  margin: 2rem 0 0 0;
+  margin: 0;
   border-radius: 1.6rem;
   background-image: linear-gradient(
     30deg,

@@ -31,6 +31,7 @@
             @keydown.enter="getCurrentWeather(searchInput)"
             @blur="getCurrentWeather(searchInput)"
             autocomplete="off"
+            ref="search"
           />
           <div class="icon" v-else @click="toggleShowSearchInput">
             <svg
@@ -58,8 +59,11 @@
         </svg>
       </div>
     </div>
-    <ForecastHourly></ForecastHourly>
-    <ForecastWeekly></ForecastWeekly>
+    <ForecastHourly
+      v-if="weatherDone"
+      :weather="currentWeather.forecast.forecastday"
+    ></ForecastHourly>
+    <ForecastWeekly v-if="weatherDone"></ForecastWeekly>
   </div>
 </template>
 
@@ -91,13 +95,21 @@ export default {
             text: "Unknown",
           },
         },
+        forecast: { forecastday: [] },
       },
+      weatherDone: false,
       searchInput: "",
+      isDay: true,
     };
   },
   methods: {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
+      if (this.showSearchInput) {
+        setTimeout(() => {
+          this.$refs.search.focus();
+        }, 1000);
+      }
     },
     async getCurrentWeather(value) {
       let q = "";
@@ -120,6 +132,8 @@ export default {
           );
           this.currentWeather = response.data;
           this.searchInput = "";
+          this.isDay = !!response.data.current.is_day;
+          this.weatherDone = true;
           console.log(this.currentWeather);
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
@@ -153,25 +167,6 @@ export default {
         console.log("Geolocation impossible.");
       }
     },
-    /* async getHourForecast() {
-      const q = `${this.coords.lat},${this.coords.lon}`;
-      try {
-        const response = await axios.get(
-          "https://api.weatherapi.com/v1/forecast.json",
-          {
-            params: {
-              key: "e4ee231ca8574dfc85f123549241106",
-              q: q,
-              days: 3,
-            },
-          }
-        );
-        this.forecastWeather = response.data;
-        console.log(this.forecastWeather);
-      } catch (error) {
-        console.error(error);
-      }
-    }, */
   },
   beforeMount() {
     this.getLocationWeather();
@@ -202,7 +197,7 @@ $font-color: rgb(250, 250, 250);
 .buttons {
   width: 52rem;
   height: 4rem;
-  margin: 1rem 0 -1rem 0;
+  margin: 1rem 0 1rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

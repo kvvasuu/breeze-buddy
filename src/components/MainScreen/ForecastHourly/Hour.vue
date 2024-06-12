@@ -1,6 +1,6 @@
 <template>
   <div class="hour-container">
-    <div class="time">{{ hour }}</div>
+    <div class="time">{{ passTime }}</div>
     <div class="icon-container">
       <img
         class="icon"
@@ -9,13 +9,21 @@
         draggable="false"
       />
     </div>
-    <div class="temperature">2{{ hour }}</div>
+    <div class="temperature">{{ passTemp }}</div>
   </div>
 </template>
 
 <script>
 export default {
   props: ["hour"],
+  computed: {
+    passTime() {
+      return this.hour.time.split(" ")[1];
+    },
+    passTemp() {
+      return Math.round(this.hour.temp_c);
+    },
+  },
 };
 </script>
 
