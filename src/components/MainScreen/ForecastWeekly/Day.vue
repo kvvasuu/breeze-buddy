@@ -11,6 +11,13 @@
     </div>
     <div class="temperature-range">
       <div class="temperature-low temp">{{ passMinTemp }}</div>
+      <div class="temperature-range-bar">
+        <div class="bar-track">
+          <div class="bar-thumb">
+            <div v-show="actual" class="actual"></div>
+          </div>
+        </div>
+      </div>
       <div class="temperature-high temp">{{ passMaxTemp }}</div>
     </div>
   </div>
@@ -18,12 +25,13 @@
 
 <script>
 export default {
-  props: ["day", "dayName"],
+  props: ["day", "dayName", "tempMinMax", "actual"],
   data() {
     return {};
   },
   computed: {
     passMinTemp() {
+      console.log(this.tempMinMax);
       return Math.round(this.day.day.mintemp_c);
     },
     passMaxTemp() {
@@ -99,6 +107,43 @@ export default {
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   font-size: 0.8rem;
   margin: 0 0.4rem 0 1rem;
+  .temperature-range-bar {
+    .bar-track {
+      position: relative;
+      height: 0.3rem;
+      width: 5rem;
+      background-image: linear-gradient(
+        30deg,
+        rgba(107, 160, 173, 0.7) 0%,
+        rgba(107, 173, 166, 0.7) 100%
+      );
+      border-radius: 1rem;
+    }
+    .bar-thumb {
+      position: absolute;
+      height: 0.32rem;
+      top: -0.01rem;
+      left: 1rem;
+      width: 3rem;
+      background: rgb(145, 240, 255);
+      background: linear-gradient(
+        90deg,
+        hsl(188, 80%, 50%) 20%,
+        hsl(58, 71%, 56%) 50%,
+        hsl(27, 80%, 61%) 90%
+      );
+      border-radius: 1rem;
+      box-shadow: 0 0.04rem 0.04rem rgba(0, 0, 0, 0.2);
+      .actual {
+        content: "";
+        position: absolute;
+        background-color: white;
+        border-radius: 1rem;
+        width: 0.3rem;
+        height: 0.3rem;
+      }
+    }
+  }
 }
 
 .conditions {
@@ -112,7 +157,17 @@ export default {
 .temp {
   position: relative;
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-  margin: 0;
+
+  &.temperature-low {
+    width: 2rem;
+    text-align: right;
+    margin: 0 1rem 0 0;
+  }
+  &.temperature-high {
+    width: 2rem;
+    text-align: left;
+    margin: 0 0 0 0.6rem;
+  }
 }
 
 .temp::after {

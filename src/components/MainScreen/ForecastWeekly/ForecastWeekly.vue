@@ -18,6 +18,8 @@
         :key="index"
         :day="day"
         :dayName="passDayOfWeek(index)"
+        :tempMinMax="getMinMaxTemp"
+        :actual="index === 0"
       ></Day>
     </div>
   </div>
@@ -42,6 +44,17 @@ export default {
       const day = this.currentDate.getDay() - 1;
       if (value === 0) return "Today";
       else return this.daysOfWeek[(value + day) % 7];
+    },
+  },
+  computed: {
+    getMinMaxTemp() {
+      const minTemp = Math.round(
+        Math.min(...this.forecast.map((el) => el.day.mintemp_c))
+      );
+      const maxTemp = Math.round(
+        Math.max(...this.forecast.map((el) => el.day.maxtemp_c))
+      );
+      return { minTemp, maxTemp };
     },
   },
 };
