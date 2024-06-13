@@ -1,6 +1,6 @@
 <template>
   <div class="day-container">
-    <div class="day">{{ passDayOfWeek }}</div>
+    <div class="day">{{ dayName }}</div>
     <div class="icon-container">
       <img
         class="icon"
@@ -10,34 +10,24 @@
       />
     </div>
     <div class="temperature-range">
-      <div class="temperature-low temp">L: 11</div>
-      <div class="temperature-high temp">H: 23</div>
+      <div class="temperature-low temp">L: {{ passMinTemp }}</div>
+      <div class="temperature-high temp">H: {{ passMaxTemp }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["day"],
+  props: ["day", "dayName"],
   data() {
-    return {
-      currentDate: new Date(),
-      daysOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-    };
+    return {};
   },
   computed: {
-    passDayOfWeek() {
-      const day = this.currentDate.getDay();
-      if (this.day === 0) return "Today";
-      else return this.daysOfWeek[(this.day + day) % 7];
+    passMinTemp() {
+      return Math.round(this.day.day.mintemp_c);
+    },
+    passMaxTemp() {
+      return Math.round(this.day.day.maxtemp_c);
     },
   },
 };

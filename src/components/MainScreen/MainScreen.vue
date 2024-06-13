@@ -59,11 +59,18 @@
         </svg>
       </div>
     </div>
-    <ForecastHourly
-      v-if="weatherDone"
-      :weather="currentWeather.forecast.forecastday"
-    ></ForecastHourly>
-    <ForecastWeekly v-if="weatherDone"></ForecastWeekly>
+    <Transition name="slide-fade">
+      <ForecastHourly
+        v-if="weatherDone"
+        :weather="currentWeather.forecast.forecastday"
+      ></ForecastHourly>
+    </Transition>
+    <Transition name="slide-fade">
+      <ForecastWeekly
+        v-if="weatherDone"
+        :forecast="currentWeather.forecast.forecastday"
+      ></ForecastWeekly>
+    </Transition>
   </div>
 </template>
 
@@ -91,12 +98,12 @@ export default {
           name: "My Location",
         },
         current: {
-          temp_c: "0",
+          temp_c: "-",
           condition: {
             text: "Unknown",
           },
         },
-        forecast: { forecastday: [] },
+        forecast: { forecastday: [{ day: { mintemp_c: "", maxtemp_c: "" } }] },
       },
       weatherDone: false,
       searchInput: "",
@@ -127,7 +134,7 @@ export default {
                 q: q,
                 aqi: "no",
                 lang: "en",
-                days: 3,
+                days: 10,
               },
             }
           );
@@ -316,11 +323,7 @@ $font-color: rgb(250, 250, 250);
     width: 20rem;
   }
   .main-container {
-    background-image: linear-gradient(
-      160deg,
-      rgba(0, 116, 184, 0.1) 0%,
-      rgba(107, 173, 166, 0.1) 100%
-    );
+    min-height: 100vh;
   }
 }
 </style>

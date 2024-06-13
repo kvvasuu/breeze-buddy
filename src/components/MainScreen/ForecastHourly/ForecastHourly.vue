@@ -45,6 +45,7 @@ export default {
         "November",
         "December",
       ],
+      days: [],
     };
   },
   computed: {
@@ -53,12 +54,11 @@ export default {
       const month = this.currentDate.getMonth();
       return `${this.months[month]}, ${day}`;
     },
+
     pass24Hours() {
       if (this.weather !== undefined) {
         const currentHour = this.currentDate.getHours();
-        let firstDay = this.weather[0].hour.slice(currentHour, 24);
-        let secondDay = this.weather[1].hour.slice(0, currentHour);
-        return firstDay.concat(secondDay);
+        return this.days.slice(currentHour, currentHour + 26);
       } else return [];
     },
   },
@@ -68,6 +68,57 @@ export default {
         document.body.style.cursor = "default";
       } else document.body.style.cursor = "grab";
     },
+    getSunsetAndSunrise() {
+      if (this.weather !== undefined) {
+        let days = [];
+        for (let i = 0; i < 2; i++) {
+          days[i] = this.weather[i].hour;
+
+          let sunriseHour = "";
+          let sunriseMinute = "";
+          if (this.weather[i].astro.sunrise.split(" ")[1] === "PM") {
+            sunriseHour =
+              Number(this.weather[i].astro.sunrise.split(":")[0]) + 12;
+            sunriseMinute = this.weather[i].astro.sunrise
+              .split(" ")[0]
+              .split(":")[1];
+          } else {
+            sunriseHour = this.weather[i].astro.sunrise.split(":")[0];
+            sunriseMinute = this.weather[i].astro.sunrise
+              .split(" ")[0]
+              .split(":")[1];
+          }
+
+          let sunsetHour = "";
+          let sunsetMinute = "";
+          if (this.weather[i].astro.sunset.split(" ")[1] === "PM") {
+            sunsetHour =
+              Number(this.weather[i].astro.sunset.split(":")[0]) + 12;
+            sunsetMinute = this.weather[i].astro.sunset
+              .split(" ")[0]
+              .split(":")[1];
+          } else {
+            sunsetHour = Number(this.weather[i].astro.sunset.split(":")[0]);
+            sunsetMinute = this.weather[i].astro.sunset
+              .split(" ")[0]
+              .split(":")[1];
+          }
+
+          days[i].splice(Number(sunriseHour) + 1, 0, {
+            time: `${sunriseHour}:${sunriseMinute}`,
+            type: "sunrise",
+          });
+          days[i].splice(Number(sunsetHour) + 2, 0, {
+            time: `${sunsetHour}:${sunsetMinute}`,
+            type: "sunset",
+          });
+        }
+        this.days = days[0].concat(days[1]);
+      } else return;
+    },
+  },
+  beforeMount() {
+    this.getSunsetAndSunrise();
   },
 };
 </script>
@@ -85,6 +136,7 @@ export default {
   padding: 1rem;
   overflow-y: hidden;
   box-shadow: 0.2rem 0.4rem 1rem rgba(0, 0, 0, 0.3);
+  user-select: none;
 }
 
 .date-time {
