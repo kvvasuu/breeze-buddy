@@ -47,6 +47,9 @@ export default {
         );
       }
     },
+    tempRangeWidth() {
+      let range = this.passMaxTemp - this.passMinTemp;
+    },
   },
 };
 </script>
@@ -72,7 +75,7 @@ export default {
       rgba(0, 0, 0, 0) 100%
     )
     1;
-  &:first-of-type {
+  /* &:first-of-type {
     border-top: 1px solid;
     background-image: linear-gradient(
       to right,
@@ -81,7 +84,7 @@ export default {
       rgba(240, 240, 240, 0.2) 90%,
       rgba(0, 0, 0, 0) 100%
     );
-  }
+  } */
   &:last-of-type {
     border: none;
   }
@@ -93,6 +96,7 @@ export default {
       rgba(240, 240, 240, 0.2) 90%,
       rgba(0, 0, 0, 0) 100%
     );
+    cursor: pointer;
   }
 
   padding: 0 0.6rem;
@@ -122,17 +126,18 @@ export default {
       position: relative;
       height: 0.3rem;
       width: 5rem;
-      background-image: linear-gradient(
+      background-color: rgba(107, 160, 173, 1);
+      /* background-image: linear-gradient(
         30deg,
         rgba(107, 160, 173, 0.7) 0%,
         rgba(107, 173, 166, 0.7) 100%
-      );
+      ); */
       border-radius: 1rem;
+      overflow: hidden;
     }
     .bar-thumb {
       position: absolute;
-      height: 0.32rem;
-      top: -0.01rem;
+      height: 0.3rem;
       left: 1rem;
       width: 3rem;
       background: rgb(145, 240, 255);
@@ -143,12 +148,10 @@ export default {
         hsl(27, 80%, 61%) 90%
       );
       border-radius: 1rem;
-      box-shadow: 0 0.04rem 0.04rem rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.2);
     }
     .actual {
-      content: "";
       position: absolute;
-      left: 90%;
       background-color: rgb(250, 250, 250);
       border-radius: 1rem;
       width: 0.3rem;

@@ -60,6 +60,7 @@ export default {
     pass24Hours() {
       if (this.weather !== undefined) {
         const currentHour = this.currentDate.getHours();
+
         let tempHours = [];
         for (let i = 0; i < 2; i++) {
           tempHours[i] = this.weather[i].hour;
@@ -103,10 +104,13 @@ export default {
             type: "sunset",
           });
         }
-        tempHours = tempHours[0]
-          .concat(tempHours[1])
-          .slice(currentHour, currentHour + 26);
-        return tempHours;
+
+        tempHours = tempHours[0].concat(tempHours[1]);
+        let indexOfCurrentHour = tempHours
+          .map((el) => el.time.split(" ")[1])
+          .indexOf(`${currentHour}:00`);
+
+        return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
     },
   },
