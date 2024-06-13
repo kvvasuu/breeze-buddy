@@ -34,7 +34,7 @@ export default {
       !localStorage.getItem("forecastDays") ||
       localStorage.getItem("forecastDays") < 3
     ) {
-      localStorage.setItem("forecastDays", 3);
+      localStorage.setItem("forecastDays", 10);
     }
     this.forecastDays = localStorage.getItem("forecastDays");
   },
