@@ -1,19 +1,38 @@
 <template>
   <div class="weather-display">
-    <div class="location">{{ currentWeather.location.name }}</div>
+    <Transition name="slide-horizontal-fade" mode="out-in">
+      <div class="location" :key="currentWeather.location.name">
+        {{ currentWeather.location.name }}
+      </div>
+    </Transition>
     <div class="icon-container">
-      <img
-        class="icon"
-        src="../../assets/favicon.png"
-        alt="Breeze Buddy"
-        draggable="false"
-      />
+      <Transition name="slide-horizontal-fade" mode="out-in">
+        <img
+          class="icon"
+          src="../../assets/favicon.png"
+          alt="Breeze Buddy"
+          draggable="false"
+        />
+      </Transition>
     </div>
-    <div class="temperature">{{ passTemperature }}</div>
-    <div class="conditions">{{ currentWeather.current.condition.text }}</div>
+    <Transition name="slide-horizontal-fade" mode="out-in">
+      <div class="temperature" :key="passTemperature">
+        {{ passTemperature }}
+      </div>
+    </Transition>
+    <Transition name="slide-horizontal-fade" mode="out-in">
+      <div class="conditions" :key="currentWeather.current.condition.text">
+        {{ currentWeather.current.condition.text }}
+      </div>
+    </Transition>
+
     <div class="temp-range">
-      <div class="temp">L: {{ passMinTemp }}</div>
-      <div class="temp">H: {{ passMaxTemp }}</div>
+      <Transition name="slide-horizontal-fade" mode="out-in">
+        <div class="temp" :key="passMinTemp">L: {{ passMinTemp }}</div>
+      </Transition>
+      <Transition name="slide-horizontal-fade" mode="out-in">
+        <div class="temp" :key="passMaxTemp">H: {{ passMaxTemp }}</div>
+      </Transition>
     </div>
   </div>
 </template>

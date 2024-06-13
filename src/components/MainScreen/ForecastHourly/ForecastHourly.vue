@@ -135,7 +135,7 @@ export default {
   );
   padding: 1rem;
   overflow-y: hidden;
-  box-shadow: 0.2rem 0.4rem 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.2);
   user-select: none;
 }
 

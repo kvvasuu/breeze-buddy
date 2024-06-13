@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 .forecast-weekly {
   width: 52rem;
-  margin: 2rem 0 2rem 0;
+  margin: 1rem 0 2rem 0;
   border-radius: 1.6rem;
   background-image: linear-gradient(
     30deg,
@@ -58,7 +58,7 @@ export default {
     rgba(107, 173, 166, 0.5) 100%
   );
   padding: 1rem;
-  box-shadow: 0.2rem 0.4rem 1rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.2);
   user-select: none;
 }
 

@@ -206,7 +206,7 @@ $font-color: rgb(250, 250, 250);
 .buttons {
   width: 52rem;
   height: 4rem;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0 0.6rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
