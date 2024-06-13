@@ -10,8 +10,8 @@
       />
     </div>
     <div class="temperature-range">
-      <div class="temperature-low temp">L: {{ passMinTemp }}</div>
-      <div class="temperature-high temp">H: {{ passMaxTemp }}</div>
+      <div class="temperature-low temp">{{ passMinTemp }}</div>
+      <div class="temperature-high temp">{{ passMaxTemp }}</div>
     </div>
   </div>
 </template>
@@ -82,7 +82,7 @@ export default {
 
 .day {
   font-size: 0.9rem;
-  min-width: 6rem;
+  min-width: 3rem;
   text-align: left;
 }
 
@@ -94,6 +94,16 @@ export default {
 .temperature-range {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  min-width: 9rem;
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  font-size: 0.8rem;
+  margin: 0 0.4rem 0 1rem;
+}
+
+.conditions {
+  display: flex;
+  align-items: center;
   justify-content: center;
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   font-size: 0.8rem;
@@ -102,7 +112,7 @@ export default {
 .temp {
   position: relative;
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
-  margin: 0 1rem 0 1rem;
+  margin: 0;
 }
 
 .temp::after {

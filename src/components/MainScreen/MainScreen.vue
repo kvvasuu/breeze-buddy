@@ -87,6 +87,7 @@ export default {
     ForecastHourly,
     ForecastWeekly,
   },
+  props: ["forecastDays"],
   data() {
     return {
       showSearchInput: false,
@@ -134,7 +135,7 @@ export default {
                 q: q,
                 aqi: "no",
                 lang: "en",
-                days: 10,
+                days: this.forecastDays,
               },
             }
           );

@@ -69,15 +69,6 @@ export default {
 .now {
   .time {
     font-weight: bold;
-    border-bottom: 1px solid;
-    border-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(240, 240, 240, 0.5) 10%,
-        rgba(240, 240, 240, 0.5) 90%,
-        rgba(0, 0, 0, 0) 100%
-      )
-      1;
   }
 }
 
