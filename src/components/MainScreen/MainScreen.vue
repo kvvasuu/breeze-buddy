@@ -160,14 +160,9 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 this.pinShakeAnimation = false;
-                if (
-                  this.coords.lat !== position.coords.latitude &&
-                  this.coords.lon !== position.coords.longitude
-                ) {
-                  this.coords.lat = position.coords.latitude;
-                  this.coords.lon = position.coords.longitude;
-                  this.getCurrentWeather();
-                }
+                this.coords.lat = position.coords.latitude;
+                this.coords.lon = position.coords.longitude;
+                this.getCurrentWeather();
               },
               () => {
                 this.isGeolocationDone = false;
