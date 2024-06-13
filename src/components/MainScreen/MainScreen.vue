@@ -5,7 +5,7 @@
       <div
         class="icon"
         :class="{
-          'location-icon-shake': !isGeolocationDone,
+          'location-icon-shake': pinShakeAnimation,
         }"
         @click="getLocationWeather"
       >
@@ -84,6 +84,7 @@ export default {
     return {
       showSearchInput: false,
       isGeolocationDone: false,
+      pinShakeAnimation: true,
       coords: {},
       currentWeather: {
         location: {
@@ -151,6 +152,7 @@ export default {
             navigator.geolocation.getCurrentPosition(
               (position) => {
                 this.isGeolocationDone = true;
+                this.pinShakeAnimation = false;
                 this.coords.lat = position.coords.latitude;
                 this.coords.lon = position.coords.longitude;
                 this.getCurrentWeather();
