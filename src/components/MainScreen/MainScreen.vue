@@ -142,7 +142,6 @@ export default {
           this.searchInput = "";
           this.isDay = !!response.data.current.is_day;
           this.weatherDone = true;
-          console.log(this.currentWeather);
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
           }
@@ -201,6 +200,7 @@ $font-color: rgb(250, 250, 250);
   flex-direction: column;
   align-items: center;
   backdrop-filter: blur(6rem);
+  overflow: hidden;
 }
 
 .buttons {
@@ -228,7 +228,7 @@ $font-color: rgb(250, 250, 250);
   }
   &:hover {
     opacity: 1;
-    filter: drop-shadow(0.1rem 0.1rem 0.2rem rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.3));
     scale: 1.2;
   }
 }

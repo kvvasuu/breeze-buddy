@@ -1,6 +1,6 @@
 <template>
   <div v-if="!sunsetOrSunrise">
-    <div class="hour-container">
+    <div class="hour-container" :class="[actual ? 'now' : 'time']">
       <div class="time">{{ passTime }}</div>
       <div class="icon-container">
         <img
@@ -65,6 +65,20 @@ export default {
 
 .sun {
   margin: 1rem 2rem 1rem 2rem;
+}
+.now {
+  .time {
+    font-weight: bold;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(240, 240, 240, 0.5) 10%,
+        rgba(240, 240, 240, 0.5) 90%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1;
+  }
 }
 
 .icon {
