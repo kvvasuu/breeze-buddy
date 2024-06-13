@@ -13,9 +13,12 @@
       <div class="temperature-low temp">{{ passMinTemp }}</div>
       <div class="temperature-range-bar">
         <div class="bar-track">
-          <div class="bar-thumb">
-            <div v-show="actual" class="actual"></div>
-          </div>
+          <div
+            v-show="actual"
+            class="actual"
+            :style="{ left: actualTempIndicatorPosition + '%' }"
+          ></div>
+          <div class="bar-thumb"></div>
         </div>
       </div>
       <div class="temperature-high temp">{{ passMaxTemp }}</div>
@@ -25,17 +28,24 @@
 
 <script>
 export default {
-  props: ["day", "dayName", "tempMinMax", "actual"],
+  props: ["day", "dayName", "tempMinMax", "actual", "currentTemp"],
   data() {
     return {};
   },
   computed: {
     passMinTemp() {
-      console.log(this.tempMinMax);
       return Math.round(this.day.day.mintemp_c);
     },
     passMaxTemp() {
       return Math.round(this.day.day.maxtemp_c);
+    },
+    actualTempIndicatorPosition() {
+      if (this.actual) {
+        let range = this.passMaxTemp - this.passMinTemp;
+        return (
+          ((Math.round(this.currentTemp) - this.passMinTemp) / range) * 100
+        );
+      }
     },
   },
 };
@@ -134,14 +144,16 @@ export default {
       );
       border-radius: 1rem;
       box-shadow: 0 0.04rem 0.04rem rgba(0, 0, 0, 0.2);
-      .actual {
-        content: "";
-        position: absolute;
-        background-color: white;
-        border-radius: 1rem;
-        width: 0.3rem;
-        height: 0.3rem;
-      }
+    }
+    .actual {
+      content: "";
+      position: absolute;
+      left: 90%;
+      background-color: rgb(250, 250, 250);
+      border-radius: 1rem;
+      width: 0.3rem;
+      height: 0.3rem;
+      z-index: 3;
     }
   }
 }

@@ -15,6 +15,7 @@
         v-for="(hour, index) in pass24Hours"
         :hour="hour"
         :key="index"
+        :pastHour="index === 0"
         :actual="index === 1"
         :sunset-or-sunrise="hour.type === 'sunset' || hour.type === 'sunrise'"
       ></Hour>

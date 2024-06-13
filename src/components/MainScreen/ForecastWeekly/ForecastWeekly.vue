@@ -20,6 +20,7 @@
         :dayName="passDayOfWeek(index)"
         :tempMinMax="getMinMaxTemp"
         :actual="index === 0"
+        :currentTemp="currentWeather.temp_c"
       ></Day>
     </div>
   </div>
@@ -32,7 +33,7 @@ export default {
   components: {
     Day,
   },
-  props: ["forecast"],
+  props: ["forecast", "currentWeather"],
   data() {
     return {
       currentDate: new Date(),

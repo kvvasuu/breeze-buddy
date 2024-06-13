@@ -69,6 +69,7 @@
       <ForecastWeekly
         v-if="weatherDone"
         :forecast="currentWeather.forecast.forecastday"
+        :currentWeather="currentWeather.current"
       ></ForecastWeekly>
     </Transition>
   </div>
@@ -202,6 +203,7 @@ $font-color: rgb(250, 250, 250);
   align-items: center;
   backdrop-filter: blur(6rem);
   overflow: hidden;
+  padding: 1rem 0 1rem 0;
 }
 
 .buttons {
