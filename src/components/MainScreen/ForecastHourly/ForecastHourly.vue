@@ -15,6 +15,8 @@
         v-for="(hour, index) in pass24Hours"
         :hour="hour"
         :key="index"
+        :actual="index === 1"
+        :sunset-or-sunrise="hour.type === 'sunset' || hour.type === 'sunrise'"
       ></Hour>
     </div>
   </div>
@@ -45,7 +47,6 @@ export default {
         "November",
         "December",
       ],
-      days: [],
     };
   },
   computed: {
@@ -58,21 +59,9 @@ export default {
     pass24Hours() {
       if (this.weather !== undefined) {
         const currentHour = this.currentDate.getHours();
-        return this.days.slice(currentHour, currentHour + 26);
-      } else return [];
-    },
-  },
-  methods: {
-    grabCursor() {
-      if (document.body.style.cursor === "grab") {
-        document.body.style.cursor = "default";
-      } else document.body.style.cursor = "grab";
-    },
-    getSunsetAndSunrise() {
-      if (this.weather !== undefined) {
-        let days = [];
+        let tempHours = [];
         for (let i = 0; i < 2; i++) {
-          days[i] = this.weather[i].hour;
+          tempHours[i] = this.weather[i].hour;
 
           let sunriseHour = "";
           let sunriseMinute = "";
@@ -104,22 +93,82 @@ export default {
               .split(":")[1];
           }
 
-          days[i].splice(Number(sunriseHour) + 1, 0, {
+          tempHours[i].splice(Number(sunriseHour) + 1, 0, {
             time: `${sunriseHour}:${sunriseMinute}`,
             type: "sunrise",
           });
-          days[i].splice(Number(sunsetHour) + 2, 0, {
+          tempHours[i].splice(Number(sunsetHour) + 2, 0, {
             time: `${sunsetHour}:${sunsetMinute}`,
             type: "sunset",
           });
         }
-        this.days = days[0].concat(days[1]);
-      } else return;
+        tempHours = tempHours[0]
+          .concat(tempHours[1])
+          .slice(currentHour, currentHour + 26);
+
+        console.log(tempHours);
+        return tempHours;
+      } else return [];
     },
   },
-  beforeMount() {
-    this.getSunsetAndSunrise();
+  methods: {
+    grabCursor() {
+      if (document.body.style.cursor === "grab") {
+        document.body.style.cursor = "default";
+      } else document.body.style.cursor = "grab";
+    },
+    /* getSunsetAndSunrise() {
+      if (this.weather !== undefined) {
+        let tempHours = [];
+        for (let i = 0; i < 2; i++) {
+          tempHours[i] = this.weather[i].hour;
+
+          let sunriseHour = "";
+          let sunriseMinute = "";
+          if (this.weather[i].astro.sunrise.split(" ")[1] === "PM") {
+            sunriseHour =
+              Number(this.weather[i].astro.sunrise.split(":")[0]) + 12;
+            sunriseMinute = this.weather[i].astro.sunrise
+              .split(" ")[0]
+              .split(":")[1];
+          } else {
+            sunriseHour = this.weather[i].astro.sunrise.split(":")[0];
+            sunriseMinute = this.weather[i].astro.sunrise
+              .split(" ")[0]
+              .split(":")[1];
+          }
+
+          let sunsetHour = "";
+          let sunsetMinute = "";
+          if (this.weather[i].astro.sunset.split(" ")[1] === "PM") {
+            sunsetHour =
+              Number(this.weather[i].astro.sunset.split(":")[0]) + 12;
+            sunsetMinute = this.weather[i].astro.sunset
+              .split(" ")[0]
+              .split(":")[1];
+          } else {
+            sunsetHour = Number(this.weather[i].astro.sunset.split(":")[0]);
+            sunsetMinute = this.weather[i].astro.sunset
+              .split(" ")[0]
+              .split(":")[1];
+          }
+
+          tempHours[i].splice(Number(sunriseHour) + 1, 0, {
+            time: `${sunriseHour}:${sunriseMinute}`,
+            type: "sunrise",
+          });
+          tempHours[i].splice(Number(sunsetHour) + 2, 0, {
+            time: `${sunsetHour}:${sunsetMinute}`,
+            type: "sunset",
+          });
+        }
+        this.hours = tempHours[0].concat(tempHours[1]);
+      } else return;
+    }, */
   },
+  /*   beforeMount() {
+    this.getSunsetAndSunrise();
+  }, */
 };
 </script>
 

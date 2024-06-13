@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isSunsetOrSunrise">
+  <div v-if="!sunsetOrSunrise">
     <div class="hour-container">
       <div class="time">{{ passTime }}</div>
       <div class="icon-container">
@@ -24,38 +24,31 @@
           draggable="false"
         />
       </div>
-      <div class="sunset-or-sunrise">{{ sunsetOrSunrise }}</div>
+      <div class="sunset-or-sunrise">{{ sunsetOrSunriseCheck }}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["hour"],
+  props: ["hour", "actual", "sunsetOrSunrise"],
   data() {
-    return {
-      isSunsetOrSunrise: false,
-    };
+    return {};
   },
   computed: {
     passTime() {
-      if (!this.isSunsetOrSunrise) {
-        return this.hour.time.split(" ")[1].split(":")[0];
+      if (!this.sunsetOrSunrise) {
+        return this.actual ? "Now" : this.hour.time.split(" ")[1].split(":")[0];
       }
     },
     passTemp() {
-      if (!this.isSunsetOrSunrise) {
+      if (!this.sunsetOrSunrise) {
         return Math.round(this.hour.temp_c);
       }
     },
-    sunsetOrSunrise() {
+    sunsetOrSunriseCheck() {
       return this.hour.type === "sunrise" ? "Sunrise" : "Sunset";
     },
-  },
-  beforeMount() {
-    if (this.hour.type !== undefined) {
-      this.isSunsetOrSunrise = true;
-    }
   },
 };
 </script>
