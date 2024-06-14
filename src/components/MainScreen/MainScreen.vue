@@ -80,7 +80,7 @@ import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import axios from "axios";
-import { latinise, Latinise } from "../../latinise";
+import { latinise, Latinise } from "../../functions";
 
 export default {
   components: {

@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { timeConversion } from "../../../functions";
 import Hour from "./Hour.vue";
 
 export default {
@@ -108,8 +109,8 @@ export default {
         tempHours = tempHours[0].concat(tempHours[1]);
         let indexOfCurrentHour = tempHours
           .map((el) => el.time.split(" ")[1])
-          .indexOf(`${currentHour}:00`);
-
+          .indexOf(timeConversion(currentHour));
+        console.log(tempHours);
         return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
     },
