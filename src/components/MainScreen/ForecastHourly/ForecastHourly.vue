@@ -110,7 +110,6 @@ export default {
         let indexOfCurrentHour = tempHours
           .map((el) => el.time.split(" ")[1])
           .indexOf(timeConversion(currentHour));
-        console.log(tempHours);
         return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
     },

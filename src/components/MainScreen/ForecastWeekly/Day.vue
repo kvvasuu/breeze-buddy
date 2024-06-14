@@ -14,11 +14,19 @@
       <div class="temperature-range-bar">
         <div class="bar-track">
           <div
-            v-show="actual"
-            class="actual"
-            :style="{ left: actualTempIndicatorPosition + '%' }"
-          ></div>
-          <div class="bar-thumb"></div>
+            class="bar-thumb"
+            :style="{
+              left: tempRangePosition + '%',
+              width: tempRangeWidth + '%',
+              'background-position': thumbPosition + 'px',
+            }"
+          >
+            <div
+              v-show="actual"
+              class="actual"
+              :style="{ left: actualTempIndicatorPosition + '%' }"
+            ></div>
+          </div>
         </div>
       </div>
       <div class="temperature-high temp">{{ passMaxTemp }}</div>
@@ -49,6 +57,16 @@ export default {
     },
     tempRangeWidth() {
       let range = this.passMaxTemp - this.passMinTemp;
+      let fullRange = this.tempMinMax.maxTemp - this.tempMinMax.minTemp;
+      return Math.round((range / fullRange) * 100);
+    },
+    tempRangePosition() {
+      let fullRange = this.tempMinMax.maxTemp - this.tempMinMax.minTemp;
+      let left = this.passMinTemp - this.tempMinMax.minTemp;
+      return Math.round((left / fullRange) * 100);
+    },
+    thumbPosition() {
+      return -(this.tempRangePosition / 100) * 80;
     },
   },
 };
@@ -56,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .day-container {
-  font-family: "Helvetica Bold";
+  font-family: "Helvetica";
   letter-spacing: 1px;
   box-sizing: border-box;
   width: 100%;
@@ -75,16 +93,10 @@ export default {
       rgba(0, 0, 0, 0) 100%
     )
     1;
-  /* &:first-of-type {
+  &:first-of-type {
     border-top: 1px solid;
-    background-image: linear-gradient(
-      to right,
-      hsla(0, 0%, 100%, 0) 0%,
-      rgba(240, 240, 240, 0.2) 10%,
-      rgba(240, 240, 240, 0.2) 90%,
-      rgba(0, 0, 0, 0) 100%
-    );
-  } */
+    font-weight: bold;
+  }
   &:last-of-type {
     border: none;
   }
@@ -127,36 +139,32 @@ export default {
       height: 0.3rem;
       width: 5rem;
       background-color: rgba(107, 160, 173, 1);
-      /* background-image: linear-gradient(
-        30deg,
-        rgba(107, 160, 173, 0.7) 0%,
-        rgba(107, 173, 166, 0.7) 100%
-      ); */
       border-radius: 1rem;
       overflow: hidden;
     }
     .bar-thumb {
       position: absolute;
       height: 0.3rem;
-      left: 1rem;
       width: 3rem;
+      background-size: 5rem 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.2);
       background: rgb(145, 240, 255);
-      background: linear-gradient(
+      background-image: linear-gradient(
         90deg,
         hsl(188, 80%, 50%) 20%,
         hsl(58, 71%, 56%) 50%,
         hsl(27, 80%, 61%) 90%
       );
-      border-radius: 1rem;
-      box-shadow: 0 0 0.04rem rgba(0, 0, 0, 0.2);
-    }
-    .actual {
-      position: absolute;
-      background-color: rgb(250, 250, 250);
-      border-radius: 1rem;
-      width: 0.3rem;
-      height: 0.3rem;
-      z-index: 3;
+      background-size: 5rem;
+      .actual {
+        position: absolute;
+        background-color: rgb(250, 250, 250);
+        border-radius: 1rem;
+        width: 0.3rem;
+        height: 0.3rem;
+        z-index: 3;
+      }
     }
   }
 }
