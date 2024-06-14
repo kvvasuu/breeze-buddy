@@ -60,17 +60,25 @@
         </svg>
       </div>
     </div>
-    <Transition name="slide-fade">
+    <Transition
+      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
+      mode="out-in"
+    >
       <ForecastHourly
         v-if="weatherDone"
         :weather="currentWeather.forecast.forecastday"
+        :key="currentWeather.location.name"
       ></ForecastHourly>
     </Transition>
-    <Transition name="slide-fade">
+    <Transition
+      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
+      mode="out-in"
+    >
       <ForecastWeekly
         v-if="weatherDone"
         :forecast="currentWeather.forecast.forecastday"
         :currentWeather="currentWeather.current"
+        :key="currentWeather.location.name"
       ></ForecastWeekly>
     </Transition>
   </div>
@@ -95,7 +103,7 @@ export default {
       showSearchInput: false,
       isGeolocationDone: false,
       pinShakeAnimation: false,
-      geolocationPopup: false,
+      transitionChange: false,
       coords: {},
       currentWeather: {
         location: {
@@ -141,6 +149,10 @@ export default {
           this.searchInput = "";
           this.isDay = !!response.data.current.is_day;
           this.weatherDone = true;
+          setTimeout(() => {
+            this.transitionChange = true;
+          }, 3000);
+
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
           }
@@ -154,13 +166,10 @@ export default {
           if (result.state === "denied") {
             console.log(`Geolocation permission:` + result.state);
             this.pinShakeAnimation = true;
-            this.geolocationPopup = true;
+            navigator.vibrate(200);
             setTimeout(() => {
               this.pinShakeAnimation = false;
             }, 1000);
-            setTimeout(() => {
-              this.geolocationPopup = false;
-            }, 3000);
           } else {
             navigator.geolocation.getCurrentPosition(
               (position) => {

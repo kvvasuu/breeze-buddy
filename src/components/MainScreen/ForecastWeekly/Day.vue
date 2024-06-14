@@ -53,7 +53,6 @@ export default {
         let positionPercent = Math.round(
           (Math.round(this.currentTemp - this.passMinTemp) / range) * 100
         );
-        console.log(positionPercent);
         return positionPercent < 50
           ? `${positionPercent}%`
           : `calc(${positionPercent}% - 4.8px)`;

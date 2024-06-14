@@ -7,7 +7,7 @@
     <hr />
     <div
       class="hours-container"
-      v-dragscroll.x
+      v-dragscroll.x:nochilddrag
       v-on:dragscrollstart="grabCursor"
       v-on:dragscrollend="grabCursor"
     >
