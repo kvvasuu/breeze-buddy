@@ -32,6 +32,7 @@
             @blur="getCurrentWeather(searchInput)"
             autocomplete="off"
             ref="search"
+            autofocus
           />
           <div class="icon" v-else @click="toggleShowSearchInput">
             <svg
@@ -93,7 +94,8 @@ export default {
     return {
       showSearchInput: false,
       isGeolocationDone: false,
-      pinShakeAnimation: true,
+      pinShakeAnimation: false,
+      geolocationPopup: false,
       coords: {},
       currentWeather: {
         location: {
@@ -115,11 +117,6 @@ export default {
   methods: {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
-      if (this.showSearchInput) {
-        setTimeout(() => {
-          this.$refs.search.focus();
-        }, 1000);
-      }
     },
     async getCurrentWeather(value) {
       let q = "";
@@ -156,6 +153,14 @@ export default {
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
           if (result.state === "denied") {
             console.log(`Geolocation permission:` + result.state);
+            this.pinShakeAnimation = true;
+            this.geolocationPopup = true;
+            setTimeout(() => {
+              this.pinShakeAnimation = false;
+            }, 1000);
+            setTimeout(() => {
+              this.geolocationPopup = false;
+            }, 3000);
           } else {
             navigator.geolocation.getCurrentPosition(
               (position) => {
