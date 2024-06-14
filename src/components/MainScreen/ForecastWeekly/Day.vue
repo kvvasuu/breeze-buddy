@@ -24,7 +24,7 @@
             <div
               v-show="actual"
               class="actual"
-              :style="{ left: actualTempIndicatorPosition + '%' }"
+              :style="{ left: actualTempIndicatorPosition }"
             ></div>
           </div>
         </div>
@@ -50,9 +50,13 @@ export default {
     actualTempIndicatorPosition() {
       if (this.actual) {
         let range = this.passMaxTemp - this.passMinTemp;
-        return (
-          ((Math.round(this.currentTemp) - this.passMinTemp) / range) * 100
+        let positionPercent = Math.round(
+          (Math.round(this.currentTemp - this.passMinTemp) / range) * 100
         );
+        console.log(positionPercent);
+        return positionPercent < 50
+          ? `${positionPercent}%`
+          : `calc(${positionPercent}% - 4.8px)`;
       }
     },
     tempRangeWidth() {
