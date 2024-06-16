@@ -9,7 +9,7 @@
       <Transition name="slide-horizontal-fade" mode="out-in">
         <img
           class="icon"
-          src="../../assets/icons/176.png"
+          :src="passIconSrc"
           draggable="false"
           onerror="this.style.display='none'"
         />
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { iconMap } from "../../functions.js";
 export default {
   props: ["currentWeather"],
   computed: {
@@ -55,6 +56,14 @@ export default {
       return Math.round(
         this.currentWeather.forecast.forecastday[0].day.maxtemp_c
       );
+    },
+    passIconSrc() {
+      return new URL(
+        `../../assets/icons/${
+          iconMap[this.currentWeather.current.condition.code]
+        }.png`,
+        import.meta.url
+      ).href;
     },
   },
 };

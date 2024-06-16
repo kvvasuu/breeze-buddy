@@ -1,4 +1,4 @@
-export { latinise, Latinise, timeConversion };
+export { latinise, Latinise, timeConversion, iconMap };
 
 function timeConversion(num) {
   let time = "";
@@ -14,6 +14,23 @@ function timeConversion(num) {
   }
   return res.replace(/^\d{1}:/, "0$&").replace(/:\d{1}$/, "$&0");
 }
+
+const iconMap = {
+  1000: 113,
+  1003: 116,
+  1006: 119,
+  1009: 122,
+  1030: 143,
+  1063: 176,
+  1066: 179,
+  1069: 182,
+  1072: 185,
+  1087: 200,
+  1114: 227,
+  1117: 230,
+  230: 230,
+  248: 248,
+};
 
 let Latinise = {};
 Latinise.latin_map = {
