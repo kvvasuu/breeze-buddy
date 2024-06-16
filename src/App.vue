@@ -5,6 +5,7 @@
         <WelcomeScreen
           v-if="showWelcomeScreen"
           @welcome-screen-toggle="welcomeScreenToggle"
+          :isDay="isDay"
         ></WelcomeScreen>
         <MainScreen
           v-else
@@ -48,6 +49,7 @@ export default {
     ) {
       localStorage.setItem("forecastDays", 10);
     }
+    this.isDay = !!localStorage.getItem("isDay");
     this.forecastDays = localStorage.getItem("forecastDays");
   },
 };

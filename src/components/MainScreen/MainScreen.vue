@@ -151,6 +151,7 @@ export default {
           response.data.current.is_day
             ? this.$emit("isDay", true)
             : this.$emit("isDay", false);
+          localStorage.setItem("isDay", response.data.current.is_day);
 
           this.weatherDone = true;
           if (response.data)

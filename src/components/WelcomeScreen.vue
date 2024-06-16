@@ -3,22 +3,34 @@
     <div class="logo-container">
       <img
         class="logo"
-        src="../assets/favicon.png"
+        :src="toggleLogo"
         alt="Breeze Buddy"
         draggable="false"
       />
-      <div class="title">Breeze Buddy</div>
+      <div class="title" :style="{ color: toggleTitle }">Breeze Buddy</div>
     </div>
     <button class="button-1" @click="welcomeScreenHide">Get start!</button>
   </div>
 </template>
 
 <script>
+import logo from "../assets/favicon.png";
+import logoDark from "../assets/favicon-dark.png";
+
 export default {
   emits: ["welcome-screen-toggle"],
+  props: ["isDay"],
   methods: {
     welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");
+    },
+  },
+  computed: {
+    toggleLogo() {
+      return this.isDay ? logo : logoDark;
+    },
+    toggleTitle() {
+      return this.isDay ? "rgb(51, 51, 51)" : "rgb(240, 240, 240)";
     },
   },
 };
