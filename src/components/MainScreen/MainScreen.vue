@@ -1,6 +1,9 @@
 <template>
   <div class="main-container">
-    <WeatherDisplay :currentWeather="currentWeather"></WeatherDisplay>
+    <WeatherDisplay
+      :currentWeather="currentWeather"
+      :iconSrc="passIconSrc"
+    ></WeatherDisplay>
     <div class="buttons">
       <div
         class="icon"
@@ -91,7 +94,7 @@ import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import axios from "axios";
-import { latinise, Latinise } from "../../functions";
+import { latinise, Latinise, iconMap } from "../../functions";
 
 export default {
   components: {
@@ -115,6 +118,7 @@ export default {
         current: {
           temp_c: "-",
           condition: {
+            code: 1000,
             text: "Unknown",
           },
         },
@@ -204,6 +208,16 @@ export default {
   },
   beforeMount() {
     this.getLocationWeather();
+  },
+  computed: {
+    passIconSrc() {
+      return new URL(
+        `../../assets/icons/${
+          iconMap[this.currentWeather.current.condition.code]
+        }.png`,
+        import.meta.url
+      ).href;
+    },
   },
 };
 </script>

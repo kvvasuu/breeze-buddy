@@ -3,12 +3,19 @@
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
-      </div> </Transition
-    ><Transition name="slide-horizontal-fade" mode="out-in" :key="passIconSrc">
-      <div class="icon-container">
-        <img class="icon" src="passIconSrc" draggable="false" />
       </div>
     </Transition>
+    <div class="icon-container">
+      <Transition name="slide-horizontal-fade" mode="out-in">
+        <img
+          class="icon"
+          :src="iconSrc"
+          draggable="false"
+          :key="this.currentWeather.current.condition.code"
+        />
+      </Transition>
+    </div>
+
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="temperature" :key="passTemperature">
         {{ passTemperature }}
@@ -32,9 +39,8 @@
 </template>
 
 <script>
-import { iconMap } from "../../functions.js";
 export default {
-  props: ["currentWeather"],
+  props: ["currentWeather", "iconSrc"],
   computed: {
     passTemperature() {
       return this.currentWeather.current.temp_c === "-"
@@ -50,14 +56,6 @@ export default {
       return Math.round(
         this.currentWeather.forecast.forecastday[0].day.maxtemp_c
       );
-    },
-    passIconSrc() {
-      return new URL(
-        `../../assets/icons/${
-          iconMap[this.currentWeather.current.condition.code]
-        }.png`,
-        import.meta.url
-      ).href;
     },
   },
 };
