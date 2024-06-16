@@ -93,6 +93,7 @@ import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import axios from "axios";
 import { latinise, Latinise, iconMap } from "../../functions";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -104,7 +105,7 @@ export default {
   emits: ["isDayEmit"],
   provide() {
     return {
-      isDay: this.is_Day,
+      isDay: computed(() => this.is_Day),
     };
   },
   data() {
@@ -158,6 +159,7 @@ export default {
           this.currentWeather = response.data;
           this.searchInput = "";
           this.is_Day = !!response.data.current.is_day;
+
           response.data.current.is_day
             ? this.$emit("isDayEmit", true)
             : this.$emit("isDayEmit", false);
@@ -221,6 +223,9 @@ export default {
       return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
         .href;
     },
+  },
+  isItDay() {
+    return this.is_Day;
   },
 };
 </script>

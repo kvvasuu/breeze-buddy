@@ -21,7 +21,8 @@
 
 <script>
 export default {
-  props: ["hour", "actual", "sunsetOrSunrise", "isDay", "iconSrc"],
+  props: ["hour", "actual", "sunsetOrSunrise", "iconSrc"],
+  inject: ["isDay"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {

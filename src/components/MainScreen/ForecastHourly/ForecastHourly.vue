@@ -17,7 +17,6 @@
         :key="index"
         :actual="index === 0"
         :sunset-or-sunrise="hour.type === 'sunset' || hour.type === 'sunrise'"
-        :isDay="isDay"
         :iconSrc="passIconSrc(hour)"
       ></Hour>
     </div>
@@ -115,7 +114,6 @@ export default {
         return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
     },
-
     toggleColor() {
       return this.isDay
         ? `linear-gradient(

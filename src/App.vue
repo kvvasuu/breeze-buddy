@@ -1,11 +1,11 @@
 <template>
-  <div id="app-background" :class="{ 'app-background-night': !isDay }">
+  <div id="app-background" :class="{ 'app-background-night': !is_Day }">
     <div id="app-inner">
       <Transition name="slide-fade" mode="out-in" appear>
         <WelcomeScreen
           v-if="showWelcomeScreen"
           @welcome-screen-toggle="welcomeScreenToggle"
-          :isDay="isDay"
+          :isDay="is_Day"
         ></WelcomeScreen>
         <MainScreen
           v-else
@@ -31,7 +31,7 @@ export default {
     return {
       showWelcomeScreen: true,
       forecastDays: 3,
-      isDay: true,
+      is_Day: true,
     };
   },
   methods: {
@@ -39,7 +39,7 @@ export default {
       this.showWelcomeScreen = !this.showWelcomeScreen;
     },
     toggleNight(isDay) {
-      isDay ? (this.isDay = true) : (this.isDay = false);
+      isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
   },
   mounted() {
@@ -50,8 +50,8 @@ export default {
       localStorage.setItem("forecastDays", 10);
     }
     localStorage.getItem("isDay") === "0"
-      ? (this.isDay = false)
-      : (this.isDay = true);
+      ? (this.is_Day = false)
+      : (this.is_Day = true);
     this.forecastDays = localStorage.getItem("forecastDays");
   },
 };
