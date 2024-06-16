@@ -211,13 +211,12 @@ export default {
   },
   computed: {
     passIconSrc() {
-      let iconName = this.currentWeather.current.condition.code;
-      if (this.currentWeather.current.condition.code === 1000 && !this.isDay)
-        iconName = 114;
-      return new URL(
-        `../../assets/icons/${iconMap[iconName]}.png`,
-        import.meta.url
-      ).href;
+      let iconName = iconMap[this.currentWeather.current.condition.code];
+      if (!this.isDay) {
+        iconName++;
+      }
+      return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
+        .href;
     },
   },
 };

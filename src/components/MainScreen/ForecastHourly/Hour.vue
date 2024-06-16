@@ -3,12 +3,7 @@
     <div class="hour-container" :class="isNow">
       <div class="time">{{ passTime }}</div>
       <div class="icon-container">
-        <img
-          class="icon"
-          src="../../../assets/favicon.png"
-          alt="Breeze Buddy"
-          draggable="false"
-        />
+        <img class="icon" :src="iconSrc" draggable="false" />
       </div>
       <div class="temperature">{{ passTemp }}</div>
     </div>
@@ -17,12 +12,7 @@
     <div class="hour-container sun">
       <div class="time">{{ hour.time }}</div>
       <div class="icon-container">
-        <img
-          class="icon"
-          src="../../../assets/favicon.png"
-          alt="Breeze Buddy"
-          draggable="false"
-        />
+        <img class="icon" :src="sunsetOrSunriseIcon" draggable="false" />
       </div>
       <div class="sunset-or-sunrise">{{ sunsetOrSunriseCheck }}</div>
     </div>
@@ -31,13 +21,14 @@
 
 <script>
 export default {
-  props: ["hour", "actual", "sunsetOrSunrise"],
+  props: ["hour", "actual", "sunsetOrSunrise", "isDay", "iconSrc"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
         return this.actual ? "Now" : this.hour.time.split(" ")[1].split(":")[0];
       }
     },
+
     passTemp() {
       if (!this.sunsetOrSunrise) {
         return Math.round(this.hour.temp_c);
@@ -48,6 +39,12 @@ export default {
     },
     isNow() {
       if (this.actual) return "now";
+    },
+    sunsetOrSunriseIcon() {
+      if (this.hour.type === "sunrise") {
+        return new URL(`../../../assets/icons/400.png`, import.meta.url).href;
+      } else
+        return new URL(`../../../assets/icons/401.png`, import.meta.url).href;
     },
   },
 };

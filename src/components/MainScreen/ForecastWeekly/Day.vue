@@ -2,12 +2,7 @@
   <div class="day-container">
     <div class="day">{{ dayName }}</div>
     <div class="icon-container">
-      <img
-        class="icon"
-        src="../../../assets/favicon.png"
-        alt="Breeze Buddy"
-        draggable="false"
-      />
+      <img class="icon" :src="iconSrc" draggable="false" />
     </div>
     <div class="temperature-range">
       <div class="temperature-low temp">{{ passMinTemp }}</div>
@@ -36,7 +31,7 @@
 
 <script>
 export default {
-  props: ["day", "dayName", "tempMinMax", "actual", "currentTemp"],
+  props: ["day", "dayName", "tempMinMax", "actual", "currentTemp", "iconSrc"],
   data() {
     return {};
   },

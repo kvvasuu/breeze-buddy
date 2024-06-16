@@ -17,13 +17,15 @@
         :key="index"
         :actual="index === 0"
         :sunset-or-sunrise="hour.type === 'sunset' || hour.type === 'sunrise'"
+        :isDay="isDay"
+        :iconSrc="passIconSrc(hour)"
       ></Hour>
     </div>
   </div>
 </template>
 
 <script>
-import { timeConversion } from "../../../functions";
+import { timeConversion, iconMap } from "../../../functions";
 import Hour from "./Hour.vue";
 
 export default {
@@ -132,6 +134,16 @@ export default {
       if (document.body.style.cursor === "grab") {
         document.body.style.cursor = "default";
       } else document.body.style.cursor = "grab";
+    },
+    passIconSrc(hour) {
+      if (hour.condition !== undefined) {
+        let iconName = iconMap[hour.condition.code];
+        if (hour.is_day === 0) {
+          iconName++;
+        }
+        return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
+          .href;
+      }
     },
   },
 };

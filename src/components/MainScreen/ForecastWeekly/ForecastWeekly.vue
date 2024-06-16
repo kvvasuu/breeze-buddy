@@ -21,6 +21,7 @@
         :tempMinMax="getMinMaxTemp"
         :actual="index === 0"
         :currentTemp="currentWeather.temp_c"
+        :iconSrc="passIconSrc(day)"
       ></Day>
     </div>
   </div>
@@ -28,6 +29,7 @@
 
 <script>
 import Day from "./Day.vue";
+import { iconMap } from "../../../functions";
 
 export default {
   components: {
@@ -45,6 +47,13 @@ export default {
       const day = this.currentDate.getDay() - 1;
       if (value === 0) return "Today";
       else return this.daysOfWeek[(value + day) % 7];
+    },
+    passIconSrc(day) {
+      if (day.day.condition !== undefined) {
+        let iconName = iconMap[day.day.condition.code];
+        return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
+          .href;
+      }
     },
   },
   computed: {

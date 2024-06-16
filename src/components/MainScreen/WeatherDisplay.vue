@@ -43,7 +43,6 @@ export default {
   props: ["currentWeather", "iconSrc"],
   computed: {
     passTemperature() {
-      console.log(this.currentWeather);
       return this.currentWeather.current.temp_c === "-"
         ? this.currentWeather.current.temp_c
         : Math.round(this.currentWeather.current.temp_c);
