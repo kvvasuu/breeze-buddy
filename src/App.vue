@@ -31,7 +31,7 @@ export default {
     return {
       showWelcomeScreen: true,
       forecastDays: 3,
-      isDay: false,
+      isDay: true,
     };
   },
   methods: {

@@ -3,13 +3,12 @@
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
+      </div> </Transition
+    ><Transition name="slide-horizontal-fade" mode="out-in" :key="passIconSrc">
+      <div class="icon-container">
+        <img class="icon" src="passIconSrc" draggable="false" />
       </div>
     </Transition>
-    <div class="icon-container">
-      <Transition name="slide-horizontal-fade" mode="out-in">
-        <img class="icon" src="passIconSrc" draggable="false" />
-      </Transition>
-    </div>
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="temperature" :key="passTemperature">
         {{ passTemperature }}
