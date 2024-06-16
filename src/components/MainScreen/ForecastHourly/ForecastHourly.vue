@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-hourly">
+  <div class="forecast-hourly" :style="{ 'background-image': toggleColor }">
     <div class="date-time">
       <div class="day">Today</div>
       <div class="date">{{ passCurrentDate }}</div>
@@ -31,7 +31,7 @@ export default {
   components: {
     Hour,
   },
-  props: ["weather"],
+  props: ["weather", "isDay"],
   data() {
     return {
       currentDate: new Date(),
@@ -113,6 +113,20 @@ export default {
         return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
     },
+
+    toggleColor() {
+      return this.isDay
+        ? `linear-gradient(
+    30deg,
+    rgba(0, 116, 184, 0.5) 0%,
+    rgba(107, 173, 166, 0.5) 100%
+  )`
+        : `linear-gradient(
+    30deg,
+    rgba(0, 60, 95, 0.5) 0%,
+    rgba(62, 99, 95, 0.5) 100%
+  )`;
+    },
   },
   methods: {
     grabCursor() {
@@ -129,11 +143,6 @@ export default {
   width: 52rem;
   margin: 0;
   border-radius: 1.6rem;
-  background-image: linear-gradient(
-    30deg,
-    rgba(0, 116, 184, 0.5) 0%,
-    rgba(107, 173, 166, 0.5) 100%
-  );
   padding: 1rem;
   overflow-y: hidden;
   box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.2);

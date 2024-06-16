@@ -68,6 +68,7 @@
         v-if="weatherDone"
         :weather="currentWeather.forecast.forecastday"
         :key="currentWeather.location.name"
+        :isDay="isDay"
       ></ForecastHourly>
     </Transition>
     <Transition
@@ -79,6 +80,7 @@
         :forecast="currentWeather.forecast.forecastday"
         :currentWeather="currentWeather.current"
         :key="currentWeather.location.name"
+        :isDay="isDay"
       ></ForecastWeekly>
     </Transition>
   </div>
@@ -98,7 +100,7 @@ export default {
     ForecastWeekly,
   },
   props: ["forecastDays"],
-  emits: ["isDay"],
+  emits: ["isDayEmit"],
   data() {
     return {
       showSearchInput: false,
@@ -120,6 +122,7 @@ export default {
       },
       weatherDone: false,
       searchInput: "",
+      isDay: true,
     };
   },
   methods: {
@@ -149,8 +152,9 @@ export default {
           this.searchInput = "";
           this.isDay = !!response.data.current.is_day;
           response.data.current.is_day
-            ? this.$emit("isDay", true)
-            : this.$emit("isDay", false);
+            ? this.$emit("isDayEmit", true)
+            : this.$emit("isDayEmit", false);
+
           localStorage.setItem("isDay", response.data.current.is_day);
 
           this.weatherDone = true;

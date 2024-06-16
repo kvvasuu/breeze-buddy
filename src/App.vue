@@ -10,7 +10,7 @@
         <MainScreen
           v-else
           :forecastDays="forecastDays"
-          @isDay="toggleNight"
+          @isDayEmit="toggleNight"
         ></MainScreen>
       </Transition>
     </div>
@@ -31,7 +31,7 @@ export default {
     return {
       showWelcomeScreen: true,
       forecastDays: 3,
-      isDay: true,
+      isDay: false,
     };
   },
   methods: {
