@@ -98,6 +98,7 @@ export default {
     ForecastWeekly,
   },
   props: ["forecastDays"],
+  emits: ["isDay"],
   data() {
     return {
       showSearchInput: false,
@@ -119,7 +120,6 @@ export default {
       },
       weatherDone: false,
       searchInput: "",
-      isDay: true,
     };
   },
   methods: {
@@ -148,10 +148,15 @@ export default {
           this.currentWeather = response.data;
           this.searchInput = "";
           this.isDay = !!response.data.current.is_day;
+          response.data.current.is_day
+            ? this.$emit("isDay", true)
+            : this.$emit("isDay", false);
+
           this.weatherDone = true;
-          setTimeout(() => {
-            this.transitionChange = true;
-          }, 3000);
+          if (response.data)
+            setTimeout(() => {
+              this.transitionChange = true;
+            }, 3000);
 
           if (this.showSearchInput) {
             this.toggleShowSearchInput();

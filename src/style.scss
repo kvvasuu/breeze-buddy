@@ -24,7 +24,20 @@ html {
 }
 
 body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-size: $font-size;
+  font-family: "Helvetica Neue", sans-serif;
+  color: $font-color;
+  overflow-x: hidden;
+}
+
+#app-background {
   background: url("./assets/clouds.jpeg");
+  min-width: 100vw;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,13 +50,15 @@ body {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  font-size: $font-size;
-  font-family: "Helvetica Neue", sans-serif;
-  color: $font-color;
   overflow-x: hidden;
+  transition: all 1s ease;
 }
 
-#app {
+.app-background-night {
+  background: url("./assets/clouds-night.jpeg") !important;
+}
+
+#app-inner {
   width: 60rem;
   min-height: 30rem;
   margin: 2rem auto;
@@ -158,19 +173,20 @@ button {
 
 //@media
 @media only screen and (max-width: 1000px) {
-  #app {
+  #app-inner {
     width: 36rem;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  #app {
+  #app-inner {
     /* height: 30rem; */
     width: 100dvw;
     border-radius: 0;
     margin: 0;
   }
-  body {
+  body,
+  #app {
     overflow-y: auto;
   }
 }

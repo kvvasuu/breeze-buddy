@@ -1,11 +1,19 @@
 <template>
-  <Transition name="slide-fade" mode="out-in" appear>
-    <WelcomeScreen
-      v-if="showWelcomeScreen"
-      @welcome-screen-toggle="welcomeScreenToggle"
-    ></WelcomeScreen>
-    <MainScreen v-else :forecastDays="forecastDays"></MainScreen>
-  </Transition>
+  <div id="app-background" :class="{ 'app-background-night': !isDay }">
+    <div id="app-inner">
+      <Transition name="slide-fade" mode="out-in" appear>
+        <WelcomeScreen
+          v-if="showWelcomeScreen"
+          @welcome-screen-toggle="welcomeScreenToggle"
+        ></WelcomeScreen>
+        <MainScreen
+          v-else
+          :forecastDays="forecastDays"
+          @isDay="toggleNight"
+        ></MainScreen>
+      </Transition>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,11 +30,15 @@ export default {
     return {
       showWelcomeScreen: true,
       forecastDays: 3,
+      isDay: true,
     };
   },
   methods: {
     welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
+    },
+    toggleNight(isDay) {
+      isDay ? (this.isDay = true) : (this.isDay = false);
     },
   },
   mounted() {
