@@ -1,6 +1,6 @@
 <template>
   <div v-if="!sunsetOrSunrise">
-    <div class="hour-container" :class="pastFirstOrElse">
+    <div class="hour-container" :class="isNow">
       <div class="time">{{ passTime }}</div>
       <div class="icon-container">
         <img
@@ -31,10 +31,7 @@
 
 <script>
 export default {
-  props: ["hour", "actual", "sunsetOrSunrise", "pastHour"],
-  data() {
-    return {};
-  },
+  props: ["hour", "actual", "sunsetOrSunrise"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
@@ -49,12 +46,8 @@ export default {
     sunsetOrSunriseCheck() {
       return this.hour.type === "sunrise" ? "Sunrise" : "Sunset";
     },
-    pastFirstOrElse() {
-      if (this.pastHour) {
-        return "past";
-      } else if (this.actual) {
-        return "now";
-      }
+    isNow() {
+      if (this.actual) return "now";
     },
   },
 };
@@ -74,9 +67,6 @@ export default {
   margin: 1rem 2rem 1rem 2rem;
 }
 
-.past {
-  scale: 0.85;
-}
 .now {
   .time {
     font-weight: bold;

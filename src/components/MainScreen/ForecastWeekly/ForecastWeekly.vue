@@ -50,10 +50,26 @@ export default {
   computed: {
     getMinMaxTemp() {
       const minTemp = Math.round(
-        Math.min(...this.forecast.map((el) => el.day.mintemp_c))
+        Math.min(
+          ...this.forecast.map((el) =>
+            Math.min(
+              ...el.hour
+                .map((hour) => hour.temp_c)
+                .filter((el) => el !== undefined)
+            )
+          )
+        )
       );
       const maxTemp = Math.round(
-        Math.max(...this.forecast.map((el) => el.day.maxtemp_c))
+        Math.max(
+          ...this.forecast.map((el) =>
+            Math.max(
+              ...el.hour
+                .map((hour) => hour.temp_c)
+                .filter((el) => el !== undefined)
+            )
+          )
+        )
       );
       return { minTemp, maxTemp };
     },
