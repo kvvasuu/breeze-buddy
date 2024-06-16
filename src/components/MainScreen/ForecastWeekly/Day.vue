@@ -4,6 +4,7 @@
     <div class="icon-container">
       <img class="icon" :src="iconSrc" draggable="false" />
     </div>
+    <div class="condition">{{ day.day.condition.text }}</div>
     <div class="temperature-range">
       <div class="temperature-low temp">{{ passMinTemp }}</div>
       <div class="temperature-range-bar">
@@ -123,6 +124,13 @@ export default {
   filter: drop-shadow(0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.4));
   margin: 1rem;
 }
+
+.condition {
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
+  font-size: 0.9rem;
+  min-width: 15rem;
+  text-align: left;
+}
 .temperature-range {
   display: flex;
   align-items: center;
@@ -194,5 +202,18 @@ export default {
 .temp::after {
   position: absolute;
   content: "\00B0";
+}
+
+@media only screen and (max-width: 1000px) {
+  .condition {
+    min-width: 8rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .condition {
+    display: none;
+  }
 }
 </style>
