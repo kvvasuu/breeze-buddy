@@ -7,7 +7,7 @@
     </Transition>
     <div class="icon-container">
       <Transition name="slide-horizontal-fade" mode="out-in">
-        <img class="icon" :src="passIconSrc" draggable="false" />
+        <img class="icon" src="passIconSrc" draggable="false" />
       </Transition>
     </div>
     <Transition name="slide-horizontal-fade" mode="out-in">
