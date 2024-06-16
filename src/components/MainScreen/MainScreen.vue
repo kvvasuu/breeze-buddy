@@ -71,7 +71,6 @@
         v-if="weatherDone"
         :weather="currentWeather.forecast.forecastday"
         :key="currentWeather.location.name"
-        :isDay="isDay"
       ></ForecastHourly>
     </Transition>
     <Transition
@@ -83,7 +82,6 @@
         :forecast="currentWeather.forecast.forecastday"
         :currentWeather="currentWeather.current"
         :key="currentWeather.location.name"
-        :isDay="isDay"
       ></ForecastWeekly>
     </Transition>
   </div>
@@ -104,6 +102,11 @@ export default {
   },
   props: ["forecastDays"],
   emits: ["isDayEmit"],
+  provide() {
+    return {
+      isDay: this.is_Day,
+    };
+  },
   data() {
     return {
       showSearchInput: false,
@@ -126,7 +129,7 @@ export default {
       },
       weatherDone: false,
       searchInput: "",
-      isDay: true,
+      is_Day: true,
     };
   },
   methods: {
@@ -154,7 +157,7 @@ export default {
           );
           this.currentWeather = response.data;
           this.searchInput = "";
-          this.isDay = !!response.data.current.is_day;
+          this.is_Day = !!response.data.current.is_day;
           response.data.current.is_day
             ? this.$emit("isDayEmit", true)
             : this.$emit("isDayEmit", false);
@@ -212,7 +215,7 @@ export default {
   computed: {
     passIconSrc() {
       let iconName = iconMap[this.currentWeather.current.condition.code];
-      if (!this.isDay) {
+      if (!this.is_Day) {
         iconName++;
       }
       return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)

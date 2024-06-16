@@ -32,7 +32,8 @@ export default {
   components: {
     Hour,
   },
-  props: ["weather", "isDay"],
+  props: ["weather"],
+  inject: ["isDay"],
   data() {
     return {
       currentDate: new Date(),

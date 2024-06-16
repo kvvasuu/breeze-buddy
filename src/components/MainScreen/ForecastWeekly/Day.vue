@@ -11,6 +11,7 @@
         <div class="bar-track">
           <div
             class="bar-thumb"
+            :class="{ dark: isDay }"
             :style="{
               left: tempRangePosition + '%',
               width: tempRangeWidth + '%',
@@ -33,6 +34,7 @@
 <script>
 export default {
   props: ["day", "dayName", "tempMinMax", "actual", "currentTemp", "iconSrc"],
+  inject: ["isDay"],
   data() {
     return {};
   },
@@ -173,6 +175,10 @@ export default {
       }
     }
   }
+}
+
+.dark {
+  filter: brightness(80%);
 }
 
 .conditions {

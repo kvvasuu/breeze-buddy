@@ -35,7 +35,8 @@ export default {
   components: {
     Day,
   },
-  props: ["forecast", "currentWeather", "isDay"],
+  props: ["forecast", "currentWeather"],
+  inject: ["isDay"],
   data() {
     return {
       currentDate: new Date(),

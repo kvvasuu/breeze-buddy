@@ -49,7 +49,9 @@ export default {
     ) {
       localStorage.setItem("forecastDays", 10);
     }
-    this.isDay = !!localStorage.getItem("isDay");
+    localStorage.getItem("isDay") === "0"
+      ? (this.isDay = false)
+      : (this.isDay = true);
     this.forecastDays = localStorage.getItem("forecastDays");
   },
 };
