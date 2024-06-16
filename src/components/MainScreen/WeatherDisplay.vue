@@ -9,9 +9,9 @@
       <Transition name="slide-horizontal-fade" mode="out-in">
         <img
           class="icon"
-          src="../../assets/favicon.png"
-          alt="Breeze Buddy"
+          src="../../assets/icons/176.png"
           draggable="false"
+          onerror="this.style.display='none'"
         />
       </Transition>
     </div>
@@ -75,9 +75,9 @@ export default {
 }
 
 .icon {
-  height: 10rem;
-  filter: drop-shadow(0.2rem 1rem 1rem rgba(0, 0, 0, 0.5));
-  margin: 2rem;
+  height: 12rem;
+  filter: drop-shadow(0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.2));
+  margin: 1rem;
 }
 
 .temperature {
