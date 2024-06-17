@@ -60,7 +60,6 @@ export default {
     },
     toggleSettings() {
       if (window.scrollY > 0) {
-        document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         window.scrollTo({
           top: 0,
@@ -69,16 +68,11 @@ export default {
         });
       } else {
         this.showSettings = !this.showSettings;
-        document.body.classList.remove("scroll-disable");
       }
     },
     toggleSettingsScroll() {
       if (window.scrollY <= 50) {
         this.showSettings = !this.showSettings;
-        setTimeout(() => {
-          document.body.classList.remove("scroll-disable");
-        }, 1000);
-
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
     },
