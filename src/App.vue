@@ -27,7 +27,7 @@
 <script>
 import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen/MainScreen.vue";
-import Settings from "./components/MainScreen/MainScreen/Settings.vue";
+import Settings from "./components/MainScreen/Settings.vue";
 import { computed } from "vue";
 
 export default {
@@ -75,6 +75,10 @@ export default {
     toggleSettingsScroll() {
       if (window.scrollY === 0) {
         this.showSettings = !this.showSettings;
+        setTimeout(() => {
+          document.body.classList.remove("scroll-disable");
+        }, 1000);
+
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
     },

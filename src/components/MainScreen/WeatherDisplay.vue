@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-display">
+  <div class="weather-display" :class="{ 'scale-down': showSettings }">
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
@@ -41,6 +41,7 @@
 <script>
 export default {
   props: ["currentWeather", "iconSrc"],
+  inject: ["showSettings"],
   computed: {
     passTemperature() {
       return this.currentWeather.current.temp_c === "-"
@@ -67,6 +68,11 @@ export default {
   height: auto;
   margin: 2rem 1rem 1rem 1rem;
   user-select: none;
+  transition: scale 1s ease;
+}
+
+.scale-down {
+  scale: 0.9 !important;
 }
 
 .location {

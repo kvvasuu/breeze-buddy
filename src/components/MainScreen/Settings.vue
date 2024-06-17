@@ -34,7 +34,7 @@ $font-color: rgb(250, 250, 250);
   position: absolute;
   width: 60rem;
   top: 8rem;
-  height: 44rem;
+  height: calc(80dvh);
   background-image: linear-gradient(
     30deg,
     rgb(31, 134, 194) 0%,
@@ -90,7 +90,7 @@ $font-color: rgb(250, 250, 250);
 
 @media only screen and (max-width: 600px) {
   .settings-container {
-    top: 5rem;
+    top: 7rem;
     width: 20rem;
   }
 }
