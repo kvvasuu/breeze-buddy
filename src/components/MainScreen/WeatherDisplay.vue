@@ -71,10 +71,6 @@ export default {
   transition: scale 1s ease;
 }
 
-.scale-down {
-  scale: 0.9 !important;
-}
-
 .location {
   font-size: 1.6rem;
   font-family: "Helvetica Bold";
@@ -118,6 +114,13 @@ export default {
   &:after {
     position: absolute;
     content: "\00B0";
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .scale-down {
+    scale: 0.9 !important;
+    transform: translate(0, 0);
   }
 }
 </style>
