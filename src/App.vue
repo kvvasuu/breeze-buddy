@@ -59,7 +59,17 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      this.showSettings = !this.showSettings;
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+      document.addEventListener("scroll", (event) => {
+        if (window.scrollY === 0) this.showSettings = !this.showSettings;
+      });
+      document.removeEventListener("scroll", (event) => {
+        if (window.scrollY === 0) this.showSettings = !this.showSettings;
+      });
     },
   },
   watch: {
