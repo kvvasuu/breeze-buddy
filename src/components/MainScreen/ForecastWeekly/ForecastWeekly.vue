@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-weekly" :style="{ 'background-image': gradient }">
+  <div class="forecast-weekly" :class="{ 'container-dark': !isDay }">
     <div class="forecast-caption">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ export default {
     Day,
   },
   props: ["forecast", "currentWeather"],
-  inject: ["isDay", "gradient"],
+  inject: ["isDay"],
   data() {
     return {
       currentDate: new Date(),

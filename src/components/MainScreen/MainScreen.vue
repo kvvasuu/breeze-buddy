@@ -115,13 +115,7 @@ export default {
   },
   props: ["forecastDays"],
   emits: ["isDayEmit", "showSettings"],
-  inject: ["showSettings"],
-  provide() {
-    return {
-      isDay: computed(() => this.is_Day),
-      gradient: computed(() => this.componentsGradient),
-    };
-  },
+  inject: ["showSettings", "isDay"],
   data() {
     return {
       showSearchInput: false,
@@ -136,7 +130,7 @@ export default {
         current: {
           temp_c: "-",
           condition: {
-            code: 1000,
+            code: 100,
             text: "Unknown",
           },
         },
@@ -272,10 +266,10 @@ $font-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(6rem);
+  backdrop-filter: blur(0.4rem);
   overflow: hidden;
   padding: 1rem 0 1rem 0;
-  transition: scale 1s ease;
+  transition: all 1s ease;
 }
 
 .scale-down {
@@ -405,6 +399,7 @@ $font-color: rgb(250, 250, 250);
     min-height: 100vh;
     justify-content: flex-start;
     scale: 1 !important;
+    backdrop-filter: none;
   }
 }
 </style>

@@ -1,12 +1,17 @@
 <template>
   <div class="modal-outer" @click="() => this.$emit('toggle-settings')">
-    <div class="settings-container" @click.stop=""></div>
+    <div
+      class="settings-container"
+      :class="{ 'settings-container-dark': !isDay }"
+      @click.stop=""
+    ></div>
   </div>
 </template>
 
 <script>
 export default {
   emits: ["toggle-settings"],
+  inject: ["isDay"],
   data() {
     return {};
   },
@@ -48,6 +53,14 @@ $font-color: rgb(250, 250, 250);
   align-items: center;
   padding: 1rem;
   z-index: 10;
+}
+
+.settings-container-dark {
+  background-image: linear-gradient(
+    30deg,
+    rgb(22, 56, 107) 0%,
+    rgb(35, 67, 94) 100%
+  ) !important;
 }
 
 .buttons {

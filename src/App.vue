@@ -39,8 +39,8 @@ export default {
   },
   provide() {
     return {
-      gradient: computed(() => this.componentsGradient),
       showSettings: computed(() => this.showSettings),
+      isDay: computed(() => this.is_Day),
     };
   },
   data() {
@@ -60,7 +60,7 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 10) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
@@ -76,22 +76,13 @@ export default {
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY <= 100) {
+      if (window.scrollY <= 10) {
         this.showSettings = true;
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
       setTimeout(() => {
         document.body.classList.remove("scroll-disable");
       }, 1000);
-    },
-  },
-  watch: {
-    is_Day() {
-      this.is_Day
-        ? (this.componentsGradient =
-            "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)")
-        : (this.componentsGradient =
-            "linear-gradient( 30deg, rgba(0, 60, 95, 0.5) 0%, rgba(62, 99, 95, 0.5) 100% )");
     },
   },
   mounted() {

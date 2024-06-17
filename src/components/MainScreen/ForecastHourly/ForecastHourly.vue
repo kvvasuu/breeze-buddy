@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-hourly" :style="{ 'background-image': gradient }">
+  <div class="forecast-hourly" :class="{ 'container-dark': !isDay }">
     <div class="date-time">
       <div class="day">Today</div>
       <div class="date">{{ passCurrentDate }}</div>
@@ -32,7 +32,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["isDay", "gradient"],
+  inject: ["isDay"],
   data() {
     return {
       currentDate: new Date(),
