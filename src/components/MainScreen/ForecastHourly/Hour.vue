@@ -75,6 +75,7 @@ export default {
   height: 2rem;
   filter: drop-shadow(0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
   margin: 1rem;
+  filter: brightness(110%);
 }
 
 .temperature {

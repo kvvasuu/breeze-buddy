@@ -51,7 +51,7 @@
         </Transition>
       </div>
 
-      <div class="icon">
+      <div class="icon" @click="toggleSettings">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -84,6 +84,12 @@
         :key="currentWeather.location.name"
       ></ForecastWeekly>
     </Transition>
+    <Transition name="slide-fade" mode="out-in">
+      <Settings
+        v-if="showSettings"
+        @toggle-settings="toggleSettings"
+      ></Settings>
+    </Transition>
   </div>
 </template>
 
@@ -91,6 +97,7 @@
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
+import Settings from "./MainScreen/Settings.vue";
 import axios from "axios";
 import { latinise, Latinise, iconMap } from "../../functions";
 import { computed } from "vue";
@@ -100,6 +107,7 @@ export default {
     WeatherDisplay,
     ForecastHourly,
     ForecastWeekly,
+    Settings,
   },
   props: ["forecastDays"],
   emits: ["isDayEmit"],
@@ -111,6 +119,7 @@ export default {
   data() {
     return {
       showSearchInput: false,
+      showSettings: false,
       isGeolocationDone: false,
       pinShakeAnimation: false,
       transitionChange: false,
@@ -136,6 +145,9 @@ export default {
   methods: {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
+    },
+    toggleSettings() {
+      this.showSettings = !this.showSettings;
     },
     async getCurrentWeather(value) {
       let q = "";
@@ -270,7 +282,7 @@ $font-color: rgb(250, 250, 250);
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.603));
+  filter: drop-shadow(0.1rem 0.1rem 0.12rem rgba(0, 0, 0, 0.5));
   cursor: pointer;
   svg {
     height: 2rem;

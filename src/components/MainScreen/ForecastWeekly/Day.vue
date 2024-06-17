@@ -125,6 +125,7 @@ export default {
   height: 1.6rem;
   filter: drop-shadow(0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
   margin: 1rem;
+  filter: brightness(110%);
 }
 
 .condition {
