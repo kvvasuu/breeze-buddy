@@ -60,15 +60,23 @@ export default {
     },
     toggleSettings() {
       if (window.scrollY > 0) {
+        document.body.classList.add("scroll-disable");
+        window.addEventListener("scroll", this.toggleSettingsScroll);
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth",
         });
-        setTimeout(() => {
-          this.showSettings = !this.showSettings;
-        }, 500);
-      } else this.showSettings = !this.showSettings;
+      } else {
+        this.showSettings = !this.showSettings;
+        document.body.classList.remove("scroll-disable");
+      }
+    },
+    toggleSettingsScroll() {
+      if (window.scrollY === 0) {
+        this.showSettings = !this.showSettings;
+        window.removeEventListener("scroll", this.toggleSettingsScroll);
+      }
     },
   },
   watch: {

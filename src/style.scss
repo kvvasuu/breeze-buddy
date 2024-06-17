@@ -35,6 +35,10 @@ body {
   overflow-x: hidden;
 }
 
+.scroll-disable {
+  overflow: hidden;
+}
+
 #app-background {
   background: url("./assets/clouds.jpeg");
   min-width: 100vw;
