@@ -73,7 +73,7 @@ export default {
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY === 0) {
+      if (window.scrollY <= 50) {
         this.showSettings = !this.showSettings;
         setTimeout(() => {
           document.body.classList.remove("scroll-disable");
