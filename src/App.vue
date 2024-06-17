@@ -67,7 +67,7 @@ export default {
         });
         setTimeout(() => {
           this.showSettings = !this.showSettings;
-        }, 400);
+        }, 500);
       } else this.showSettings = !this.showSettings;
     },
   },
