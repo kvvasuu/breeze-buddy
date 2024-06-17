@@ -11,7 +11,14 @@
           v-else
           :forecastDays="forecastDays"
           @isDayEmit="toggleNight"
+          @showSettings="toggleSettings"
         ></MainScreen>
+      </Transition>
+      <Transition name="slide-fade-fast" mode="out-in">
+        <Settings
+          v-if="showSettings"
+          @toggle-settings="toggleSettings"
+        ></Settings>
       </Transition>
     </div>
   </div>
@@ -20,16 +27,26 @@
 <script>
 import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen/MainScreen.vue";
+import Settings from "./components/MainScreen/MainScreen/Settings.vue";
+import { computed } from "vue";
 
 export default {
   name: "App",
   components: {
     WelcomeScreen,
     MainScreen,
+    Settings,
+  },
+  provide() {
+    return {
+      gradient: computed(() => this.componentsGradient),
+      showSettings: computed(() => this.showSettings),
+    };
   },
   data() {
     return {
       showWelcomeScreen: true,
+      showSettings: false,
       forecastDays: 3,
       is_Day: true,
     };
@@ -40,6 +57,18 @@ export default {
     },
     toggleNight(isDay) {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
+    },
+    toggleSettings() {
+      this.showSettings = !this.showSettings;
+    },
+  },
+  watch: {
+    is_Day() {
+      this.is_Day
+        ? (this.componentsGradient =
+            "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)")
+        : (this.componentsGradient =
+            "linear-gradient( 30deg, rgba(0, 60, 95, 0.5) 0%, rgba(62, 99, 95, 0.5) 100% )");
     },
   },
   mounted() {

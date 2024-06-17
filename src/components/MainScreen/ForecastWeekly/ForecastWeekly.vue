@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-weekly" :style="{ 'background-image': toggleColor }">
+  <div class="forecast-weekly" :style="{ 'background-image': gradient }">
     <div class="forecast-caption">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ export default {
     Day,
   },
   props: ["forecast", "currentWeather"],
-  inject: ["isDay"],
+  inject: ["isDay", "gradient"],
   data() {
     return {
       currentDate: new Date(),
@@ -82,19 +82,6 @@ export default {
         )
       );
       return { minTemp, maxTemp };
-    },
-    toggleColor() {
-      return this.isDay
-        ? `linear-gradient(
-    30deg,
-    rgba(0, 116, 184, 0.3) 0%,
-    rgba(107, 173, 166, 0.3) 100%
-  )`
-        : `linear-gradient(
-    30deg,
-    rgba(0, 60, 95, 0.5) 0%,
-    rgba(62, 99, 95, 0.5) 100%
-  )`;
     },
   },
 };

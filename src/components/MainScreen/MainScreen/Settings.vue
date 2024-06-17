@@ -18,7 +18,7 @@ export default {
 $font-color: rgb(250, 250, 250);
 
 .modal-outer {
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,19 +27,18 @@ $font-color: rgb(250, 250, 250);
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   cursor: default;
 }
 
 .settings-container {
   position: absolute;
-  width: 100%;
-  top: 5.4rem;
-  height: 100%;
+  width: 60rem;
+  top: 8rem;
+  height: 46rem;
   background-image: linear-gradient(
-    160deg,
-    rgba(0, 116, 184, 1) 0%,
-    rgba(107, 173, 166, 1) 100%
+    30deg,
+    rgb(31, 134, 194) 0%,
+    rgb(155, 211, 205) 100%
   );
   border-radius: 2rem;
   box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -47,7 +46,7 @@ $font-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem;
   z-index: 10;
 }
 
@@ -84,17 +83,15 @@ $font-color: rgb(250, 250, 250);
 //@media
 
 @media only screen and (max-width: 1000px) {
-  .buttons {
-    width: 28rem;
+  .settings-container {
+    width: 36rem;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .buttons {
+  .settings-container {
+    top: 5rem;
     width: 20rem;
-  }
-  .main-container {
-    min-height: 100vh;
   }
 }
 </style>

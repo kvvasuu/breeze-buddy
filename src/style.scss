@@ -81,6 +81,13 @@ button {
   animation: slide-out 1s ease;
 }
 
+.slide-fade-fast-enter-active {
+  animation: slide-in 0.8s ease;
+}
+.slide-fade-fast-leave-active {
+  animation: slide-out-fast 0.8s ease;
+}
+
 @keyframes slide-in {
   0% {
     transform: translateY(50rem);
@@ -106,6 +113,17 @@ button {
   }
   100% {
     transform: translateY(-50rem);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-out-fast {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100rem);
     opacity: 0;
   }
 }

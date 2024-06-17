@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-hourly" :style="{ 'background-image': toggleColor }">
+  <div class="forecast-hourly" :style="{ 'background-image': gradient }">
     <div class="date-time">
       <div class="day">Today</div>
       <div class="date">{{ passCurrentDate }}</div>
@@ -32,7 +32,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["isDay"],
+  inject: ["isDay", "gradient"],
   data() {
     return {
       currentDate: new Date(),
@@ -113,19 +113,6 @@ export default {
           .indexOf(timeConversion(currentHour));
         return tempHours.slice(indexOfCurrentHour, indexOfCurrentHour + 24);
       } else return [];
-    },
-    toggleColor() {
-      return this.isDay
-        ? `linear-gradient(
-    30deg,
-    rgba(0, 116, 184, 0.3) 0%,
-    rgba(107, 173, 166, 0.3) 100%
-  )`
-        : `linear-gradient(
-    30deg,
-    rgba(0, 60, 95, 0.5) 0%,
-    rgba(62, 99, 95, 0.5) 100%
-  )`;
     },
   },
   methods: {

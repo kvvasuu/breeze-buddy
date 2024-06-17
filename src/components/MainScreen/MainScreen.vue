@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" :class="{ 'scale-down': showSettings }">
     <WeatherDisplay
       :currentWeather="currentWeather"
       :iconSrc="passIconSrc"
@@ -51,7 +51,7 @@
         </Transition>
       </div>
 
-      <div class="icon" @click="toggleSettings">
+      <div class="icon" @click="() => $emit('showSettings')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -64,31 +64,37 @@
       </div>
     </div>
     <Transition
-      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
+      :name="
+        showSettings
+          ? ''
+          : transitionChange
+          ? 'slide-horizontal-fade'
+          : 'slide-fade'
+      "
       mode="out-in"
     >
       <ForecastHourly
-        v-if="weatherDone"
+        v-if="weatherDone && !showSettings"
         :weather="currentWeather.forecast.forecastday"
         :key="currentWeather.location.name"
       ></ForecastHourly>
     </Transition>
     <Transition
-      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
+      :name="
+        showSettings
+          ? ''
+          : transitionChange
+          ? 'slide-horizontal-fade'
+          : 'slide-fade'
+      "
       mode="out-in"
     >
       <ForecastWeekly
-        v-if="weatherDone"
+        v-if="weatherDone && !showSettings"
         :forecast="currentWeather.forecast.forecastday"
         :currentWeather="currentWeather.current"
         :key="currentWeather.location.name"
       ></ForecastWeekly>
-    </Transition>
-    <Transition name="slide-fade" mode="out-in">
-      <Settings
-        v-if="showSettings"
-        @toggle-settings="toggleSettings"
-      ></Settings>
     </Transition>
   </div>
 </template>
@@ -97,7 +103,6 @@
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
-import Settings from "./MainScreen/Settings.vue";
 import axios from "axios";
 import { latinise, Latinise, iconMap } from "../../functions";
 import { computed } from "vue";
@@ -107,19 +112,19 @@ export default {
     WeatherDisplay,
     ForecastHourly,
     ForecastWeekly,
-    Settings,
   },
   props: ["forecastDays"],
-  emits: ["isDayEmit"],
+  emits: ["isDayEmit", "showSettings"],
+  inject: ["showSettings"],
   provide() {
     return {
       isDay: computed(() => this.is_Day),
+      gradient: computed(() => this.componentsGradient),
     };
   },
   data() {
     return {
       showSearchInput: false,
-      showSettings: false,
       isGeolocationDone: false,
       pinShakeAnimation: false,
       transitionChange: false,
@@ -140,14 +145,13 @@ export default {
       weatherDone: false,
       searchInput: "",
       is_Day: true,
+      componentsGradient:
+        "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)",
     };
   },
   methods: {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
-    },
-    toggleSettings() {
-      this.showSettings = !this.showSettings;
     },
     async getCurrentWeather(value) {
       let q = "";
@@ -236,6 +240,15 @@ export default {
         .href;
     },
   },
+  watch: {
+    is_Day() {
+      this.is_Day
+        ? (this.componentsGradient =
+            "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)")
+        : (this.componentsGradient =
+            "linear-gradient( 30deg, rgba(0, 60, 95, 0.5) 0%, rgba(62, 99, 95, 0.5) 100% )");
+    },
+  },
   isItDay() {
     return this.is_Day;
   },
@@ -262,6 +275,11 @@ $font-color: rgb(250, 250, 250);
   backdrop-filter: blur(6rem);
   overflow: hidden;
   padding: 1rem 0 1rem 0;
+  transition: scale 1s ease;
+}
+
+.scale-down {
+  scale: 0.98;
 }
 
 .buttons {
@@ -385,6 +403,8 @@ $font-color: rgb(250, 250, 250);
   }
   .main-container {
     min-height: 100vh;
+    justify-content: flex-start;
+    scale: 1 !important;
   }
 }
 </style>
