@@ -54,6 +54,7 @@ export default {
   methods: {
     welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
+      localStorage.setItem("firstVisit", "0");
     },
     toggleNight(isDay) {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
@@ -93,6 +94,9 @@ export default {
     },
   },
   mounted() {
+    if (localStorage.getItem("firstVisit") === "0") {
+      this.showWelcomeScreen = false;
+    }
     if (
       !localStorage.getItem("forecastDays") ||
       localStorage.getItem("forecastDays") < 3
