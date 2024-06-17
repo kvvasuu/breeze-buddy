@@ -59,21 +59,15 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      const toggle = () => {
-        if (window.scrollY === 0) {
-          this.showSettings = !this.showSettings;
-        }
-      };
       if (window.scrollY > 0) {
-        document.addEventListener("scroll", toggle);
         window.scrollTo({
           top: 0,
           left: 0,
           behavior: "smooth",
         });
         setTimeout(() => {
-          document.removeEventListener("scroll", toggle);
-        }, 500);
+          this.showSettings = !this.showSettings;
+        }, 400);
       } else this.showSettings = !this.showSettings;
     },
   },
