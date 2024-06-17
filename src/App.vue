@@ -59,7 +59,8 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      if (window.scrollY > 0) {
+      if (window.scrollY <= 100) {
+        document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         window.scrollTo({
           top: 0,
@@ -68,11 +69,16 @@ export default {
         });
       } else {
         this.showSettings = !this.showSettings;
+        document.body.classList.remove("scroll-disable");
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY <= 50) {
+      if (window.scrollY <= 100) {
         this.showSettings = !this.showSettings;
+        setTimeout(() => {
+          document.body.classList.remove("scroll-disable");
+        }, 1000);
+
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
     },
