@@ -59,7 +59,7 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      if (window.scrollY <= 100) {
+      if (window.scrollY > 100) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         window.scrollTo({
