@@ -34,7 +34,7 @@ $font-color: rgb(250, 250, 250);
   position: absolute;
   width: 60rem;
   top: 8rem;
-  height: 46rem;
+  height: 44rem;
   background-image: linear-gradient(
     30deg,
     rgb(31, 134, 194) 0%,
