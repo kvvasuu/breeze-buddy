@@ -11,7 +11,7 @@
         <div class="bar-track">
           <div
             class="bar-thumb"
-            :class="{ dark: isDay }"
+            :class="{ dark: !isDay }"
             :style="{
               left: tempRangePosition + '%',
               width: tempRangeWidth + '%',
@@ -123,7 +123,7 @@ export default {
 
 .icon {
   height: 1.6rem;
-  filter: drop-shadow(0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0.1rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2));
   margin: 1rem;
 }
 

@@ -242,7 +242,7 @@ $font-color: rgb(250, 250, 250);
     rgba(107, 173, 166, 0.2) 100%
   );
   border-radius: inherit;
-  box-shadow: 0.2rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.2rem 0.3rem 1rem rgba(0, 0, 0, 0.2);
   justify-content: center;
   display: flex;
   flex-direction: column;

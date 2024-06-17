@@ -106,7 +106,7 @@ export default {
   margin: 1rem 0 2rem 0;
   border-radius: 1.6rem;
   padding: 1rem;
-  box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
   user-select: none;
 }
 
