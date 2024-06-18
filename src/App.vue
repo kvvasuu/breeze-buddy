@@ -10,6 +10,7 @@
         ></WelcomeScreen>
         <MainScreen
           v-else
+          :key="lang"
           :forecastDays="forecastDays"
           @isDayEmit="toggleNight"
           @showSettings="toggleSettings"
@@ -19,6 +20,7 @@
         <Settings
           v-if="showSettings"
           @toggle-settings="toggleSettings"
+          @language="changeLanguage"
         ></Settings>
       </Transition>
     </div>
@@ -28,7 +30,7 @@
 <script>
 import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen/MainScreen.vue";
-import Settings from "./components/MainScreen/Settings.vue";
+import Settings from "./components/Settings.vue";
 import { computed } from "vue";
 
 export default {

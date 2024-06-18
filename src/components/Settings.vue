@@ -4,14 +4,23 @@
       class="settings-container"
       :class="{ 'settings-container-dark': !isDay }"
       @click.stop=""
-    ></div>
+    >
+      <LanguageSelect
+        @language="(lang) => $emit('language', lang)"
+      ></LanguageSelect>
+    </div>
   </div>
 </template>
 
 <script>
+import LanguageSelect from "./LanguageSelect.vue";
+
 export default {
-  emits: ["toggle-settings"],
-  inject: ["isDay"],
+  components: {
+    LanguageSelect,
+  },
+  emits: ["toggle-settings", "language"],
+  inject: ["isDay", "language"],
   data() {
     return {};
   },
