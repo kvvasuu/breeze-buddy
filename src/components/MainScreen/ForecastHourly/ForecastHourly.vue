@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-hourly" :class="{ 'container-dark': !isDay }">
+  <div class="forecast-hourly container" :class="{ 'container-dark': !isDay }">
     <div class="date-time">
       <div class="day">Today</div>
       <div class="date">{{ passCurrentDate }}</div>

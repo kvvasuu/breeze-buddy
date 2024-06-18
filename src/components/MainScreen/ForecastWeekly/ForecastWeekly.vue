@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-weekly" :class="{ 'container-dark': !isDay }">
+  <div class="forecast-weekly container" :class="{ 'container-dark': !isDay }">
     <div class="forecast-caption">
       <svg
         xmlns="http://www.w3.org/2000/svg"
