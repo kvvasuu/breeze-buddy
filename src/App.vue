@@ -3,10 +3,9 @@
     <div id="app-inner">
       <Transition name="slide-fade" mode="out-in" appear>
         <WelcomeScreen
-          v-if="showWelcomeScreen && passFirstVisit"
+          v-if="showWelcomeScreen"
           @welcome-screen-toggle="welcomeScreenToggle"
           @language="changeLanguage"
-          :firstVisit="passFirstVisit"
         ></WelcomeScreen>
         <MainScreen
           v-else
@@ -53,20 +52,20 @@ export default {
       showSettings: false,
       forecastDays: 3,
       is_Day: true,
-      firstVisit: true,
       lang: "en",
     };
   },
   methods: {
     welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
-      localStorage.setItem("firstVisit", false);
+      localStorage.setItem("language", this.lang);
     },
     toggleNight(isDay) {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     changeLanguage(lang) {
       this.lang = lang;
+      localStorage.setItem("language", this.lang);
     },
     toggleSettings() {
       if (window.scrollY > 20) {
@@ -94,15 +93,10 @@ export default {
       }, 1000);
     },
   },
-  computed: {
-    passFirstVisit() {
-      return this.firstVisit;
-    },
-  },
-  mounted() {
-    localStorage.getItem("firstVisit") === false
-      ? (this.firstVisit = false)
-      : (this.firstVisit = true);
+  created() {
+    if (localStorage.getItem("language") !== null) {
+      this.lang = localStorage.getItem("language");
+    }
     if (
       !localStorage.getItem("forecastDays") ||
       localStorage.getItem("forecastDays") < 3

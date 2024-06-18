@@ -9,11 +9,11 @@
       />
       <div class="title" :style="{ color: toggleTitle }">Breeze Buddy</div>
     </div>
-    <div v-if="firstVisit">
+    <div>
       <LanguageSelect
         @language="(lang) => $emit('language', lang)"
       ></LanguageSelect>
-      <button class="button-1" @click="welcomeScreenHide">Get start!</button>
+      <button class="button-1" @click="welcomeScreenHide">Get started!</button>
     </div>
   </div>
 </template>
@@ -28,7 +28,6 @@ export default {
     LanguageSelect,
   },
   emits: ["welcome-screen-toggle", "language"],
-  props: ["firstVisit"],
   inject: ["isDay"],
   methods: {
     welcomeScreenHide() {
@@ -37,7 +36,6 @@ export default {
   },
   computed: {
     toggleLogo() {
-      console.log(this.firstVisit);
       return this.isDay ? logo : logoDark;
     },
     toggleTitle() {
@@ -72,7 +70,7 @@ $font-color-second: rgb(36, 36, 36);
   -webkit-appearance: none;
   .logo {
     height: 16rem;
-    filter: drop-shadow(0.2rem 1rem 0.6rem rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0.2rem 0.6rem 0.6rem rgba(0, 0, 0, 0.3));
     margin: 2rem;
   }
   .title {

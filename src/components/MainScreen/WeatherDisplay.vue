@@ -77,22 +77,6 @@ export default {
   text-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.3);
 }
 
-.icon-container {
-  position: relative;
-  &::after {
-    content: "";
-    position: absolute;
-    width: 7rem;
-    height: 10%;
-    left: 3.5rem;
-    bottom: 5rem;
-    border-radius: 50%;
-    z-index: -1;
-    box-shadow: 0 4.6rem 1.2rem rgba(0, 0, 0, 0.2);
-    display: inline-block;
-  }
-}
-
 .icon {
   height: 12rem;
   filter: drop-shadow(0.2rem 0.4rem 0.2rem rgba(0, 0, 0, 0.2));
