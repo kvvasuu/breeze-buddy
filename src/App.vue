@@ -60,7 +60,7 @@ export default {
       isDay ? (this.is_Day = true) : (this.is_Day = false);
     },
     toggleSettings() {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 20) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
@@ -76,7 +76,7 @@ export default {
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY <= 10) {
+      if (window.scrollY <= 50) {
         this.showSettings = true;
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
