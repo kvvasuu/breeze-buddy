@@ -9,17 +9,27 @@
       />
       <div class="title" :style="{ color: toggleTitle }">Breeze Buddy</div>
     </div>
-    <button class="button-1" @click="welcomeScreenHide">Get start!</button>
+    <div v-if="firstVisit">
+      <LanguageSelect
+        @language="(lang) => $emit('language', lang)"
+      ></LanguageSelect>
+      <button class="button-1" @click="welcomeScreenHide">Get start!</button>
+    </div>
   </div>
 </template>
 
 <script>
 import logo from "../assets/favicon.png";
 import logoDark from "../assets/favicon-dark.png";
+import LanguageSelect from "./LanguageSelect.vue";
 
 export default {
-  emits: ["welcome-screen-toggle"],
-  props: ["isDay"],
+  components: {
+    LanguageSelect,
+  },
+  emits: ["welcome-screen-toggle", "language"],
+  props: ["firstVisit"],
+  inject: ["isDay"],
   methods: {
     welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");
@@ -27,6 +37,7 @@ export default {
   },
   computed: {
     toggleLogo() {
+      console.log(this.firstVisit);
       return this.isDay ? logo : logoDark;
     },
     toggleTitle() {

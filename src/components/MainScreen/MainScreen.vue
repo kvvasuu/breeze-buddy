@@ -105,7 +105,6 @@ import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import axios from "axios";
 import { latinise, Latinise, iconMap } from "../../functions";
-import { computed } from "vue";
 
 export default {
   components: {
@@ -115,7 +114,7 @@ export default {
   },
   props: ["forecastDays"],
   emits: ["isDayEmit", "showSettings"],
-  inject: ["showSettings", "isDay"],
+  inject: ["showSettings", "isDay", "language"],
   data() {
     return {
       showSearchInput: false,
@@ -161,7 +160,7 @@ export default {
                 key: "e4ee231ca8574dfc85f123549241106",
                 q: q,
                 aqi: "no",
-                lang: "en",
+                lang: this.language,
                 days: this.forecastDays,
               },
             }
