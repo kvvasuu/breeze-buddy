@@ -32,5 +32,8 @@
     "friday": "Pt.",
     "saturday": "Sob.",
     "sunday": "Niedz."
-  }
+  },
+  "temperature": "Temperatura",
+  "celsius": "Stopnie Celsiusza",
+  "farenheit": "Stopnie Farenheita"
 }

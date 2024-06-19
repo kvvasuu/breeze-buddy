@@ -133,6 +133,8 @@ export default {
   }
 }
 
+//@media
+
 @media only screen and (max-width: 600px) {
   .scale-down {
     scale: 0.9 !important;

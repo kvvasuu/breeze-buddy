@@ -111,7 +111,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  text-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.3);
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   font-weight: bold;
   margin: 0.1rem 0.3rem 0.3rem 1.3rem;
   opacity: 0.8;
@@ -119,6 +119,7 @@ export default {
     position: absolute;
     height: 1rem;
     left: -1.3rem;
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -144,6 +145,9 @@ hr {
   margin: 0;
   user-select: none;
 }
+
+//@media
+
 @media only screen and (max-width: 1000px) {
   .forecast-weekly {
     width: 28rem;

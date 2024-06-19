@@ -5,30 +5,38 @@
       :class="{ 'settings-container-dark': !isDay }"
       @click.stop=""
     >
-      <div class="temperature-unit">
-        <label for="c" class="label">
-          <input
-            type="radio"
-            id="c"
-            name="temperature"
-            value="c"
-            @click="changeTempUnit"
-            v-model="temp_unit"
-          />
-          C
-        </label>
-
-        <label for="f" class="label">
-          <input
-            type="radio"
-            id="f"
-            name="temperature"
-            value="f"
-            @click="changeTempUnit"
-            v-model="temp_unit"
-          />
-          F
-        </label>
+      <div class="settings-container-inner">
+        <div class="title">Settings</div>
+        <div class="units">
+          <div class="temperature-unit">
+            <div class="caption">{{ t.temperature }}</div>
+            <div class="temperature-unit-inner">
+              <div class="input-group">
+                <input
+                  type="radio"
+                  id="c"
+                  name="temperature"
+                  value="c"
+                  @click="changeTempUnit"
+                  v-model="temp_unit"
+                  checked
+                />
+                <label for="c" class="label">{{ t.celsius }} (&deg;C)</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="radio"
+                  id="f"
+                  name="temperature"
+                  value="f"
+                  @click="changeTempUnit"
+                  v-model="temp_unit"
+                />
+                <label for="f" class="label">{{ t.farenheit }} (&deg;F)</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <LanguageSelect
         @language="(lang) => $emit('language', lang)"
@@ -45,7 +53,7 @@ export default {
     LanguageSelect,
   },
   emits: ["toggle-settings", "language", "temp-unit"],
-  inject: ["isDay", "language", "tempUnit"],
+  inject: ["isDay", "language", "tempUnit", "t"],
   data() {
     return {
       lang: "",
@@ -65,7 +73,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$font-color: rgb(250, 250, 250);
+$font-color: rgb(240, 240, 240);
 
 .modal-outer {
   position: absolute;
@@ -78,6 +86,7 @@ $font-color: rgb(250, 250, 250);
   width: 100%;
   height: 100%;
   cursor: default;
+  user-select: none;
 }
 
 .settings-container {
@@ -92,12 +101,13 @@ $font-color: rgb(250, 250, 250);
   );
   border-radius: 2rem;
   box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
-  justify-content: center;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
+  padding: 1.6rem 1.6rem 2rem 1.6rem;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .settings-container-dark {
@@ -108,33 +118,108 @@ $font-color: rgb(250, 250, 250);
   ) !important;
 }
 
-.buttons {
-  width: 52rem;
-  height: 4rem;
-  margin: 1rem 0 0.6rem 0;
+.settings-container-inner {
+  width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  font-family: "Helvetica Bold";
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.6rem;
+}
+
+.units {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  flex-direction: column;
 }
 
-.icon {
-  color: $font-color;
-  height: 3rem;
-  width: 3rem;
-  transition: all 0.3s ease;
+.temperature-unit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.caption {
+  font-size: 0.9rem;
+  font-family: "Helvetica Bold";
+  color: rgba(250, 250, 250, 0.9);
+  text-align: left;
+  margin: 0 0 0.1rem 1rem;
+}
+
+.temperature-unit-inner {
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0.1rem 0.1rem 0.12rem rgba(0, 0, 0, 0.5));
-  cursor: pointer;
-  svg {
-    height: 2rem;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(79, 135, 168, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2) inset;
+  background-image: linear-gradient(
+    -30deg,
+    rgba(79, 135, 168, 0.6) 0%,
+    rgba(66, 141, 134, 0.6) 100%
+  );
+  padding: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: left;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 100%;
+  &:first-of-type {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(240, 240, 240, 0.5) 10%,
+        rgba(240, 240, 240, 0.5) 90%,
+        rgba(0, 0, 0, 0) 100%
+      )
+      1;
   }
-  &:hover {
+  &:last-of-type {
+    padding-top: 0.5rem;
+  }
+}
+
+.label {
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: rgba(250, 250, 250, 0.3);
+  text-align: left;
+}
+input {
+  position: absolute;
+  &:checked + .label {
+    color: $font-color;
+    font-size: 1.5rem;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+//Transitions
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
-    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(255, 255, 255, 0.3));
-    scale: 1.2;
   }
 }
 
@@ -150,6 +235,18 @@ $font-color: rgb(250, 250, 250);
   .settings-container {
     top: 7rem;
     width: 20rem;
+    .settings-container-inner {
+      width: 100%;
+    }
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+  .label {
+    font-size: 1.2rem;
+    &:checked {
+      font-size: 1.3rem;
+    }
   }
 }
 </style>

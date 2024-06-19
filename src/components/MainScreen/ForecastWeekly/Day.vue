@@ -211,6 +211,8 @@ export default {
   content: "\00B0";
 }
 
+//@media
+
 @media only screen and (max-width: 1000px) {
   .condition {
     min-width: 8rem;

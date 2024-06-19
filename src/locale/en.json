@@ -32,5 +32,8 @@
     "friday": "Fri.",
     "saturday": "Sat.",
     "sunday": "Sun."
-  }
+  },
+  "temperature": "Temperature",
+  "celsius": "Celsius",
+  "farenheit": "Farenheit"
 }
