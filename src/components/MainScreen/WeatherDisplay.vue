@@ -29,10 +29,14 @@
 
     <div class="temp-range">
       <Transition name="slide-horizontal-fade" mode="out-in">
-        <div class="temp" :key="passMinTemp">L: {{ passMinTemp }}</div>
+        <div class="temp" :key="passMinTemp">
+          {{ t.low }}: {{ passMinTemp }}
+        </div>
       </Transition>
       <Transition name="slide-horizontal-fade" mode="out-in">
-        <div class="temp" :key="passMaxTemp">H: {{ passMaxTemp }}</div>
+        <div class="temp" :key="passMaxTemp">
+          {{ t.high }}: {{ passMaxTemp }}
+        </div>
       </Transition>
     </div>
   </div>
@@ -41,7 +45,7 @@
 <script>
 export default {
   props: ["currentWeather", "iconSrc"],
-  inject: ["showSettings"],
+  inject: ["showSettings", "t"],
   computed: {
     passTemperature() {
       return this.currentWeather.current.temp_c === "-"

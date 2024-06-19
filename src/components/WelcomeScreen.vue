@@ -13,7 +13,9 @@
       <LanguageSelect
         @language="(lang) => $emit('language', lang)"
       ></LanguageSelect>
-      <button class="button-1" @click="welcomeScreenHide">Get started!</button>
+      <button class="button-1" @click="welcomeScreenHide">
+        {{ t.getStarted }}
+      </button>
     </div>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
     LanguageSelect,
   },
   emits: ["welcome-screen-toggle", "language"],
-  inject: ["isDay"],
+  inject: ["isDay", "t"],
   methods: {
     welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");

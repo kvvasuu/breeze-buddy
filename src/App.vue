@@ -31,6 +31,9 @@ import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen/MainScreen.vue";
 import Settings from "./components/Settings.vue";
 import { computed } from "vue";
+import en from "./locale/en.json";
+import pl from "./locale/pl.json";
+import de from "./locale/de.json";
 
 export default {
   name: "App",
@@ -44,6 +47,10 @@ export default {
       showSettings: computed(() => this.showSettings),
       isDay: computed(() => this.is_Day),
       language: computed(() => this.lang),
+      t: computed(
+        () =>
+          this.availableLanguages.find((lang) => lang.code === this.lang).file
+      ),
     };
   },
   data() {
@@ -53,6 +60,23 @@ export default {
       forecastDays: 3,
       is_Day: true,
       lang: "en",
+      availableLanguages: [
+        {
+          code: "en",
+          name: "English",
+          file: en,
+        },
+        {
+          code: "pl",
+          name: "Polski",
+          file: pl,
+        },
+        {
+          code: "de",
+          name: "Deutsch",
+          file: de,
+        },
+      ],
     };
   },
   methods: {
@@ -94,7 +118,6 @@ export default {
     },
   },
   created() {
-    window.addEventListener("scroll", () => console.log(window.scrollY));
     if (localStorage.getItem("language") !== null) {
       this.lang = localStorage.getItem("language");
     }

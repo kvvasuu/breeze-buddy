@@ -1,0 +1,36 @@
+{
+  "getStarted": "Rozpocznij!",
+  "myLocation": "Moja lokalizacja",
+  "unknown": "Brak danych",
+  "high": "Maks",
+  "low": "Min",
+  "today": "Dzisiaj",
+  "months": {
+    "January": "Styczeń",
+    "February": "Luty",
+    "March": "Marzec",
+    "April": "Kwiecień",
+    "May": "Maj",
+    "June": "Czerwiec",
+    "July": "Lipiec",
+    "August": "Sierpień",
+    "September": "Wrzesień",
+    "October": "Październik",
+    "November": "Listopad",
+    "December": "Grudzień"
+  },
+  "now": "Teraz",
+  "sunrise": "Wschód",
+  "sunset": "Zachód",
+  "forecast": "Prognoza",
+  "days": "dni",
+  "daysOfWeek": {
+    "monday": "Pon.",
+    "tuesday": "Wt.",
+    "wednesday": "Śr.",
+    "thursday": "Czw.",
+    "friday": "Pt.",
+    "saturday": "Sob.",
+    "sunday": "Niedz."
+  }
+}

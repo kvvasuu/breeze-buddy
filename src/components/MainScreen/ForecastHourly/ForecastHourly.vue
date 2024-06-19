@@ -1,7 +1,7 @@
 <template>
   <div class="forecast-hourly container" :class="{ 'container-dark': !isDay }">
     <div class="date-time">
-      <div class="day">Today</div>
+      <div class="day">{{ t.today }}</div>
       <div class="date">{{ passCurrentDate }}</div>
     </div>
     <hr />
@@ -32,7 +32,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["isDay"],
+  inject: ["isDay", "t"],
   data() {
     return {
       currentDate: new Date(),
@@ -56,7 +56,7 @@ export default {
     passCurrentDate() {
       const day = this.currentDate.getDate();
       const month = this.currentDate.getMonth();
-      return `${this.months[month]}, ${day}`;
+      return `${this.t.months[this.months[month]]}, ${day}`;
     },
 
     pass24Hours() {

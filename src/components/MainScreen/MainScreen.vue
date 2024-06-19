@@ -114,7 +114,7 @@ export default {
   },
   props: ["forecastDays"],
   emits: ["isDayEmit", "showSettings"],
-  inject: ["showSettings", "isDay", "language"],
+  inject: ["showSettings", "isDay", "language", "t"],
   data() {
     return {
       showSearchInput: false,
@@ -124,13 +124,13 @@ export default {
       coords: {},
       currentWeather: {
         location: {
-          name: "My Location",
+          name: this.t.myLocation,
         },
         current: {
           temp_c: "-",
           condition: {
             code: 100,
-            text: "Unknown",
+            text: this.t.unknown,
           },
         },
         forecast: { forecastday: [{ day: { mintemp_c: "", maxtemp_c: "" } }] },

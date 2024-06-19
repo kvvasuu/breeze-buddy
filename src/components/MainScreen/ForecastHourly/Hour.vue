@@ -22,11 +22,13 @@
 <script>
 export default {
   props: ["hour", "actual", "sunsetOrSunrise", "iconSrc"],
-  inject: ["isDay"],
+  inject: ["isDay", "t"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
-        return this.actual ? "Now" : this.hour.time.split(" ")[1].split(":")[0];
+        return this.actual
+          ? this.t.now
+          : this.hour.time.split(" ")[1].split(":")[0];
       }
     },
 
@@ -36,7 +38,7 @@ export default {
       }
     },
     sunsetOrSunriseCheck() {
-      return this.hour.type === "sunrise" ? "Sunrise" : "Sunset";
+      return this.hour.type === "sunrise" ? this.t.sunrise : this.t.sunset;
     },
     isNow() {
       if (this.actual) return "now";
