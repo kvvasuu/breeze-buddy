@@ -6,7 +6,7 @@
       @click.stop=""
     >
       <div class="settings-container-inner">
-        <div class="title">Settings</div>
+        <div class="title">{{ t.settings }}</div>
         <div class="units">
           <div class="temperature-unit">
             <div class="caption">{{ t.temperature }}</div>
@@ -96,7 +96,7 @@ $font-color: rgb(240, 240, 240);
   height: calc(80dvh);
   background-image: linear-gradient(
     30deg,
-    rgb(31, 134, 194) 0%,
+    rgba(31, 134, 194, 0.295) 0%,
     rgb(155, 211, 205) 100%
   );
   border-radius: 2rem;
@@ -123,7 +123,7 @@ $font-color: rgb(240, 240, 240);
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-family: "Helvetica Bold";
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -157,13 +157,12 @@ $font-color: rgb(240, 240, 240);
   flex-direction: column;
   width: 100%;
   border-radius: 1rem;
-  border: 1px solid rgba(79, 135, 168, 0.3);
   box-sizing: border-box;
-  box-shadow: 0.2rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2) inset;
   background-image: linear-gradient(
     -30deg,
-    rgba(79, 135, 168, 0.6) 0%,
-    rgba(66, 141, 134, 0.6) 100%
+    rgba(79, 135, 168, 0.1) 0%,
+    rgba(66, 141, 134, 0.1) 100%
   );
   padding: 1rem;
 }
@@ -202,7 +201,7 @@ input {
   position: absolute;
   &:checked + .label {
     color: $font-color;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     &::after {
       content: "";
       position: absolute;
