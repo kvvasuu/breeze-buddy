@@ -68,7 +68,7 @@ export default {
       localStorage.setItem("language", this.lang);
     },
     toggleSettings() {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 32) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
@@ -77,23 +77,24 @@ export default {
             behavior: "smooth",
           });
         }, 100);
+        setTimeout(() => {
+          document.body.classList.remove("scroll-disable");
+          window.removeEventListener("scroll", this.toggleSettingsScroll);
+        }, 1000);
       } else {
         this.showSettings = !this.showSettings;
-        document.body.classList.remove("scroll-disable");
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY === 0) {
-        this.showSettings = true;
-        window.removeEventListener("scroll", this.toggleSettingsScroll);
+      if (window.scrollY <= 32) {
+        setTimeout(() => {
+          this.showSettings = true;
+        }, 100);
       }
-      setTimeout(() => {
-        document.body.classList.remove("scroll-disable");
-        window.removeEventListener("scroll", this.toggleSettingsScroll);
-      }, 1000);
     },
   },
   created() {
+    window.addEventListener("scroll", () => console.log(window.scrollY));
     if (localStorage.getItem("language") !== null) {
       this.lang = localStorage.getItem("language");
     }
