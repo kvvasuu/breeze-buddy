@@ -68,7 +68,7 @@ export default {
       localStorage.setItem("language", this.lang);
     },
     toggleSettings() {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 30) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
@@ -84,7 +84,7 @@ export default {
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY <= 50) {
+      if (window.scrollY <= 20) {
         this.showSettings = true;
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
