@@ -20,6 +20,7 @@
           v-if="showSettings"
           @toggle-settings="toggleSettings"
           @language="changeLanguage"
+          @temp-unit="changeTempUnit"
         ></Settings>
       </Transition>
     </div>
@@ -92,6 +93,10 @@ export default {
     changeLanguage(lang) {
       this.lang = lang;
       localStorage.setItem("language", this.lang);
+    },
+    changeTempUnit(unit) {
+      this.tempUnit = unit;
+      localStorage.setItem("tempUnit", this.tempUnit);
     },
     toggleSettings() {
       if (window.scrollY > 32) {

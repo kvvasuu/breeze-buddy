@@ -5,6 +5,31 @@
       :class="{ 'settings-container-dark': !isDay }"
       @click.stop=""
     >
+      <div class="temperature-unit">
+        <label for="c" class="label">
+          <input
+            type="radio"
+            id="c"
+            name="temperature"
+            value="c"
+            @click="changeTempUnit"
+            v-model="temp_unit"
+          />
+          C
+        </label>
+
+        <label for="f" class="label">
+          <input
+            type="radio"
+            id="f"
+            name="temperature"
+            value="f"
+            @click="changeTempUnit"
+            v-model="temp_unit"
+          />
+          F
+        </label>
+      </div>
       <LanguageSelect
         @language="(lang) => $emit('language', lang)"
       ></LanguageSelect>
@@ -24,15 +49,17 @@ export default {
   data() {
     return {
       lang: "",
+      temp_unit: "",
     };
   },
   methods: {
     changeTempUnit(event) {
-      this.$emit("language", event.target.value);
+      this.$emit("temp-unit", event.target.value);
     },
   },
   mounted() {
     this.lang = this.language;
+    this.temp_unit = this.tempUnit;
   },
 };
 </script>
