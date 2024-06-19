@@ -90,6 +90,7 @@ export default {
       }
       setTimeout(() => {
         document.body.classList.remove("scroll-disable");
+        window.removeEventListener("scroll", this.toggleSettingsScroll);
       }, 1000);
     },
   },
