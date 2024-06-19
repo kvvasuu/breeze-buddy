@@ -22,7 +22,7 @@
 <script>
 export default {
   props: ["hour", "actual", "sunsetOrSunrise", "iconSrc"],
-  inject: ["isDay", "t"],
+  inject: ["isDay", "t", "tempUnit"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
@@ -34,7 +34,7 @@ export default {
 
     passTemp() {
       if (!this.sunsetOrSunrise) {
-        return Math.round(this.hour.temp_c);
+        return Math.round(this.hour[`temp_${this.tempUnit}`]);
       }
     },
     sunsetOrSunriseCheck() {
@@ -98,10 +98,15 @@ export default {
 }
 
 //@media
+@media only screen and (max-width: 1000px) {
+  .hour-container {
+    min-width: 4.8rem;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .hour-container {
-    min-width: 3rem;
+    min-width: 3.2rem;
   }
   .icon {
     height: 1.6rem;

@@ -34,16 +34,16 @@
 <script>
 export default {
   props: ["day", "dayName", "tempMinMax", "actual", "currentTemp", "iconSrc"],
-  inject: ["isDay"],
+  inject: ["isDay", "tempUnit"],
   data() {
     return {};
   },
   computed: {
     passMinTemp() {
-      return Math.round(this.day.day.mintemp_c);
+      return Math.round(this.day.day[`mintemp_${this.tempUnit}`]);
     },
     passMaxTemp() {
-      return Math.round(this.day.day.maxtemp_c);
+      return Math.round(this.day.day[`maxtemp_${this.tempUnit}`]);
     },
     actualTempIndicatorPosition() {
       if (this.actual) {
@@ -117,7 +117,7 @@ export default {
 
 .day {
   font-size: 0.9rem;
-  min-width: 3rem;
+  min-width: 3.4rem;
   text-align: left;
 }
 
@@ -131,7 +131,7 @@ export default {
 .condition {
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   font-size: 0.9rem;
-  min-width: 20rem;
+  min-width: 18rem;
   text-align: left;
 }
 .temperature-range {

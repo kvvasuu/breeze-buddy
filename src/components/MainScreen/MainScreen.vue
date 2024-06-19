@@ -51,7 +51,7 @@
         </Transition>
       </div>
 
-      <div class="icon" @click="() => $emit('showSettings')">
+      <div class="icon" @click="() => $emit('show-settings')">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 448 512"
@@ -113,7 +113,7 @@ export default {
     ForecastWeekly,
   },
   props: ["forecastDays"],
-  emits: ["isDayEmit", "showSettings"],
+  emits: ["is-day-emit", "show-settings"],
   inject: ["showSettings", "isDay", "language", "t"],
   data() {
     return {
@@ -128,6 +128,7 @@ export default {
         },
         current: {
           temp_c: "-",
+          temp_f: "-",
           condition: {
             code: 100,
             text: this.t.unknown,
@@ -170,8 +171,8 @@ export default {
           this.is_Day = !!response.data.current.is_day;
 
           response.data.current.is_day
-            ? this.$emit("isDayEmit", true)
-            : this.$emit("isDayEmit", false);
+            ? this.$emit("is-day-emit", true)
+            : this.$emit("is-day-emit", false);
 
           localStorage.setItem("isDay", response.data.current.is_day);
 

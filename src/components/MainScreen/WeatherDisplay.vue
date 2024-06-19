@@ -45,22 +45,34 @@
 <script>
 export default {
   props: ["currentWeather", "iconSrc"],
-  inject: ["showSettings", "t"],
+  inject: ["showSettings", "t", "tempUnit"],
   computed: {
     passTemperature() {
-      return this.currentWeather.current.temp_c === "-"
-        ? this.currentWeather.current.temp_c
-        : Math.round(this.currentWeather.current.temp_c);
+      return this.currentWeather.current[`temp_${this.tempUnit}`] === "-"
+        ? this.currentWeather.current[`temp_${this.tempUnit}`]
+        : Math.round(this.currentWeather.current[`temp_${this.tempUnit}`]);
     },
     passMinTemp() {
-      return Math.round(
-        this.currentWeather.forecast.forecastday[0].day.mintemp_c
-      );
+      return this.currentWeather.forecast.forecastday[0].day[
+        `mintemp_${this.tempUnit}`
+      ] === undefined
+        ? "-"
+        : Math.round(
+            this.currentWeather.forecast.forecastday[0].day[
+              `mintemp_${this.tempUnit}`
+            ]
+          );
     },
     passMaxTemp() {
-      return Math.round(
-        this.currentWeather.forecast.forecastday[0].day.maxtemp_c
-      );
+      return this.currentWeather.forecast.forecastday[0].day[
+        `maxtemp_${this.tempUnit}`
+      ] === undefined
+        ? "-"
+        : Math.round(
+            this.currentWeather.forecast.forecastday[0].day[
+              `maxtemp_${this.tempUnit}`
+            ]
+          );
     },
   },
 };
@@ -91,7 +103,7 @@ export default {
 .temperature {
   position: relative;
   font-size: 6rem;
-  text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   &:after {
     position: absolute;
     font-size: 5rem;
@@ -101,7 +113,7 @@ export default {
 
 .conditions {
   font-size: 1.6rem;
-  text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.7);
 }
 

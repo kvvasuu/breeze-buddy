@@ -20,7 +20,7 @@
         :dayName="passDayOfWeek(index)"
         :tempMinMax="getMinMaxTemp"
         :actual="index === 0"
-        :currentTemp="currentWeather.temp_c"
+        :currentTemp="currentWeather[`temp_${tempUnit}`]"
         :iconSrc="passIconSrc(day)"
       ></Day>
     </div>
@@ -36,7 +36,7 @@ export default {
     Day,
   },
   props: ["forecast", "currentWeather"],
-  inject: ["isDay", "t"],
+  inject: ["isDay", "t", "tempUnit"],
   data() {
     return {
       currentDate: new Date(),
@@ -72,7 +72,7 @@ export default {
           ...this.forecast.map((el) =>
             Math.min(
               ...el.hour
-                .map((hour) => hour.temp_c)
+                .map((hour) => hour[`temp_${this.tempUnit}`])
                 .filter((el) => el !== undefined)
             )
           )
@@ -83,7 +83,7 @@ export default {
           ...this.forecast.map((el) =>
             Math.max(
               ...el.hour
-                .map((hour) => hour.temp_c)
+                .map((hour) => hour[`temp_${this.tempUnit}`])
                 .filter((el) => el !== undefined)
             )
           )

@@ -19,12 +19,21 @@ export default {
   components: {
     LanguageSelect,
   },
-  emits: ["toggle-settings", "language"],
-  inject: ["isDay", "language"],
+  emits: ["toggle-settings", "language", "temp-unit"],
+  inject: ["isDay", "language", "tempUnit"],
   data() {
-    return {};
+    return {
+      lang: "",
+    };
   },
-  methods: {},
+  methods: {
+    changeTempUnit(event) {
+      this.$emit("language", event.target.value);
+    },
+  },
+  mounted() {
+    this.lang = this.language;
+  },
 };
 </script>
 

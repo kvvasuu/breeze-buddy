@@ -11,8 +11,8 @@
           v-else
           :key="lang"
           :forecastDays="forecastDays"
-          @isDayEmit="toggleNight"
-          @showSettings="toggleSettings"
+          @is-day-emit="toggleNight"
+          @show-settings="toggleSettings"
         ></MainScreen>
       </Transition>
       <Transition name="slide-fade-fast" mode="out-in">
@@ -51,6 +51,7 @@ export default {
         () =>
           this.availableLanguages.find((lang) => lang.code === this.lang).file
       ),
+      tempUnit: computed(() => this.tempUnit),
     };
   },
   data() {
@@ -77,6 +78,7 @@ export default {
           file: de,
         },
       ],
+      tempUnit: "c",
     };
   },
   methods: {
@@ -118,9 +120,9 @@ export default {
     },
   },
   created() {
-    if (localStorage.getItem("language") !== null) {
-      this.lang = localStorage.getItem("language");
-    }
+    this.lang = localStorage.getItem("language") || "en";
+    this.tempUnit = localStorage.getItem("tempUnit") || "c";
+
     if (
       !localStorage.getItem("forecastDays") ||
       localStorage.getItem("forecastDays") < 3
