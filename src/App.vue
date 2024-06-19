@@ -69,27 +69,26 @@ export default {
     },
     toggleSettings() {
       if (window.scrollY > 30) {
-        /*  document.body.classList.add("scroll-disable"); */
+        document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
           window.scrollTo({
             top: 0,
-            left: 0,
             behavior: "smooth",
           });
         }, 100);
       } else {
         this.showSettings = !this.showSettings;
-        /* document.body.classList.remove("scroll-disable"); */
+        document.body.classList.remove("scroll-disable");
       }
     },
     toggleSettingsScroll() {
-      if (window.scrollY <= 20) {
+      if (window.scrollY === 0) {
         this.showSettings = true;
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
       setTimeout(() => {
-        /* document.body.classList.remove("scroll-disable"); */
+        document.body.classList.remove("scroll-disable");
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }, 1000);
     },
