@@ -69,7 +69,7 @@ export default {
     },
     toggleSettings() {
       if (window.scrollY > 30) {
-        document.body.classList.add("scroll-disable");
+        /*  document.body.classList.add("scroll-disable"); */
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
           window.scrollTo({
@@ -80,7 +80,7 @@ export default {
         }, 100);
       } else {
         this.showSettings = !this.showSettings;
-        document.body.classList.remove("scroll-disable");
+        /* document.body.classList.remove("scroll-disable"); */
       }
     },
     toggleSettingsScroll() {
@@ -89,7 +89,7 @@ export default {
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }
       setTimeout(() => {
-        document.body.classList.remove("scroll-disable");
+        /* document.body.classList.remove("scroll-disable"); */
         window.removeEventListener("scroll", this.toggleSettingsScroll);
       }, 1000);
     },
