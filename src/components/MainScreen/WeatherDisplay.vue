@@ -82,7 +82,7 @@ export default {
 .weather-display {
   width: auto;
   height: auto;
-  margin: 2rem 1rem 1rem 1rem;
+  margin: 1rem;
   user-select: none;
   transition: scale 1s ease;
 }

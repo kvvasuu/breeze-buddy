@@ -96,22 +96,24 @@
         :key="currentWeather.location.name"
       ></ForecastWeekly>
     </Transition>
-    <Transition
-      :name="
-        showSettings
-          ? ''
-          : transitionChange
-          ? 'slide-horizontal-fade'
-          : 'slide-fade'
-      "
-      mode="out-in"
-    >
-      <Wind
-        v-if="weatherDone && !showSettings"
-        :currentWeather="currentWeather.forecast.forecastday"
-        :key="currentWeather.location.name"
-      ></Wind>
-    </Transition>
+    <div class="other-values">
+      <Transition
+        :name="
+          showSettings
+            ? ''
+            : transitionChange
+            ? 'slide-horizontal-fade'
+            : 'slide-fade'
+        "
+        mode="out-in"
+      >
+        <Wind
+          v-if="weatherDone && !showSettings"
+          :currentWeather="currentWeather.forecast.forecastday"
+          :key="currentWeather.location.name"
+        ></Wind>
+      </Transition>
+    </div>
   </div>
 </template>
 
@@ -286,7 +288,7 @@ $font-color: rgb(250, 250, 250);
   align-items: center;
   backdrop-filter: blur(0.4rem);
   overflow: hidden;
-  padding: 1rem 0 1rem 0;
+  padding: 2rem 0;
   transition: all 1s ease;
 }
 
@@ -302,6 +304,13 @@ $font-color: rgb(250, 250, 250);
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+}
+
+.other-values {
+  width: 54rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .icon {
@@ -406,6 +415,11 @@ $font-color: rgb(250, 250, 250);
 @media only screen and (max-width: 1000px) {
   .buttons {
     width: 28rem;
+  }
+  .other-values {
+    width: auto;
+    display: flex;
+    flex-direction: column;
   }
 }
 

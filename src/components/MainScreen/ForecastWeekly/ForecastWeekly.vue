@@ -98,7 +98,6 @@ export default {
 <style lang="scss" scoped>
 .forecast-weekly {
   width: 52rem;
-  margin: 1rem 0 2rem 0;
   border-radius: 1.6rem;
   padding: 1rem;
   box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
@@ -117,23 +116,11 @@ export default {
   opacity: 0.8;
   svg {
     position: absolute;
-    height: 1rem;
+    height: 0.9rem;
+    top: 0;
     left: -1.3rem;
     box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   }
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(240, 240, 240, 0.5) 10%,
-    rgba(240, 240, 240, 0.5) 90%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  margin-bottom: 0;
 }
 
 .days-container {
