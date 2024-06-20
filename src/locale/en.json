@@ -36,5 +36,6 @@
   "temperature": "Temperature",
   "celsius": "Celsius",
   "farenheit": "Farenheit",
-  "settings": "Settings"
+  "settings": "Settings",
+  "wind": "Wind"
 }

@@ -96,6 +96,22 @@
         :key="currentWeather.location.name"
       ></ForecastWeekly>
     </Transition>
+    <Transition
+      :name="
+        showSettings
+          ? ''
+          : transitionChange
+          ? 'slide-horizontal-fade'
+          : 'slide-fade'
+      "
+      mode="out-in"
+    >
+      <Wind
+        v-if="weatherDone && !showSettings"
+        :currentWeather="currentWeather.forecast.forecastday"
+        :key="currentWeather.location.name"
+      ></Wind>
+    </Transition>
   </div>
 </template>
 
@@ -103,6 +119,7 @@
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
+import Wind from "./Wind.vue";
 import axios from "axios";
 import { latinise, Latinise, iconMap } from "../../functions";
 
@@ -111,6 +128,7 @@ export default {
     WeatherDisplay,
     ForecastHourly,
     ForecastWeekly,
+    Wind,
   },
   props: ["forecastDays"],
   emits: ["is-day-emit", "show-settings"],

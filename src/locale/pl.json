@@ -36,5 +36,6 @@
   "temperature": "Temperatura",
   "celsius": "Stopnie Celsiusza",
   "farenheit": "Stopnie Farenheita",
-  "settings": "Ustawienia"
+  "settings": "Ustawienia",
+  "wind": "Wiatr"
 }

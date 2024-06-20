@@ -53,15 +53,16 @@ export default {
           this.availableLanguages.find((lang) => lang.code === this.lang).file
       ),
       tempUnit: computed(() => this.tempUnit),
+      windUnit: computed(() => this.windUnit),
     };
   },
   data() {
     return {
       showWelcomeScreen: true,
       showSettings: false,
-      forecastDays: 3,
+      forecastDays: 3, // minimum 3
       is_Day: true,
-      lang: "en",
+      lang: "en", // "en", "pl" or "de"
       availableLanguages: [
         {
           code: "en",
@@ -79,7 +80,8 @@ export default {
           file: de,
         },
       ],
-      tempUnit: "c",
+      tempUnit: "c", // "c" or "f"
+      windUnit: "kph", // "kph" or "mph"
     };
   },
   methods: {

@@ -96,7 +96,7 @@ $font-color: rgb(240, 240, 240);
   height: calc(80dvh);
   background-image: linear-gradient(
     30deg,
-    rgba(31, 134, 194, 0.295) 0%,
+    rgb(31, 134, 194) 0%,
     rgb(155, 211, 205) 100%
   );
   border-radius: 2rem;
