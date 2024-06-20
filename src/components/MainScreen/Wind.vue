@@ -31,7 +31,7 @@
       </div>
       <div class="compass">
         <div class="arrow"></div>
-        <div class="direction"></div>
+        <div class="direction">{{ passWindDirection }}</div>
       </div>
     </div>
   </div>
@@ -40,29 +40,30 @@
 <script>
 export default {
   props: ["currentWeather"],
-  inject: ["isDay", "t", "windUnit"],
+  inject: ["isDay", "t", "windUnit", "localTime"],
   data() {
-    return {
-      currentDate: new Date(),
-    };
+    return {};
   },
   computed: {
-    currentHour() {
-      return this.currentDate.getHours() + 1;
+    passLocalTime() {
+      return this.localTime.split(" ")[1].split(":")[0];
+    },
+    passWindDirection() {
+      return this.currentWeather[0].hour[this.passLocalTime].wind_dir;
     },
     passWindSpeed() {
       switch (this.windUnit) {
         case "kph":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`wind_kph`]
+            this.currentWeather[0].hour[this.passLocalTime].wind_kph
           );
         case "mph":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`wind_mph`]
+            this.currentWeather[0].hour[this.passLocalTime].wind_mph
           );
         case "ms":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`wind_kph`] *
+            this.currentWeather[0].hour[this.passLocalTime].wind_kph *
               0.277777778
           );
       }
@@ -71,15 +72,15 @@ export default {
       switch (this.windUnit) {
         case "kph":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`gust_kph`]
+            this.currentWeather[0].hour[this.passLocalTime].gust_kph
           );
         case "mph":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`gust_mph`]
+            this.currentWeather[0].hour[this.passLocalTime].gust_mph
           );
         case "ms":
           return Math.round(
-            this.currentWeather[0].hour[this.currentHour][`gust_kph`] *
+            this.currentWeather[0].hour[this.passLocalTime].gust_kph *
               0.277777778
           );
       }
@@ -178,6 +179,24 @@ export default {
       text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
       font-weight: bold;
     }
+  }
+}
+
+.compass {
+  position: relative;
+  height: 10rem;
+  width: 10rem;
+  background: url("../../assets/compass.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  .direction {
+    position: absolute;
+    top: calc(50% - 2rem);
+    left: calc(50% - 2rem);
+    height: 4rem;
+    width: 4rem;
+    background-color: rgb(74, 118, 129);
+    border-radius: 10rem;
   }
 }
 

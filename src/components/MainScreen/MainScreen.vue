@@ -165,8 +165,6 @@ export default {
       weatherDone: false,
       searchInput: "",
       is_Day: true,
-      componentsGradient:
-        "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)",
     };
   },
   methods: {
@@ -212,7 +210,6 @@ export default {
               }
 
               this.weatherDone = true;
-              console.log(response);
               if (response.data)
                 setTimeout(() => {
                   this.transitionChange = true;
@@ -273,15 +270,6 @@ export default {
       }
       return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
         .href;
-    },
-  },
-  watch: {
-    is_Day() {
-      this.is_Day
-        ? (this.componentsGradient =
-            "linear-gradient(30deg, rgba(0, 116, 184, 0.3) 0%, rgba(107, 173, 166, 0.3) 100%)")
-        : (this.componentsGradient =
-            "linear-gradient( 30deg, rgba(0, 60, 95, 0.5) 0%, rgba(62, 99, 95, 0.5) 100% )");
     },
   },
 };
