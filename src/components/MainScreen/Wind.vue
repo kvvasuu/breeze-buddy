@@ -51,15 +51,38 @@ export default {
       return this.currentDate.getHours() + 1;
     },
     passWindSpeed() {
-      return Math.round(
-        this.currentWeather[0].hour[this.currentHour][`wind_${this.windUnit}`]
-      );
+      switch (this.windUnit) {
+        case "kph":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`wind_kph`]
+          );
+        case "mph":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`wind_mph`]
+          );
+        case "ms":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`wind_kph`] *
+              0.277777778
+          );
+      }
     },
     passGustSpeed() {
-      console.log(this.currentWeather[0].hour[this.currentHour]);
-      return Math.round(
-        this.currentWeather[0].hour[this.currentHour][`gust_${this.windUnit}`]
-      );
+      switch (this.windUnit) {
+        case "kph":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`gust_kph`]
+          );
+        case "mph":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`gust_mph`]
+          );
+        case "ms":
+          return Math.round(
+            this.currentWeather[0].hour[this.currentHour][`gust_kph`] *
+              0.277777778
+          );
+      }
     },
     passWindUnit() {
       switch (this.windUnit) {
@@ -67,6 +90,8 @@ export default {
           return "km/h";
         case "mph":
           return "mph";
+        case "ms":
+          return "m/s";
         default:
           return "km/h";
       }

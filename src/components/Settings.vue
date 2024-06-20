@@ -8,9 +8,9 @@
       <div class="settings-container-inner">
         <div class="title">{{ t.settings }}</div>
         <div class="units">
-          <div class="temperature-unit">
+          <div class="temperature-unit unit-select">
             <div class="caption">{{ t.temperature }}</div>
-            <div class="temperature-unit-inner">
+            <div class="unit-select-unit-inner">
               <div class="input-group">
                 <input
                   type="radio"
@@ -19,7 +19,6 @@
                   value="c"
                   @click="changeTempUnit"
                   v-model="temp_unit"
-                  checked
                 />
                 <label for="c" class="label">{{ t.celsius }} (&deg;C)</label>
               </div>
@@ -33,6 +32,46 @@
                   v-model="temp_unit"
                 />
                 <label for="f" class="label">{{ t.farenheit }} (&deg;F)</label>
+              </div>
+            </div>
+          </div>
+          <div class="wind-unit unit-select">
+            <div class="caption">{{ t.wind }}</div>
+            <div class="unit-select-unit-inner">
+              <div class="input-group">
+                <input
+                  type="radio"
+                  id="kph"
+                  name="wind"
+                  value="kph"
+                  @click="changeWindUnit"
+                  v-model="wind_unit"
+                  checked
+                />
+                <label for="kph" class="label">km/h</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="radio"
+                  id="ms"
+                  name="wind"
+                  value="ms"
+                  @click="changeWindUnit"
+                  v-model="wind_unit"
+                  checked
+                />
+                <label for="ms" class="label">m/s</label>
+              </div>
+              <div class="input-group">
+                <input
+                  type="radio"
+                  id="mph"
+                  name="wind"
+                  value="mph"
+                  @click="changeWindUnit"
+                  v-model="wind_unit"
+                />
+                <label for="mph" class="label">mph</label>
               </div>
             </div>
           </div>
@@ -52,22 +91,28 @@ export default {
   components: {
     LanguageSelect,
   },
-  emits: ["toggle-settings", "language", "temp-unit"],
-  inject: ["isDay", "language", "tempUnit", "t"],
+  emits: ["toggle-settings", "language", "temp-unit", "wind-unit"],
+  inject: ["isDay", "language", "tempUnit", "t", "windUnit"],
   data() {
     return {
       lang: "",
       temp_unit: "",
+      wind_unit: "",
     };
   },
   methods: {
     changeTempUnit(event) {
+      console.log(event.target.value);
       this.$emit("temp-unit", event.target.value);
+    },
+    changeWindUnit(event) {
+      this.$emit("wind-unit", event.target.value);
     },
   },
   mounted() {
     this.lang = this.language;
     this.temp_unit = this.tempUnit;
+    this.wind_unit = this.windUnit;
   },
 };
 </script>
@@ -137,11 +182,13 @@ $font-color: rgb(240, 240, 240);
   flex-direction: column;
 }
 
-.temperature-unit {
+.unit-select {
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
+
 .caption {
   font-size: 0.9rem;
   font-family: "Helvetica Bold";
@@ -150,7 +197,7 @@ $font-color: rgb(240, 240, 240);
   margin: 0 0 0.1rem 1rem;
 }
 
-.temperature-unit-inner {
+.unit-select-unit-inner {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -173,20 +220,24 @@ $font-color: rgb(240, 240, 240);
   justify-content: flex-start;
   flex-direction: column;
   width: 100%;
+  padding: 0.5rem 0 0.5rem 0;
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(240, 240, 240, 0.5) 10%,
+      rgba(240, 240, 240, 0.5) 90%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    1;
   &:first-of-type {
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid;
-    border-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(240, 240, 240, 0.5) 10%,
-        rgba(240, 240, 240, 0.5) 90%,
-        rgba(0, 0, 0, 0) 100%
-      )
-      1;
+    padding-top: 0;
+    border: none;
   }
   &:last-of-type {
-    padding-top: 0.5rem;
+    padding-bottom: 0;
+    border: none;
   }
 }
 

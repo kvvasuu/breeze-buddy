@@ -21,6 +21,7 @@
           @toggle-settings="toggleSettings"
           @language="changeLanguage"
           @temp-unit="changeTempUnit"
+          @wind-unit="changeWindUnit"
         ></Settings>
       </Transition>
     </div>
@@ -81,7 +82,7 @@ export default {
         },
       ],
       tempUnit: "c", // "c" or "f"
-      windUnit: "kph", // "kph" or "mph"
+      windUnit: "kph", // "kph", "m/s" or "mph"
     };
   },
   methods: {
@@ -99,6 +100,10 @@ export default {
     changeTempUnit(unit) {
       this.tempUnit = unit;
       localStorage.setItem("tempUnit", this.tempUnit);
+    },
+    changeWindUnit(unit) {
+      this.windUnit = unit;
+      localStorage.setItem("windUnit", this.windUnit);
     },
     toggleSettings() {
       if (window.scrollY > 32) {
@@ -129,6 +134,7 @@ export default {
   created() {
     this.lang = localStorage.getItem("language") || "en";
     this.tempUnit = localStorage.getItem("tempUnit") || "c";
+    this.windUnit = localStorage.getItem("windUnit") || "kph";
 
     if (
       !localStorage.getItem("forecastDays") ||
