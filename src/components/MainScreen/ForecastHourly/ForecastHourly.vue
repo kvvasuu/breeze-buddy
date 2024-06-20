@@ -32,7 +32,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["isDay", "t"],
+  inject: ["isDay", "t", "localTime"],
   data() {
     return {
       currentDate: new Date(),
@@ -61,7 +61,7 @@ export default {
 
     pass24Hours() {
       if (this.weather !== undefined) {
-        const currentHour = this.currentDate.getHours();
+        const currentHour = this.localTime.split(" ")[1].split(":")[0];
 
         let tempHours = [];
         for (let i = 0; i < 2; i++) {

@@ -45,7 +45,7 @@
 <script>
 export default {
   props: ["currentWeather", "iconSrc"],
-  inject: ["showSettings", "t", "tempUnit"],
+  inject: ["showSettings", "t", "tempUnit", "localTime"],
   computed: {
     passTemperature() {
       return this.currentWeather.current[`temp_${this.tempUnit}`] === "-"

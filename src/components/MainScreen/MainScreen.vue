@@ -1,7 +1,7 @@
 <template>
   <div class="main-container" :class="{ 'scale-down': showSettings }">
     <WeatherDisplay
-      :currentWeather="currentWeather"
+      :currentWeather="weather"
       :iconSrc="passIconSrc"
     ></WeatherDisplay>
     <div class="buttons">
@@ -31,8 +31,8 @@
             placeholder="Search"
             v-if="showSearchInput"
             v-model="searchInput"
-            @keydown.enter="getCurrentWeather(searchInput)"
-            @blur="getCurrentWeather(searchInput)"
+            @keydown.enter="getWeather(searchInput)"
+            @blur="getWeather(searchInput)"
             autocomplete="off"
             ref="search"
             autofocus
@@ -75,8 +75,8 @@
     >
       <ForecastHourly
         v-if="weatherDone && !showSettings"
-        :weather="currentWeather.forecast.forecastday"
-        :key="currentWeather.location.name"
+        :weather="weather.forecast.forecastday"
+        :key="weather.location.name"
       ></ForecastHourly>
     </Transition>
     <Transition
@@ -91,9 +91,9 @@
     >
       <ForecastWeekly
         v-if="weatherDone && !showSettings"
-        :forecast="currentWeather.forecast.forecastday"
-        :currentWeather="currentWeather.current"
-        :key="currentWeather.location.name"
+        :forecast="weather.forecast.forecastday"
+        :currentWeather="weather.current"
+        :key="weather.location.name"
       ></ForecastWeekly>
     </Transition>
     <div class="other-values">
@@ -109,8 +109,8 @@
       >
         <Wind
           v-if="weatherDone && !showSettings"
-          :currentWeather="currentWeather.forecast.forecastday"
-          :key="currentWeather.location.name"
+          :currentWeather="weather.forecast.forecastday"
+          :key="weather.location.name"
         ></Wind>
       </Transition>
     </div>
@@ -123,7 +123,8 @@ import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
 import Wind from "./Wind.vue";
 import axios from "axios";
-import { latinise, Latinise, iconMap } from "../../functions";
+import { latinise, iconMap } from "../../functions";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -135,14 +136,19 @@ export default {
   props: ["forecastDays"],
   emits: ["is-day-emit", "show-settings"],
   inject: ["showSettings", "isDay", "language", "t"],
+  provide() {
+    return {
+      localTime: computed(() => this.weather.location.localtime),
+    };
+  },
   data() {
     return {
       showSearchInput: false,
       isGeolocationDone: false,
       pinShakeAnimation: false,
       transitionChange: false,
-      coords: {},
-      currentWeather: {
+      coords: { lat: 0, lon: 0 },
+      weather: {
         location: {
           name: this.t.myLocation,
         },
@@ -167,16 +173,15 @@ export default {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
     },
-    async getCurrentWeather(value) {
+    async getWeather(value) {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.coords.lat},${this.coords.lon}`;
       } else q = latinise(value).trim();
       if (q !== "")
         try {
-          const response = await axios.get(
-            "https://api.weatherapi.com/v1/forecast.json",
-            {
+          await axios
+            .get("https://api.weatherapi.com/v1/forecast.json", {
               params: {
                 key: "e4ee231ca8574dfc85f123549241106",
                 q: q,
@@ -184,23 +189,36 @@ export default {
                 lang: this.language,
                 days: this.forecastDays,
               },
-            }
-          );
-          this.currentWeather = response.data;
-          this.searchInput = "";
-          this.is_Day = !!response.data.current.is_day;
+            })
+            .then((response) => {
+              this.weather = response.data;
+              this.searchInput = "";
+              this.is_Day = !!response.data.current.is_day;
+              response.data.current.is_day
+                ? this.$emit("is-day-emit", true)
+                : this.$emit("is-day-emit", false);
 
-          response.data.current.is_day
-            ? this.$emit("is-day-emit", true)
-            : this.$emit("is-day-emit", false);
+              this.coords = {
+                lat: response.data.location.lat,
+                lon: response.data.location.lon,
+              };
 
-          localStorage.setItem("isDay", response.data.current.is_day);
+              localStorage.setItem("isDay", response.data.current.is_day);
 
-          this.weatherDone = true;
-          if (response.data)
-            setTimeout(() => {
-              this.transitionChange = true;
-            }, 3000);
+              if (!this.weatherDone) {
+                setInterval(() => {
+                  this.refresh();
+                }, 60000);
+              }
+
+              this.weatherDone = true;
+              console.log(response);
+              if (response.data)
+                setTimeout(() => {
+                  this.transitionChange = true;
+                }, 3000);
+            })
+            .catch((error) => console.log(error));
 
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
@@ -226,7 +244,7 @@ export default {
                 this.pinShakeAnimation = false;
                 this.coords.lat = position.coords.latitude;
                 this.coords.lon = position.coords.longitude;
-                this.getCurrentWeather();
+                this.getWeather();
               },
               () => {
                 this.isGeolocationDone = false;
@@ -240,13 +258,16 @@ export default {
         console.log("Geolocation impossible.");
       }
     },
+    refresh() {
+      this.getWeather();
+    },
   },
   beforeMount() {
     this.getLocationWeather();
   },
   computed: {
     passIconSrc() {
-      let iconName = iconMap[this.currentWeather.current.condition.code];
+      let iconName = iconMap[this.weather.current.condition.code];
       if (!this.is_Day) {
         iconName++;
       }
@@ -262,9 +283,6 @@ export default {
         : (this.componentsGradient =
             "linear-gradient( 30deg, rgba(0, 60, 95, 0.5) 0%, rgba(62, 99, 95, 0.5) 100% )");
     },
-  },
-  isItDay() {
-    return this.is_Day;
   },
 };
 </script>

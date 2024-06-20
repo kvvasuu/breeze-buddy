@@ -102,7 +102,6 @@ export default {
   },
   methods: {
     changeTempUnit(event) {
-      console.log(event.target.value);
       this.$emit("temp-unit", event.target.value);
     },
     changeWindUnit(event) {
