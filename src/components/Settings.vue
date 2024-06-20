@@ -167,11 +167,12 @@ $font-color: rgb(240, 240, 240);
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-family: "Helvetica Bold";
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0.6rem;
+  text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
 .units {
@@ -204,11 +205,11 @@ $font-color: rgb(240, 240, 240);
   width: 100%;
   border-radius: 1rem;
   box-sizing: border-box;
-  box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2) inset;
+
   background-image: linear-gradient(
     -30deg,
-    rgba(79, 135, 168, 0.1) 0%,
-    rgba(66, 141, 134, 0.1) 100%
+    rgba(79, 135, 168, 0.2) 0%,
+    rgba(66, 141, 134, 0.2) 100%
   );
   padding: 1rem;
 }
@@ -221,7 +222,6 @@ $font-color: rgb(240, 240, 240);
   width: 100%;
   padding: 0.5rem 0 0.5rem 0;
   border-bottom: 1px solid;
-  border-top: 1px solid;
   border-image: linear-gradient(
       to right,
       rgba(255, 255, 255, 0) 0%,
@@ -232,7 +232,6 @@ $font-color: rgb(240, 240, 240);
     1;
   &:first-of-type {
     padding-top: 0;
-    border: none;
   }
   &:last-of-type {
     padding-bottom: 0;
