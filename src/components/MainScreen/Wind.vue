@@ -31,7 +31,13 @@
       </div>
       <div class="compass">
         <img src="../../assets/compass.png" />
-        <div class="arrow"></div>
+        <div class="arrow">
+          <img
+            src="../../assets/compass-arrow.png"
+            alt=""
+            :style="{ rotate: passWindDegree }"
+          />
+        </div>
         <div class="direction" :class="{ 'direction-dark': !isDay }">
           {{ passWindDirection }}
         </div>
@@ -53,6 +59,11 @@ export default {
     },
     passWindDirection() {
       return this.currentWeather[0].hour[this.passLocalTime].wind_dir;
+    },
+    passWindDegree() {
+      return (
+        this.currentWeather[0].hour[this.passLocalTime].wind_degree + "deg"
+      );
     },
     passWindSpeed() {
       switch (this.windUnit) {
@@ -199,7 +210,7 @@ export default {
     left: 0;
     height: 10rem;
     width: 10rem;
-    filter: brightness(180%);
+    filter: brightness(170%);
   }
   .direction {
     position: absolute;
@@ -217,6 +228,20 @@ export default {
   }
   .direction-dark {
     background-color: rgb(74, 118, 129);
+  }
+}
+
+.arrow {
+  height: 10rem;
+  width: 10rem;
+  img {
+    position: absolute;
+    top: calc(50% - 4.85rem);
+    left: calc(50% - 1rem);
+    height: 9.7rem;
+    width: 2rem;
+    transform-origin: center;
+    rotate: 0;
   }
 }
 
