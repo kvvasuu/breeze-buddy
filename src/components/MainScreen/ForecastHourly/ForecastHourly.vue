@@ -97,11 +97,11 @@ export default {
               .split(":")[1];
           }
 
-          tempHours[i].splice(Number(sunriseHour) + 1, 0, {
+          tempHours[i] = tempHours[i].toSpliced(Number(sunriseHour) + 1, 0, {
             time: `${sunriseHour}:${sunriseMinute}`,
             type: "sunrise",
           });
-          tempHours[i].splice(Number(sunsetHour) + 2, 0, {
+          tempHours[i] = tempHours[i].toSpliced(Number(sunsetHour) + 2, 0, {
             time: `${sunsetHour}:${sunsetMinute}`,
             type: "sunset",
           });
