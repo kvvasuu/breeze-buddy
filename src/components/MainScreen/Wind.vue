@@ -278,5 +278,18 @@ export default {
       width: 3rem;
     }
   }
+  .arrow {
+    height: 8rem;
+    width: 8rem;
+    img {
+      position: absolute;
+      top: calc(50% - 3.88rem);
+      left: calc(50% - 0.8rem);
+      height: 7.76rem;
+      width: 1.6rem;
+      transform-origin: center;
+      rotate: 0;
+    }
+  }
 }
 </style>
