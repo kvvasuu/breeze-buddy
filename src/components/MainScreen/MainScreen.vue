@@ -245,7 +245,8 @@ export default {
                   this.coords.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
                   this.coords.lon !==
-                    Math.round(position.coords.longitude * 100) / 100
+                    Math.round(position.coords.longitude * 100) / 100 &&
+                  !this.weatherDone
                 ) {
                   this.coords.lat = position.coords.latitude;
                   this.coords.lon = position.coords.longitude;
