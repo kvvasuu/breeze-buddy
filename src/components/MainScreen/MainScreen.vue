@@ -165,6 +165,7 @@ export default {
       weatherDone: false,
       searchInput: "",
       is_Day: true,
+      refreshIntervalID: 0,
     };
   },
   methods: {
@@ -203,23 +204,24 @@ export default {
 
               localStorage.setItem("isDay", response.data.current.is_day);
 
-              if (!this.weatherDone) {
-                setInterval(() => {
+              if (this.refreshIntervalID === 0) {
+                this.refreshIntervalID = setInterval(() => {
                   this.refresh();
                 }, 60000);
               }
+              if (response.status === 200) this.weatherDone = true;
 
-              this.weatherDone = true;
               if (response.data)
                 setTimeout(() => {
                   this.transitionChange = true;
                 }, 3000);
+              if (this.showSearchInput) {
+                this.toggleShowSearchInput();
+              }
             })
-            .catch((error) => console.log(error));
-
-          if (this.showSearchInput) {
-            this.toggleShowSearchInput();
-          }
+            .catch((error) => {
+              console.log(error);
+            });
         } catch (error) {
           console.error(error);
         }
@@ -239,9 +241,16 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 this.pinShakeAnimation = false;
-                this.coords.lat = position.coords.latitude;
-                this.coords.lon = position.coords.longitude;
-                this.getWeather();
+                if (
+                  this.coords.lat !==
+                    Math.round(position.coords.latitude * 100) / 100 &&
+                  this.coords.lon !==
+                    Math.round(position.coords.longitude * 100) / 100
+                ) {
+                  this.coords.lat = position.coords.latitude;
+                  this.coords.lon = position.coords.longitude;
+                  this.getWeather();
+                }
               },
               () => {
                 this.isGeolocationDone = false;
@@ -271,6 +280,9 @@ export default {
       return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
         .href;
     },
+  },
+  unmounted() {
+    clearInterval(this.refreshIntervalID);
   },
 };
 </script>
