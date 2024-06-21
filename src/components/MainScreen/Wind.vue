@@ -30,8 +30,11 @@
         </div>
       </div>
       <div class="compass">
+        <img src="../../assets/compass.png" />
         <div class="arrow"></div>
-        <div class="direction">{{ passWindDirection }}</div>
+        <div class="direction" :class="{ 'direction-dark': !isDay }">
+          {{ passWindDirection }}
+        </div>
       </div>
     </div>
   </div>
@@ -144,16 +147,20 @@ export default {
     )
     1;
 }
+.wind-values {
+  width: 12rem;
+}
 
 .wind {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-width: 12rem;
+  min-width: 8rem;
   .value {
     font-size: 2.2rem;
     min-width: 2.6rem;
     margin: 0.4rem 0.4rem 0.4rem 0;
+    text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
   }
   &:first-of-type {
     border-bottom: 1px solid;
@@ -186,17 +193,30 @@ export default {
   position: relative;
   height: 10rem;
   width: 10rem;
-  background: url("../../assets/compass.png");
-  background-size: contain;
-  background-repeat: no-repeat;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10rem;
+    width: 10rem;
+    filter: brightness(180%);
+  }
   .direction {
     position: absolute;
     top: calc(50% - 2rem);
     left: calc(50% - 2rem);
     height: 4rem;
     width: 4rem;
-    background-color: rgb(74, 118, 129);
+    background-color: rgb(155, 209, 212);
     border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Helvetica Bold;
+    letter-spacing: 1px;
+  }
+  .direction-dark {
+    background-color: rgb(74, 118, 129);
   }
 }
 
@@ -207,11 +227,31 @@ export default {
     width: 28rem;
     margin: 1rem 0 0 0;
   }
+  .wind-values {
+    width: 14rem;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .wind-container {
     width: 20rem;
+  }
+  .wind-values {
+    width: 10rem;
+  }
+  .compass {
+    height: 8rem;
+    width: 8rem;
+    img {
+      height: 8rem;
+      width: 8rem;
+    }
+    .direction {
+      top: calc(50% - 1.5rem);
+      left: calc(50% - 1.5rem);
+      height: 3rem;
+      width: 3rem;
+    }
   }
 }
 </style>

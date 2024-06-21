@@ -131,7 +131,7 @@ export default {
 .condition {
   text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.3);
   font-size: 0.9rem;
-  min-width: 18rem;
+  width: 18rem;
   text-align: left;
 }
 .temperature-range {
