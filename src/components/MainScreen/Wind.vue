@@ -30,12 +30,13 @@
         </div>
       </div>
       <div class="compass">
-        <img src="../../assets/compass.png" />
+        <img src="../../assets/compass.png" :class="{ dark: !isDay }" />
         <div class="arrow">
           <img
             src="../../assets/compass-arrow.png"
             alt=""
             :style="{ rotate: passWindDegree }"
+            :class="{ dark: !isDay }"
           />
         </div>
         <div class="direction" :class="{ 'direction-dark': !isDay }">
@@ -211,6 +212,9 @@ export default {
     height: 10rem;
     width: 10rem;
     filter: brightness(170%);
+    &.dark {
+      filter: brightness(130%);
+    }
   }
   .direction {
     position: absolute;
@@ -242,6 +246,9 @@ export default {
     width: 2rem;
     transform-origin: center;
     rotate: 0;
+    &.dark {
+      filter: brightness(90%);
+    }
   }
 }
 
