@@ -35,6 +35,8 @@ export default {
   );
 }
 
+//@media
+
 @media only screen and (max-width: 1000px) {
   .container {
     width: 28rem;

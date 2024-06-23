@@ -38,5 +38,6 @@
   "farenheit": "Stopnie Farenheita",
   "settings": "Ustawienia",
   "wind": "Wiatr",
-  "gust": "Porywy"
+  "gust": "Porywy",
+  "pressure": "Ciśnienie"
 }

@@ -1,5 +1,5 @@
 <template>
-  <ContainerSmall>
+  <ContainerMedium>
     <div class="wind-caption">
       {{ t.wind }}
       <svg
@@ -44,12 +44,10 @@
         </div>
       </div>
     </div>
-  </ContainerSmall>
+  </ContainerMedium>
 </template>
 
 <script>
-import ContainerSmall from "../Containers/ContainerSmall.vue";
-
 export default {
   props: ["currentWeather"],
   inject: ["isDay", "t", "windUnit", "localTime"],
@@ -131,6 +129,7 @@ export default {
   margin: 0.1rem 0.3rem 0.3rem 1.3rem;
   svg {
     position: absolute;
+    width: 1rem;
     height: 0.8rem;
     left: -1.3rem;
     filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));

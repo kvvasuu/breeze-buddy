@@ -38,5 +38,6 @@
   "farenheit": "Farenheit",
   "settings": "Einstellungen",
   "wind": "Wind",
-  "gust": "Windböen"
+  "gust": "Windböen",
+  "pressure": "Druck"
 }

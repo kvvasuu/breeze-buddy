@@ -38,5 +38,6 @@
   "farenheit": "Farenheit",
   "settings": "Settings",
   "wind": "Wind",
-  "gust": "Gusts"
+  "gust": "Gusts",
+  "pressure": "Pressure"
 }

@@ -113,6 +113,17 @@
           :key="weather.location.name"
         ></Wind>
       </Transition>
+      <Transition
+        :name="
+          showSettings
+            ? ''
+            : transitionChange
+            ? 'slide-horizontal-fade'
+            : 'slide-fade'
+        "
+        mode="out-in"
+        ><Pressure></Pressure
+      ></Transition>
     </div>
   </div>
 </template>
@@ -125,6 +136,7 @@ import Wind from "./Wind.vue";
 import axios from "axios";
 import { latinise, iconMap } from "../../functions";
 import { computed } from "vue";
+import Pressure from "./Pressure.vue";
 
 export default {
   components: {
@@ -132,6 +144,7 @@ export default {
     ForecastHourly,
     ForecastWeekly,
     Wind,
+    Pressure,
   },
   props: ["forecastDays"],
   emits: ["is-day-emit", "show-settings"],
