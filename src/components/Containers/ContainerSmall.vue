@@ -13,7 +13,7 @@ export default {
 //
 <style lang="scss" scoped>
 .container {
-  width: 24.5rem;
+  width: 12.25rem;
   height: 12.25rem;
   border-radius: 1.6rem;
   padding: 1rem;
