@@ -14,7 +14,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 24.5rem;
-  height: 12.25rem;
+  max-height: 12.25rem;
   border-radius: 1.6rem;
   padding: 1rem;
   overflow-y: hidden;

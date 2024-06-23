@@ -128,6 +128,21 @@
           :key="weather.location.name"
         ></Pressure
       ></Transition>
+      <Transition
+        :name="
+          showSettings
+            ? ''
+            : transitionChange
+            ? 'slide-horizontal-fade'
+            : 'slide-fade'
+        "
+        mode="out-in"
+        ><Pressure
+          v-if="weatherDone && !showSettings"
+          :currentWeather="weather.forecast.forecastday"
+          :key="weather.location.name"
+        ></Pressure
+      ></Transition>
     </div>
   </div>
 </template>
@@ -347,6 +362,7 @@ $font-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .icon {
@@ -453,9 +469,8 @@ $font-color: rgb(250, 250, 250);
     width: 28rem;
   }
   .other-values {
-    width: auto;
+    width: 30rem;
     display: flex;
-    flex-direction: column;
   }
 }
 
@@ -468,6 +483,10 @@ $font-color: rgb(250, 250, 250);
     justify-content: flex-start;
     scale: 1 !important;
     backdrop-filter: none;
+  }
+  .other-values {
+    width: 22rem;
+    display: flex;
   }
 }
 </style>

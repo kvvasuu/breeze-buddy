@@ -13,8 +13,8 @@ export default {
 //
 <style lang="scss" scoped>
 .container {
-  width: 12.25rem;
-  height: 12.25rem;
+  width: 10.25rem;
+  height: 10.25rem;
   border-radius: 1.6rem;
   padding: 1rem;
   overflow-y: hidden;
@@ -46,7 +46,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .container {
-    width: 20rem;
+    width: 8.5rem;
   }
 }
 </style>
