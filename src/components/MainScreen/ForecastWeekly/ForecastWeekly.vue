@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-weekly container" :class="{ 'container-dark': !isDay }">
+  <ContainerBig>
     <div class="forecast-caption">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
         :iconSrc="passIconSrc(day)"
       ></Day>
     </div>
-  </div>
+  </ContainerBig>
 </template>
 
 <script>
@@ -96,14 +96,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.forecast-weekly {
-  width: 52rem;
-  border-radius: 1.6rem;
-  padding: 1rem;
-  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
-  user-select: none;
-}
-
 .forecast-caption {
   position: relative;
   font-size: 0.8rem;
@@ -131,19 +123,5 @@ export default {
   flex-direction: column;
   margin: 0;
   user-select: none;
-}
-
-//@media
-
-@media only screen and (max-width: 1000px) {
-  .forecast-weekly {
-    width: 28rem;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .forecast-weekly {
-    width: 20rem;
-  }
 }
 </style>

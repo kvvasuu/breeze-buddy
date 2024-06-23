@@ -1,5 +1,5 @@
 <template>
-  <div class="forecast-hourly container" :class="{ 'container-dark': !isDay }">
+  <ContainerBig>
     <div class="date-time">
       <div class="day">{{ t.today }}</div>
       <div class="date">{{ passCurrentDate }}</div>
@@ -20,7 +20,7 @@
         :iconSrc="passIconSrc(hour)"
       ></Hour>
     </div>
-  </div>
+  </ContainerBig>
 </template>
 
 <script>
@@ -136,16 +136,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.forecast-hourly {
-  width: 52rem;
-  margin: 0;
-  border-radius: 1.6rem;
-  padding: 1rem;
-  overflow-y: hidden;
-  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
-  user-select: none;
-}
-
 .date-time {
   display: flex;
   align-items: center;
@@ -175,19 +165,5 @@ hr {
   margin: 0 -1rem 0 -1rem;
   user-select: none;
   cursor: grab;
-}
-
-//@media
-
-@media only screen and (max-width: 1000px) {
-  .forecast-hourly {
-    width: 28rem;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .forecast-hourly {
-    width: 20rem;
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="wind-container container" :class="{ 'container-dark': !isDay }">
+  <ContainerSmall>
     <div class="wind-caption">
       {{ t.wind }}
       <svg
@@ -44,10 +44,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </ContainerSmall>
 </template>
 
 <script>
+import ContainerSmall from "../Containers/ContainerSmall.vue";
+
 export default {
   props: ["currentWeather"],
   inject: ["isDay", "t", "windUnit", "localTime"],
@@ -117,14 +119,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wind-container {
-  width: 24.5rem;
-  border-radius: 1.6rem;
-  padding: 1rem;
-  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
-  user-select: none;
-}
-
 .wind-caption {
   position: relative;
   font-size: 0.8rem;
@@ -255,19 +249,12 @@ export default {
 //@media
 
 @media only screen and (max-width: 1000px) {
-  .wind-container {
-    width: 28rem;
-    margin: 1rem 0 0 0;
-  }
   .wind-values {
     width: 14rem;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .wind-container {
-    width: 20rem;
-  }
   .wind-values {
     width: 10rem;
   }
