@@ -122,7 +122,11 @@
             : 'slide-fade'
         "
         mode="out-in"
-        ><Pressure></Pressure
+        ><Pressure
+          v-if="weatherDone && !showSettings"
+          :currentWeather="weather.forecast.forecastday"
+          :key="weather.location.name"
+        ></Pressure
       ></Transition>
     </div>
   </div>
@@ -190,7 +194,7 @@ export default {
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.coords.lat},${this.coords.lon}`;
       } else q = latinise(value).trim();
-      if (q !== "")
+      if (q !== "") {
         try {
           await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
@@ -238,6 +242,7 @@ export default {
         } catch (error) {
           console.error(error);
         }
+      }
     },
     async getLocationWeather() {
       if ("geolocation" in navigator) {
@@ -258,8 +263,7 @@ export default {
                   this.coords.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
                   this.coords.lon !==
-                    Math.round(position.coords.longitude * 100) / 100 &&
-                  !this.weatherDone
+                    Math.round(position.coords.longitude * 100) / 100
                 ) {
                   this.coords.lat = position.coords.latitude;
                   this.coords.lon = position.coords.longitude;
