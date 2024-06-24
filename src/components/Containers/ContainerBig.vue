@@ -1,5 +1,6 @@
 <template>
   <div class="container" :class="{ 'container-dark': !isDay }">
+    <div class="header" v-if="$slots.header"><slot name="header"></slot></div>
     <slot></slot>
   </div>
 </template>
@@ -33,6 +34,26 @@ export default {
     rgba(0, 60, 95, 0.5) 0%,
     rgba(62, 99, 95, 0.5) 100%
   );
+}
+
+.header {
+  position: relative;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  margin: 0.1rem 0.3rem 0.3rem 1.3rem;
+  opacity: 0.8;
+}
+svg {
+  position: absolute;
+  height: 0.9rem;
+  width: 1rem;
+  top: 0;
+  left: -1.3rem;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
 }
 
 //@media

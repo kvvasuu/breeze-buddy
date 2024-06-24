@@ -1,7 +1,7 @@
 <template>
   <ContainerBig>
-    <div class="forecast-caption">
-      <svg
+    <template #header
+      ><svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
         fill="currentColor"
@@ -11,7 +11,7 @@
         />
       </svg>
       {{ t.forecast }} ({{ forecast.length }} {{ t.days }})
-    </div>
+    </template>
     <div class="days-container">
       <Day
         v-for="(day, index) in forecast"
@@ -96,26 +96,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.forecast-caption {
-  position: relative;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  margin: 0.1rem 0.3rem 0.3rem 1.3rem;
-  opacity: 0.8;
-  svg {
-    position: absolute;
-    height: 0.9rem;
-    width: 1rem;
-    top: 0;
-    left: -1.3rem;
-    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
-  }
-}
-
 .days-container {
   overflow: hidden;
   display: flex;
@@ -124,5 +104,13 @@ export default {
   flex-direction: column;
   margin: 0;
   user-select: none;
+}
+svg {
+  position: absolute;
+  height: 0.9rem;
+  width: 1rem;
+  top: 0;
+  left: -1.3rem;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
 }
 </style>

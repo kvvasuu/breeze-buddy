@@ -1,10 +1,9 @@
 <template>
   <ContainerBig>
-    <div class="date-time">
+    <div class="header">
       <div class="day">{{ t.today }}</div>
       <div class="date">{{ passCurrentDate }}</div>
     </div>
-    <hr />
     <div
       class="hours-container"
       v-dragscroll.x:nochilddrag
@@ -136,25 +135,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.date-time {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.3);
   font-weight: bold;
   margin: 0.1rem 0.3rem 0.3rem 0.3rem;
-}
-
-hr {
-  border: 0;
-  height: 1px;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(240, 240, 240, 0.5) 10%,
-    rgba(240, 240, 240, 0.5) 90%,
-    rgba(0, 0, 0, 0) 100%
-  );
 }
 
 .hours-container {
@@ -165,5 +152,14 @@ hr {
   margin: 0 -1rem 0 -1rem;
   user-select: none;
   cursor: grab;
+  border-top: 1px solid;
+  border-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 2%,
+      rgba(240, 240, 240, 0.5) 10%,
+      rgba(240, 240, 240, 0.5) 90%,
+      rgba(0, 0, 0, 0) 98%
+    )
+    1;
 }
 </style>
