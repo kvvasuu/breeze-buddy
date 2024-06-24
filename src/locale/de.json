@@ -39,5 +39,7 @@
   "settings": "Einstellungen",
   "wind": "Wind",
   "gust": "Windböen",
-  "pressure": "Druck"
+  "pressure": "Druck",
+  "hectopascal": "Hektopascal",
+  "inchesOfMercury": "Zoll Quecksilbersäule"
 }

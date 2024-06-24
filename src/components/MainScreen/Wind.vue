@@ -1,6 +1,6 @@
 <template>
   <ContainerMedium>
-    <div class="wind-caption">
+    <div class="caption">
       {{ t.wind }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -12,18 +12,18 @@
         />
       </svg>
     </div>
-    <div class="wind-container-inner">
+    <div class="container-inner">
       <div class="wind-values">
         <div class="wind" id="wind">
           <div class="value">{{ passWindSpeed }}</div>
-          <div class="caption">
+          <div class="wind-caption">
             <div class="unit">{{ passWindUnit }}</div>
             <div class="type">{{ t.wind }}</div>
           </div>
         </div>
         <div class="wind" id="gust">
           <div class="value">{{ passGustSpeed }}</div>
-          <div class="caption">
+          <div class="wind-caption">
             <div class="unit">{{ passWindUnit }}</div>
             <div class="type">{{ t.gust }}</div>
           </div>
@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wind-caption {
+.caption {
   position: relative;
   font-size: 0.8rem;
   display: flex;
@@ -136,7 +136,7 @@ export default {
   }
 }
 
-.wind-container-inner {
+.container-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -178,7 +178,7 @@ export default {
       )
       1;
   }
-  .caption {
+  .wind-caption {
     text-align: left;
     .unit {
       font-size: 0.7rem;

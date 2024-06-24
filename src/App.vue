@@ -22,6 +22,7 @@
           @language="changeLanguage"
           @temp-unit="changeTempUnit"
           @wind-unit="changeWindUnit"
+          @pressure-unit="changePressureUnit"
         ></Settings>
       </Transition>
     </div>
@@ -55,6 +56,7 @@ export default {
       ),
       tempUnit: computed(() => this.tempUnit),
       windUnit: computed(() => this.windUnit),
+      pressureUnit: computed(() => this.pressureUnit),
     };
   },
   data() {
@@ -83,6 +85,7 @@ export default {
       ],
       tempUnit: "c", // "c" or "f"
       windUnit: "kph", // "kph", "m/s" or "mph"
+      pressureUnit: "mb", // "mb" or "in"
     };
   },
   methods: {
@@ -104,6 +107,10 @@ export default {
     changeWindUnit(unit) {
       this.windUnit = unit;
       localStorage.setItem("windUnit", this.windUnit);
+    },
+    changePressureUnit(unit) {
+      this.pressureUnit = unit;
+      localStorage.setItem("pressureUnit", this.pressureUnit);
     },
     toggleSettings() {
       if (window.scrollY > 32) {

@@ -39,5 +39,7 @@
   "settings": "Ustawienia",
   "wind": "Wiatr",
   "gust": "Porywy",
-  "pressure": "Ciśnienie"
+  "pressure": "Ciśnienie",
+  "hectopascal": "Hektopaskale",
+  "inchesOfMercury": "Cale słupka rtęci"
 }

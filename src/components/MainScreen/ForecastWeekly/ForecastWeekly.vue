@@ -112,7 +112,7 @@ export default {
     width: 1rem;
     top: 0;
     left: -1.3rem;
-    box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
   }
 }
 

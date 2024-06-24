@@ -1,6 +1,6 @@
 <template>
   <ContainerSmall>
-    <div class="wind-caption">
+    <div class="caption">
       {{ t.pressure }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -12,17 +12,30 @@
         />
       </svg>
     </div>
+    <div class="container-inner">
+      <div class="gauge">
+        <div class="value">{{ passPressure }}</div>
+      </div>
+    </div>
   </ContainerSmall>
 </template>
 
 <script>
 export default {
-  inject: ["isDay", "t"],
+  inject: ["isDay", "t", "pressureUnit"],
+  props: ["currentWeather"],
+  computed: {
+    passPressure() {
+      return this.pressureUnit === "mb"
+        ? this.currentWeather.pressure_mb
+        : this.currentWeather.pressure_in;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.wind-caption {
+.caption {
   position: relative;
   font-size: 0.8rem;
   display: flex;
@@ -41,7 +54,7 @@ export default {
   }
 }
 
-.wind-container-inner {
+.container-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,52 +70,12 @@ export default {
     )
     1;
 }
-.wind-values {
-  width: 12rem;
-}
 
-.wind {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  min-width: 8rem;
-  .value {
-    font-size: 2.2rem;
-    min-width: 2.6rem;
-    margin: 0.4rem 0.4rem 0.4rem 0;
-    text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
-  }
-  &:first-of-type {
-    border-bottom: 1px solid;
-    border-image: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(240, 240, 240, 0.5) 10%,
-        rgba(240, 240, 240, 0.5) 90%,
-        rgba(0, 0, 0, 0) 100%
-      )
-      1;
-  }
-  .caption {
-    text-align: left;
-    .unit {
-      font-size: 0.7rem;
-      text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
-      font-weight: bold;
-      opacity: 0.8;
-    }
-    .type {
-      font-size: 0.9rem;
-      text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
-      font-weight: bold;
-    }
-  }
-}
-
-.compass {
+.gauge {
   position: relative;
   height: 10rem;
   width: 10rem;
+  margin: auto;
   img {
     position: absolute;
     top: 0;
@@ -114,40 +87,24 @@ export default {
       filter: brightness(130%);
     }
   }
-  .direction {
+  .value {
     position: absolute;
     top: calc(50% - 2rem);
     left: calc(50% - 2rem);
     height: 4rem;
     width: 4rem;
-    background-color: rgb(155, 209, 212);
-    border-radius: 10rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: Helvetica Bold;
     letter-spacing: 1px;
   }
-  .direction-dark {
-    background-color: rgb(74, 118, 129);
-  }
 }
 
-.arrow {
+.indicator {
+  position: absolute;
   height: 10rem;
   width: 10rem;
-  img {
-    position: absolute;
-    top: calc(50% - 4.85rem);
-    left: calc(50% - 1rem);
-    height: 9.7rem;
-    width: 2rem;
-    transform-origin: center;
-    rotate: 0;
-    &.dark {
-      filter: brightness(90%);
-    }
-  }
 }
 
 //@media

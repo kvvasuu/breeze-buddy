@@ -39,5 +39,7 @@
   "settings": "Settings",
   "wind": "Wind",
   "gust": "Gusts",
-  "pressure": "Pressure"
+  "pressure": "Pressure",
+  "hectopascal": "Hectopascals",
+  "inchesOfMercury": "Inches of mercury"
 }

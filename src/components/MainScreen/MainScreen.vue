@@ -124,22 +124,7 @@
         mode="out-in"
         ><Pressure
           v-if="weatherDone && !showSettings"
-          :currentWeather="weather.forecast.forecastday"
-          :key="weather.location.name"
-        ></Pressure
-      ></Transition>
-      <Transition
-        :name="
-          showSettings
-            ? ''
-            : transitionChange
-            ? 'slide-horizontal-fade'
-            : 'slide-fade'
-        "
-        mode="out-in"
-        ><Pressure
-          v-if="weatherDone && !showSettings"
-          :currentWeather="weather.forecast.forecastday"
+          :currentWeather="weather.current"
           :key="weather.location.name"
         ></Pressure
       ></Transition>
