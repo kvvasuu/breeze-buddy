@@ -42,7 +42,7 @@ body {
 #app-background {
   background: url("./assets/clouds.jpeg");
   min-width: 100vw;
-  min-height: 100dvh;
+  min-height: 100vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -210,5 +210,8 @@ button {
   body,
   #app {
     overflow-y: auto;
+  }
+  #app-background {
+    background-size: 120rem 100%;
   }
 }
