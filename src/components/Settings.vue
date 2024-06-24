@@ -204,11 +204,13 @@ $font-color: rgb(240, 240, 240);
   height: 100%;
   cursor: default;
   user-select: none;
+  overflow: auto;
 }
 
 .settings-container {
-  position: absolute;
+  position: fixed;
   width: 60rem;
+  max-height: 90dvh;
   top: 8rem;
   background-image: linear-gradient(
     30deg,
@@ -337,6 +339,10 @@ input {
   }
 }
 
+.language-container {
+  margin: 6rem 0 0 0;
+}
+
 //Transitions
 
 @keyframes fade {
@@ -358,7 +364,7 @@ input {
 
 @media only screen and (max-width: 600px) {
   .settings-container {
-    top: 7rem;
+    top: 3rem;
     width: 90dvw;
     .settings-container-inner {
       width: 100%;
@@ -377,6 +383,10 @@ input {
     &:checked + .label {
       font-size: 1.1rem;
     }
+  }
+
+  .language-container {
+    margin: 3rem 0 0 0;
   }
 }
 </style>
