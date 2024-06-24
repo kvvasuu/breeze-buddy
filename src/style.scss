@@ -40,6 +40,11 @@ body {
 }
 
 #app-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: url("./assets/clouds.jpeg");
   min-width: 100vw;
   min-height: 100vh;
@@ -47,13 +52,12 @@ body {
   background-attachment: fixed;
   background-size: cover;
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
   flex-direction: column;
   overflow-x: hidden;
   transition: all 1s ease;
   user-select: none;
+  z-index: -1;
 }
 
 .app-background-night {
@@ -203,7 +207,7 @@ button {
 
 @media only screen and (max-width: 600px) {
   #app-inner {
-    /* height: 30rem; */
+    height: 100dvh;
     width: 100dvw;
     border-radius: 0;
     margin: 0;
