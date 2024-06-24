@@ -53,6 +53,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   transition: all 1s ease;
+  user-select: none;
 }
 
 .app-background-night {

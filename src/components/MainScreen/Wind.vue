@@ -1,17 +1,18 @@
 <template>
   <ContainerMedium>
-    <div class="caption">
+    <template #header>
       {{ t.wind }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
         fill="currentColor"
+        class="header-icon"
       >
         <path
           d="M288 32c0 17.7 14.3 32 32 32h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H352c53 0 96-43 96-96s-43-96-96-96H320c-17.7 0-32 14.3-32 32zm64 352c0 17.7 14.3 32 32 32h32c53 0 96-43 96-96s-43-96-96-96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H384c-17.7 0-32 14.3-32 32zM128 512h32c53 0 96-43 96-96s-43-96-96-96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H160c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32 14.3-32 32s14.3 32 32 32z"
         />
       </svg>
-    </div>
+    </template>
     <div class="container-inner">
       <div class="wind-values">
         <div class="wind" id="wind">
@@ -117,23 +118,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.caption {
-  position: relative;
-  font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  opacity: 0.8;
-  margin: 0.1rem 0.3rem 0.3rem 1.3rem;
-  svg {
-    position: absolute;
-    width: 1rem;
-    height: 0.8rem;
-    left: -1.3rem;
-    filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
-  }
+.header-icon {
+  position: absolute;
+  height: 0.8rem;
+  width: 1rem;
+  left: -1.3rem;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
 }
 
 .container-inner {

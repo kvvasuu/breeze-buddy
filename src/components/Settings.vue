@@ -210,7 +210,6 @@ $font-color: rgb(240, 240, 240);
   position: absolute;
   width: 60rem;
   top: 8rem;
-  height: calc(80dvh);
   background-image: linear-gradient(
     30deg,
     rgb(31, 134, 194) 0%,
@@ -256,7 +255,7 @@ $font-color: rgb(240, 240, 240);
 }
 
 .unit-select {
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -366,7 +365,7 @@ input {
 @media only screen and (max-width: 600px) {
   .settings-container {
     top: 7rem;
-    width: 20rem;
+    width: 90dvw;
     .settings-container-inner {
       width: 100%;
     }

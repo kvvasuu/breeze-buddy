@@ -60,6 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 .language-container {
+  margin: 1rem 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
