@@ -41,5 +41,7 @@
   "gust": "Porywy",
   "pressure": "Ciśnienie",
   "hectopascal": "Hektopaskale",
-  "inchesOfMercury": "Cale słupka rtęci"
+  "inchesOfMercury": "Cale słupka rtęci",
+  "humidity": "Wilgotność",
+  "dewpoint": "Punkt rosy"
 }

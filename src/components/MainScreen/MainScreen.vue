@@ -128,6 +128,21 @@
           :key="weather.location.name"
         ></Pressure
       ></Transition>
+      <Transition
+        :name="
+          showSettings
+            ? ''
+            : transitionChange
+            ? 'slide-horizontal-fade'
+            : 'slide-fade'
+        "
+        mode="out-in"
+        ><Humidity
+          v-if="weatherDone && !showSettings"
+          :currentWeather="weather.current"
+          :key="weather.location.name"
+        ></Humidity
+      ></Transition>
     </div>
   </div>
 </template>
@@ -136,11 +151,12 @@
 import ForecastHourly from "./ForecastHourly/ForecastHourly.vue";
 import ForecastWeekly from "./ForecastWeekly/ForecastWeekly.vue";
 import WeatherDisplay from "./WeatherDisplay.vue";
+import Pressure from "./Pressure.vue";
+import Humidity from "./Humidity.vue";
 import Wind from "./Wind.vue";
 import axios from "axios";
 import { latinise, iconMap } from "../../functions";
 import { computed } from "vue";
-import Pressure from "./Pressure.vue";
 
 export default {
   components: {
@@ -149,6 +165,7 @@ export default {
     ForecastWeekly,
     Wind,
     Pressure,
+    Humidity,
   },
   props: ["forecastDays"],
   emits: ["is-day-emit", "show-settings"],

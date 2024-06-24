@@ -41,5 +41,7 @@
   "gust": "Gusts",
   "pressure": "Pressure",
   "hectopascal": "Hectopascals",
-  "inchesOfMercury": "Inches of mercury"
+  "inchesOfMercury": "Inches of mercury",
+  "humidity": "Humidity",
+  "dewpoint": "Dew point"
 }

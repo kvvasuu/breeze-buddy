@@ -41,5 +41,7 @@
   "gust": "Windböen",
   "pressure": "Druck",
   "hectopascal": "Hektopascal",
-  "inchesOfMercury": "Zoll Quecksilbersäule"
+  "inchesOfMercury": "Zoll Quecksilbersäule",
+  "humidity": "Luftfeuchte",
+  "dewpoint": "Taupunkt"
 }
