@@ -243,7 +243,7 @@ $font-color: rgb(240, 240, 240);
   font-family: "Helvetica Bold";
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 0.6rem;
+  margin: 0 0 0.6rem 0.8rem;
   text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
@@ -334,12 +334,6 @@ input {
   &:checked + .label {
     color: $font-color;
     font-size: 1.4rem;
-    &::after {
-      content: "";
-      position: absolute;
-      width: 1rem;
-      height: 1rem;
-    }
   }
 }
 
@@ -371,12 +365,17 @@ input {
     }
   }
   .title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   .label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     &:checked {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
+    }
+  }
+  input {
+    &:checked + .label {
+      font-size: 1.1rem;
     }
   }
 }

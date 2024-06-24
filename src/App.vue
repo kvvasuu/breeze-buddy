@@ -13,18 +13,18 @@
           :forecastDays="forecastDays"
           @is-day-emit="toggleNight"
           @show-settings="toggleSettings"
-        ></MainScreen>
-      </Transition>
-      <Transition name="slide-fade-fast" mode="out-in">
-        <Settings
-          v-if="showSettings"
-          @toggle-settings="toggleSettings"
-          @language="changeLanguage"
-          @temp-unit="changeTempUnit"
-          @wind-unit="changeWindUnit"
-          @pressure-unit="changePressureUnit"
-        ></Settings>
-      </Transition>
+        ></MainScreen> </Transition
+      ><Teleport to="body">
+        <Transition name="slide-fade-fast" mode="out-in">
+          <Settings
+            v-if="showSettings"
+            @toggle-settings="toggleSettings"
+            @language="changeLanguage"
+            @temp-unit="changeTempUnit"
+            @wind-unit="changeWindUnit"
+            @pressure-unit="changePressureUnit"
+          ></Settings> </Transition
+      ></Teleport>
     </div>
   </div>
 </template>
@@ -113,7 +113,7 @@ export default {
       localStorage.setItem("pressureUnit", this.pressureUnit);
     },
     toggleSettings() {
-      if (window.scrollY > 32) {
+      if (window.scrollY > 32 && !this.showSettings) {
         document.body.classList.add("scroll-disable");
         window.addEventListener("scroll", this.toggleSettingsScroll);
         setTimeout(() => {
@@ -145,7 +145,7 @@ export default {
 
     if (
       !localStorage.getItem("forecastDays") ||
-      localStorage.getItem("forecastDays") < 3
+      localStorage.getItem("forecastDays") <= 3
     ) {
       localStorage.setItem("forecastDays", 10);
     }
@@ -157,8 +157,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.app-taller {
-  height: 80rem;
-}
-</style>
+<style lang="scss" scoped></style>
