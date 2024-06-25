@@ -336,7 +336,7 @@ export default {
     refresh() {
       this.getWeather();
     },
-    pinShake() {
+    /* pinShake() {
       if (!this.pinShakeAnimation) {
         this.pinShakeAnimation = true;
         navigator.vibrate(200);
@@ -344,7 +344,7 @@ export default {
           this.pinShakeAnimation = false;
         }, 1000);
       }
-    },
+    }, */
     showNotification(header, info) {
       if (!this.notificationVisible) {
         this.notificationVisible = true;
