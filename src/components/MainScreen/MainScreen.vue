@@ -255,7 +255,6 @@ export default {
                   this.currentWeather.location.name ===
                     response.currentWeather.location.name)
               ) {
-                console.log("ZUPA");
                 this.isCurrentLocation = true;
               } else this.isCurrentLocation = false;
 
