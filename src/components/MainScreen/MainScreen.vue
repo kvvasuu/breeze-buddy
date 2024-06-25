@@ -343,8 +343,7 @@ export default {
         this.pinShakeAnimation = true;
         setTimeout(() => {
           this.pinShakeAnimation = false;
-        }, 1000);
-        navigator.vibrate(200);
+        }, 1200);
       }
     },
     showNotification(header, info) {
