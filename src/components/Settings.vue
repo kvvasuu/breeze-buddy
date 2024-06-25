@@ -68,7 +68,6 @@
                   value="kph"
                   @click="changeWindUnit"
                   v-model="wind_unit"
-                  checked
                 />
                 <label for="kph" class="label">km/h</label>
               </div>
@@ -80,7 +79,6 @@
                   value="ms"
                   @click="changeWindUnit"
                   v-model="wind_unit"
-                  checked
                 />
                 <label for="ms" class="label">m/s</label>
               </div>
@@ -163,10 +161,10 @@ export default {
   inject: ["isDay", "language", "tempUnit", "windUnit", "pressureUnit", "t"],
   data() {
     return {
-      lang: "",
-      temp_unit: "",
-      wind_unit: "",
-      pressure_unit: "",
+      lang: this.language,
+      temp_unit: this.tempUnit,
+      wind_unit: this.windUnit,
+      pressure_unit: this.pressureUnit,
     };
   },
   methods: {
@@ -179,12 +177,6 @@ export default {
     changePressureUnit(event) {
       this.$emit("pressure-unit", event.target.value);
     },
-  },
-  mounted() {
-    this.lang = this.language;
-    this.temp_unit = this.tempUnit;
-    this.wind_unit = this.windUnit;
-    this.pressure_unit = this.pressureUnit;
   },
 };
 </script>

@@ -44,16 +44,13 @@ export default {
   inject: ["language"],
   data() {
     return {
-      lang: "",
+      lang: this.language,
     };
   },
   methods: {
     changeLanguage(event) {
       this.$emit("language", event.target.value);
     },
-  },
-  mounted() {
-    this.lang = this.language;
   },
 };
 </script>
