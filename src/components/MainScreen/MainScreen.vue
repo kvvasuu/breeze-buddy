@@ -246,12 +246,16 @@ export default {
                 : this.$emit("is-day-emit", false);
 
               if (
-                this.isGeolocationDone &&
-                Math.round(response.data.location.lat * 10) / 10 ===
-                  Math.round(this.coords.lat * 10) / 10 &&
-                Math.round(response.data.location.lon * 10) / 10 ===
-                  Math.round(this.coords.lon * 10) / 10
+                (this.isGeolocationDone &&
+                  Math.round(response.data.location.lat * 10) / 10 ===
+                    Math.round(this.coords.lat * 10) / 10 &&
+                  Math.round(response.data.location.lon * 10) / 10 ===
+                    Math.round(this.coords.lon * 10) / 10) ||
+                (this.isGeolocationDone &&
+                  this.currentWeather.location.name ===
+                    response.currentWeather.location.name)
               ) {
+                console.log("ZUPA");
                 this.isCurrentLocation = true;
               } else this.isCurrentLocation = false;
 
