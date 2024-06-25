@@ -30,7 +30,7 @@
             type="text"
             placeholder="Search"
             v-if="showSearchInput"
-            v-model="searchInput"
+            v-model.trim="searchInput"
             @keydown.enter="getWeather(searchInput)"
             @blur="getWeather(searchInput)"
             autocomplete="off"
@@ -210,7 +210,7 @@ export default {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.coords.lat},${this.coords.lon}`;
-      } else q = latinise(value).trim();
+      } else q = latinise(value);
       if (q !== "") {
         try {
           await axios
