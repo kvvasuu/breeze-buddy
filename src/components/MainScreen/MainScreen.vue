@@ -300,7 +300,6 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 this.geolocationError = false;
-                this.pinShakeAnimation = false;
                 if (
                   this.coords.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
