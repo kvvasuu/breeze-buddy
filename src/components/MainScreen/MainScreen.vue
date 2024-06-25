@@ -1,5 +1,8 @@
 <template>
   <div class="main-container" :class="{ 'scale-down': showSettings }">
+    <ContainerNotification v-if="geolocationError">
+      Location.
+    </ContainerNotification>
     <WeatherDisplay
       :currentWeather="weather"
       :iconSrc="passIconSrc"
@@ -157,6 +160,7 @@ import Wind from "./Wind.vue";
 import axios from "axios";
 import { latinise, iconMap } from "../../functions";
 import { computed } from "vue";
+import ContainerNotification from "../Containers/ContainerNotification.vue";
 
 export default {
   components: {
@@ -166,6 +170,7 @@ export default {
     Wind,
     Pressure,
     Humidity,
+    ContainerNotification,
   },
   props: ["forecastDays"],
   emits: ["is-day-emit", "show-settings"],
@@ -179,6 +184,7 @@ export default {
     return {
       showSearchInput: false,
       isGeolocationDone: false,
+      geolocationError: false,
       pinShakeAnimation: false,
       transitionChange: false,
       coords: { lat: 0, lon: 0 },
@@ -266,15 +272,12 @@ export default {
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
           if (result.state === "denied") {
             console.log(`Geolocation permission:` + result.state);
-            this.pinShakeAnimation = true;
-            navigator.vibrate(200);
-            setTimeout(() => {
-              this.pinShakeAnimation = false;
-            }, 1000);
+            this.pinShake();
           } else {
             navigator.geolocation.getCurrentPosition(
               (position) => {
                 this.isGeolocationDone = true;
+                this.geolocationError = false;
                 this.pinShakeAnimation = false;
                 if (
                   this.coords.lat !==
@@ -285,6 +288,9 @@ export default {
                   this.coords.lat = position.coords.latitude;
                   this.coords.lon = position.coords.longitude;
                   this.getWeather();
+                } else {
+                  /* this.geolocationError = true; */
+                  this.pinShake();
                 }
               },
               () => {
@@ -301,6 +307,13 @@ export default {
     },
     refresh() {
       this.getWeather();
+    },
+    pinShake() {
+      this.pinShakeAnimation = true;
+      navigator.vibrate(200);
+      setTimeout(() => {
+        this.pinShakeAnimation = false;
+      }, 1000);
     },
   },
   beforeMount() {
