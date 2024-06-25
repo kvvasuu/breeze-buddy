@@ -308,8 +308,10 @@ export default {
                   this.coords.lat = position.coords.latitude;
                   this.coords.lon = position.coords.longitude;
                   this.getWeather();
+                  return;
                 } else {
                   this.pinShake();
+                  return;
                 }
               },
               (error) => {
