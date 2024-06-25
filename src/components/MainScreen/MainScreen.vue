@@ -299,7 +299,6 @@ export default {
             navigator.geolocation.getCurrentPosition(
               (position) => {
                 this.isGeolocationDone = true;
-                this.geolocationError = false;
                 if (
                   this.coords.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
@@ -313,13 +312,14 @@ export default {
                   this.pinShake();
                 }
               },
-              () => {
+              (error) => {
                 this.isGeolocationDone = false;
                 this.pinShake();
                 this.showNotification(
                   "Geolocation must be on.",
                   "Turn on the geolocation to use this feature."
                 );
+                return;
               },
               { enableHighAccuracy: true, maximumAge: 10000000 }
             );
@@ -336,7 +336,7 @@ export default {
     refresh() {
       this.getWeather();
     },
-    /* pinShake() {
+    pinShake() {
       if (!this.pinShakeAnimation) {
         this.pinShakeAnimation = true;
         navigator.vibrate(200);
@@ -344,7 +344,7 @@ export default {
           this.pinShakeAnimation = false;
         }, 1000);
       }
-    }, */
+    },
     showNotification(header, info) {
       if (!this.notificationVisible) {
         this.notificationVisible = true;
