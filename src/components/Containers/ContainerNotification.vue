@@ -1,7 +1,7 @@
 <template>
   <div class="container" :class="{ 'container-dark': !isDay }">
-    <div class="header" v-if="$slots.header"><slot name="header"></slot></div>
-    <slot></slot>
+    <div class="content"><slot name="header"></slot></div>
+    <div class="info" v-if="$slots.info"><slot name="info"></slot></div>
   </div>
 </template>
 
@@ -16,7 +16,11 @@ export default {
 .container {
   position: absolute;
   top: 2rem;
-  width: 52rem;
+  width: 28rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin: auto;
   border-radius: 3rem;
   padding: 1rem;
@@ -24,38 +28,31 @@ export default {
   user-select: none;
   background-image: linear-gradient(
     30deg,
-    rgba(0, 116, 184, 1) 0%,
-    rgba(107, 173, 166, 1) 100%
+    rgb(69, 137, 146) 0%,
+    rgb(43, 115, 128) 100%
   );
+  z-index: 10;
 }
 
 .container-dark {
   background-image: linear-gradient(
-    30deg,
-    rgba(0, 60, 95, 0.5) 0%,
-    rgba(62, 99, 95, 0.5) 100%
+    -70deg,
+    rgba(0, 60, 95, 1) 0%,
+    rgba(62, 99, 95, 1) 100%
   );
 }
 
-.header {
-  position: relative;
+.content {
+  font-size: 1.2rem;
+  font-family: Helvetica Bold;
+}
+
+.info {
   font-size: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  margin: 0.1rem 0.3rem 0.3rem 1.3rem;
-  opacity: 0.8;
+  margin: 0.2rem 0 0 0;
 }
 
 //@media
-
-@media only screen and (max-width: 1000px) {
-  .container {
-    width: 28rem;
-  }
-}
 
 @media only screen and (max-width: 600px) {
   .container {

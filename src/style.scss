@@ -83,6 +83,13 @@ button {
   animation: slide-out 1s ease;
 }
 
+.notification-enter-active {
+  animation: notification-slide 0.5s ease;
+}
+.notification-leave-active {
+  animation: notification-slide 0.5s ease reverse;
+}
+
 .slide-fade-fast-enter-active {
   animation: slide-in 0.5s ease;
 }
@@ -127,6 +134,17 @@ button {
   100% {
     transform: translateY(-100rem);
     opacity: 0;
+  }
+}
+
+@keyframes notification-slide {
+  0% {
+    transform: translateY(-10rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

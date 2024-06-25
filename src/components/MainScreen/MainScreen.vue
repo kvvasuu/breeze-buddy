@@ -1,8 +1,13 @@
 <template>
   <div class="main-container" :class="{ 'scale-down': showSettings }">
-    <ContainerNotification v-if="geolocationError">
-      Location.
-    </ContainerNotification>
+    <Transition name="notification" mode="out-in">
+      <ContainerNotification v-if="notificationVisible">
+        <template #header>{{ notificationContent.header }}</template>
+        <template v-if="notificationContent.info" #info>{{
+          notificationContent.info
+        }}</template>
+      </ContainerNotification>
+    </Transition>
     <WeatherDisplay
       :currentWeather="weather"
       :iconSrc="passIconSrc"
@@ -184,7 +189,6 @@ export default {
     return {
       showSearchInput: false,
       isGeolocationDone: false,
-      geolocationError: false,
       pinShakeAnimation: false,
       transitionChange: false,
       coords: { lat: 0, lon: 0 },
@@ -206,6 +210,8 @@ export default {
       searchInput: "",
       is_Day: true,
       refreshIntervalID: 0,
+      notificationContent: {},
+      notificationVisible: false,
     };
   },
   methods: {
@@ -271,7 +277,10 @@ export default {
       if ("geolocation" in navigator) {
         navigator.permissions.query({ name: "geolocation" }).then((result) => {
           if (result.state === "denied") {
-            console.log(`Geolocation permission:` + result.state);
+            this.showNotification(
+              `Geolocation permission: ` + result.state,
+              "Turn on the geolocation to use this feature."
+            );
             this.pinShake();
           } else {
             navigator.geolocation.getCurrentPosition(
@@ -289,20 +298,28 @@ export default {
                   this.coords.lon = position.coords.longitude;
                   this.getWeather();
                 } else {
-                  /* this.geolocationError = true; */
                   this.pinShake();
                 }
               },
               () => {
                 this.isGeolocationDone = false;
-                console.log("Location must by on.");
+                this.pinShake();
+                this.showNotification(
+                  "Geolocation must be on.",
+                  "Turn on the geolocation to use this feature."
+                );
               },
               { enableHighAccuracy: true, maximumAge: 10000000 }
             );
           }
         });
       } else {
-        console.log("Geolocation impossible.");
+        this.geolocationSupported = false;
+        this.pinShake();
+        this.showNotification(
+          "Geolocation impossible.",
+          "Geolocation is not supported on your device."
+        );
       }
     },
     refresh() {
@@ -314,6 +331,17 @@ export default {
       setTimeout(() => {
         this.pinShakeAnimation = false;
       }, 1000);
+    },
+    showNotification(header, info) {
+      if (!this.notificationVisible) {
+        this.notificationVisible = true;
+        this.notificationContent.header = header;
+        this.notificationContent.info = info;
+        setTimeout(() => {
+          this.notificationVisible = false;
+          this.notificationContent = {};
+        }, 3000);
+      }
     },
   },
   beforeMount() {
