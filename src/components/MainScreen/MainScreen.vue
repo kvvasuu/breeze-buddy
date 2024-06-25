@@ -308,10 +308,8 @@ export default {
                   this.coords.lat = position.coords.latitude;
                   this.coords.lon = position.coords.longitude;
                   this.getWeather();
-                  return;
                 } else {
                   this.pinShake();
-                  return;
                 }
               },
               (error) => {
@@ -321,14 +319,12 @@ export default {
                   "Geolocation must be on.",
                   "Turn on the geolocation to use this feature."
                 );
-                return;
               },
               { enableHighAccuracy: true, maximumAge: 10000000 }
             );
           }
         });
       } else {
-        this.pinShake();
         this.showNotification(
           "Geolocation impossible.",
           "Geolocation is not supported on your device."
