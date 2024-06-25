@@ -341,10 +341,10 @@ export default {
     pinShake() {
       if (!this.pinShakeAnimation) {
         this.pinShakeAnimation = true;
-        navigator.vibrate(200);
         setTimeout(() => {
           this.pinShakeAnimation = false;
         }, 1000);
+        navigator.vibrate(200);
       }
     },
     showNotification(header, info) {
