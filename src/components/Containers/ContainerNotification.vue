@@ -24,12 +24,12 @@ export default {
   margin: auto;
   border-radius: 3rem;
   padding: 1rem;
-  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
   user-select: none;
   background-image: linear-gradient(
     30deg,
-    rgb(69, 137, 146) 0%,
-    rgb(43, 115, 128) 100%
+    rgb(100, 171, 180) 0%,
+    rgb(85, 151, 163) 100%
   );
   z-index: 10;
 }

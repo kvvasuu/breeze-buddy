@@ -11,6 +11,7 @@
     <WeatherDisplay
       :currentWeather="weather"
       :iconSrc="passIconSrc"
+      :geolocationIcon="isCurrentLocation"
     ></WeatherDisplay>
     <div class="buttons">
       <div
@@ -212,6 +213,7 @@ export default {
       refreshIntervalID: 0,
       notificationContent: {},
       notificationVisible: false,
+      isCurrentLocation: false,
     };
   },
   methods: {
@@ -243,6 +245,16 @@ export default {
                 ? this.$emit("is-day-emit", true)
                 : this.$emit("is-day-emit", false);
 
+              if (
+                this.isGeolocationDone &&
+                Math.round(response.data.location.lat * 10) / 10 ===
+                  Math.round(this.coords.lat * 10) / 10 &&
+                Math.round(response.data.location.lon * 10) / 10 ===
+                  Math.round(this.coords.lon * 10) / 10
+              ) {
+                this.isCurrentLocation = true;
+              } else this.isCurrentLocation = false;
+
               this.coords = {
                 lat: response.data.location.lat,
                 lon: response.data.location.lon,
@@ -255,6 +267,7 @@ export default {
                   this.refresh();
                 }, 60000);
               }
+
               if (response.status === 200) this.weatherDone = true;
 
               if (response.data)
@@ -314,7 +327,6 @@ export default {
           }
         });
       } else {
-        this.geolocationSupported = false;
         this.pinShake();
         this.showNotification(
           "Geolocation impossible.",
@@ -326,11 +338,13 @@ export default {
       this.getWeather();
     },
     pinShake() {
-      this.pinShakeAnimation = true;
-      navigator.vibrate(200);
-      setTimeout(() => {
-        this.pinShakeAnimation = false;
-      }, 1000);
+      if (!this.pinShakeAnimation) {
+        this.pinShakeAnimation = true;
+        navigator.vibrate(200);
+        setTimeout(() => {
+          this.pinShakeAnimation = false;
+        }, 1000);
+      }
     },
     showNotification(header, info) {
       if (!this.notificationVisible) {
