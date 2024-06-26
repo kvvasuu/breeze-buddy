@@ -46,6 +46,7 @@
             ref="search"
             autofocus
           />
+          <span class="loader" v-else-if="!showSearchInput && loading"></span>
           <div class="icon" v-else @click="toggleShowSearchInput">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,6 +215,7 @@ export default {
       notificationContent: {},
       notificationVisible: false,
       isCurrentLocation: false,
+      loading: false,
     };
   },
   methods: {
@@ -226,6 +228,7 @@ export default {
         q = `${this.position.lat},${this.position.lon}`;
       } else q = latinise(value);
       if (q !== "") {
+        this.loading = true;
         try {
           return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
@@ -278,12 +281,15 @@ export default {
               if (this.showSearchInput) {
                 this.toggleShowSearchInput();
               }
+              this.loading = false;
               return response.data.location.name;
             })
             .catch((error) => {
+              this.loading = false;
               console.log(error);
             });
         } catch (error) {
+          this.loading = false;
           console.error(error);
         }
       }
@@ -475,6 +481,27 @@ $font-color: rgb(250, 250, 250);
   }
   &:hover {
     translate: 0 -1px;
+  }
+}
+
+.loader {
+  width: 2.2rem;
+  height: 2.2rem;
+  margin: 0.4rem 0 0 0;
+  border: 0.3rem solid $font-color;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1.2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
