@@ -46,7 +46,11 @@
             ref="search"
             autofocus
           />
-          <span class="loader" v-else-if="!showSearchInput && loading"></span>
+          <img
+            src="../../assets/spinner.gif"
+            class="loader"
+            v-else-if="loading && !showSearchInput"
+          />
           <div class="icon" v-else @click="toggleShowSearchInput">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -229,6 +233,7 @@ export default {
       } else q = latinise(value);
       if (q !== "") {
         this.loading = true;
+
         try {
           return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
@@ -485,24 +490,10 @@ $font-color: rgb(250, 250, 250);
 }
 
 .loader {
-  width: 2.2rem;
-  height: 2.2rem;
-  margin: 0.4rem 0 0 0;
-  border: 0.3rem solid $font-color;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1.2s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  width: 2.4rem;
+  height: 2.4rem;
+  margin: 0.2rem 0 0 0;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2));
 }
 
 //Transitions
