@@ -103,7 +103,7 @@ export default {
 .location {
   font-size: 1.6rem;
   font-family: "Helvetica Bold";
-  text-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.3);
+  text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
 }
 
 .geolocation-icon {
