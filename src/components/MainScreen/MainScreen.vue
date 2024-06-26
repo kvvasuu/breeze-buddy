@@ -192,7 +192,7 @@ export default {
       isGeolocationDone: false,
       pinShakeAnimation: false,
       transitionChange: false,
-      coords: { lat: 0, lon: 0 },
+      position: { lat: 0, lon: 0, name: "" },
       weather: {
         location: {
           name: this.t.myLocation,
@@ -223,11 +223,11 @@ export default {
     async getWeather(value) {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
-        q = `${this.coords.lat},${this.coords.lon}`;
+        q = `${this.position.lat},${this.position.lon}`;
       } else q = latinise(value);
       if (q !== "") {
         try {
-          await axios
+          return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
               params: {
                 key: "e4ee231ca8574dfc85f123549241106",
@@ -238,30 +238,28 @@ export default {
               },
             })
             .then((response) => {
-              this.weather = response.data;
-              this.searchInput = "";
-              this.is_Day = !!response.data.current.is_day;
-              response.data.current.is_day
-                ? this.$emit("is-day-emit", true)
-                : this.$emit("is-day-emit", false);
-
               if (
                 (this.isGeolocationDone &&
                   Math.round(response.data.location.lat * 10) / 10 ===
-                    Math.round(this.coords.lat * 10) / 10 &&
+                    Math.round(this.position.lat * 10) / 10 &&
                   Math.round(response.data.location.lon * 10) / 10 ===
-                    Math.round(this.coords.lon * 10) / 10) ||
+                    Math.round(this.position.lon * 10) / 10) ||
                 (this.isGeolocationDone &&
-                  this.currentWeather.location.name ===
-                    response.currentWeather.location.name)
+                  this.position.name === response.data.location.name)
               ) {
                 this.isCurrentLocation = true;
               } else this.isCurrentLocation = false;
 
-              this.coords = {
-                lat: response.data.location.lat,
-                lon: response.data.location.lon,
-              };
+              this.weather = response.data;
+              this.searchInput = "";
+              this.is_Day = !!response.data.current.is_day;
+
+              response.data.current.is_day
+                ? this.$emit("is-day-emit", true)
+                : this.$emit("is-day-emit", false);
+
+              this.position.lat = response.data.location.lat;
+              this.position.lon = response.data.location.lon;
 
               localStorage.setItem("isDay", response.data.current.is_day);
 
@@ -280,6 +278,7 @@ export default {
               if (this.showSearchInput) {
                 this.toggleShowSearchInput();
               }
+              return response.data.location.name;
             })
             .catch((error) => {
               console.log(error);
@@ -303,14 +302,16 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 if (
-                  this.coords.lat !==
+                  this.position.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
-                  this.coords.lon !==
+                  this.position.lon !==
                     Math.round(position.coords.longitude * 100) / 100
                 ) {
-                  this.coords.lat = position.coords.latitude;
-                  this.coords.lon = position.coords.longitude;
-                  this.getWeather();
+                  this.position.lat = position.coords.latitude;
+                  this.position.lon = position.coords.longitude;
+                  this.getWeather().then((name) => {
+                    this.position.name = name;
+                  });
                 } else {
                   this.pinShake();
                 }
