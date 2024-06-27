@@ -14,8 +14,8 @@ export default {
 //
 <style lang="scss" scoped>
 .container {
-  position: absolute;
-  top: 2rem;
+  position: fixed;
+  top: 4rem;
   width: 28rem;
   display: flex;
   align-items: center;
@@ -56,6 +56,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
   .container {
+    top: 2rem;
     width: 20rem;
   }
 }

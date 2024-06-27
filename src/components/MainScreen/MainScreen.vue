@@ -1,13 +1,15 @@
 <template>
   <div class="main-container" :class="{ 'scale-down': showSettings }">
-    <Transition name="notification" mode="out-in">
-      <ContainerNotification v-if="notificationVisible">
-        <template #header>{{ notificationContent.header }}</template>
-        <template v-if="notificationContent.info" #info>{{
-          notificationContent.info
-        }}</template>
-      </ContainerNotification>
-    </Transition>
+    <Teleport to="body">
+      <Transition name="notification" mode="out-in">
+        <ContainerNotification v-if="notificationVisible">
+          <template #header>{{ notificationContent.header }}</template>
+          <template v-if="notificationContent.info" #info>{{
+            notificationContent.info
+          }}</template>
+        </ContainerNotification>
+      </Transition>
+    </Teleport>
     <WeatherDisplay
       :currentWeather="weather"
       :iconSrc="passIconSrc"
@@ -300,6 +302,7 @@ export default {
                 if (error.response) {
                   this.showNotification(error.response.data.error.message);
                 } else this.showNotification(error.message);
+                this.searchInput = "";
               }, 1500);
 
               console.log(error);
@@ -308,9 +311,11 @@ export default {
           if (this.showSearchInput) {
             this.toggleShowSearchInput();
           }
+
           setTimeout(() => {
             this.loading = false;
             this.showNotification(error.message);
+            this.searchInput = "";
           }, 1500);
 
           console.error(error);
