@@ -16,6 +16,7 @@
             />
           </svg>
         </Transition>
+        <Clock :time="passLocalTime"> </Clock>
       </div>
     </Transition>
     <div class="icon-container">
@@ -39,7 +40,6 @@
         {{ currentWeather.current.condition.text }}
       </div>
     </Transition>
-
     <div class="temp-range">
       <Transition name="slide-horizontal-fade" mode="out-in">
         <div class="temp" :key="passMinTemp">
@@ -56,7 +56,12 @@
 </template>
 
 <script>
+import Clock from "../Clock.vue";
+
 export default {
+  components: {
+    Clock,
+  },
   props: ["currentWeather", "iconSrc", "geolocationIcon"],
   inject: ["showSettings", "t", "tempUnit", "localTime"],
   computed: {
@@ -86,6 +91,15 @@ export default {
               `maxtemp_${this.tempUnit}`
             ]
           );
+    },
+    passLocalTime() {
+      const regex = /\b([01]?[0-9]|2[0-3]):([0-5][0-9])(?::([0-9][0-9]))?\b/gm;
+      let date = new Date();
+      if (this.localTime) {
+        const time = this.localTime.match(regex).toString().split(":");
+        date.setHours(time[0], time[1]);
+        return date;
+      } else return new Date();
     },
   },
 };
