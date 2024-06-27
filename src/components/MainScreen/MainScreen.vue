@@ -273,11 +273,12 @@ export default {
 
               localStorage.setItem("isDay", response.data.current.is_day);
 
-              if (this.refreshIntervalID === 0) {
+              /* if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
                   this.refresh();
                 }, 60000);
-              }
+              } */
+              console.log(response);
 
               if (response.status === 200) this.weatherDone = true;
 
