@@ -231,7 +231,7 @@ export default {
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.position.lat},${this.position.lon}`;
       } else q = latinise(value);
-      if (q !== "") {
+      if (q !== "" && !this.loading) {
         this.loading = true;
 
         try {
@@ -286,15 +286,33 @@ export default {
               if (this.showSearchInput) {
                 this.toggleShowSearchInput();
               }
-              this.loading = false;
+              setTimeout(() => {
+                this.loading = false;
+              }, 1500);
               return response.data.location.name;
             })
             .catch((error) => {
-              this.loading = false;
+              if (this.showSearchInput) {
+                this.toggleShowSearchInput();
+              }
+              setTimeout(() => {
+                this.loading = false;
+                if (error.response) {
+                  this.showNotification(error.response.data.error.message);
+                } else this.showNotification(error.message);
+              }, 1500);
+
               console.log(error);
             });
         } catch (error) {
-          this.loading = false;
+          if (this.showSearchInput) {
+            this.toggleShowSearchInput();
+          }
+          setTimeout(() => {
+            this.loading = false;
+            this.showNotification(error.message);
+          }, 1500);
+
           console.error(error);
         }
       }
