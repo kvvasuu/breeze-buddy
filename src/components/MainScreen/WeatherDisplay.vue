@@ -94,12 +94,9 @@ export default {
     },
     passLocalTime() {
       const regex = /\b([01]?[0-9]|2[0-3]):([0-5][0-9])(?::([0-9][0-9]))?\b/gm;
-      let date = new Date();
-      if (this.localTime) {
-        const time = this.localTime.match(regex).toString().split(":");
-        date.setHours(time[0], time[1]);
-        return date;
-      } else return new Date();
+      if (this.localTime)
+        return this.localTime.match(regex).toString().split(":");
+      else return ["00", "00"];
     },
   },
 };

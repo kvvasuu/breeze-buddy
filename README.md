@@ -15,7 +15,9 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 
 2. **Location Search:** Enter the name of a place in the search field to get weather data for the selected location.
 
-3. **Main Screen:**
+3. **Dark Mode:** Dark mode is set depending on the local time of chosen location. :new_moon:
+
+4. **Main Screen:**
 
    - :pushpin:**Location:** Current location.
    - :watch:**Local Time:** Current time in the selected location.
@@ -24,9 +26,9 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - :sunny:**Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
    - :thermometer:**Temperature range:** Today's minimum and maximum temperature.
 
-4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
+5. **Weather Forecast:** Forecast for the next few days displayed below the main information.
 
-5. **Additional Weather Data:**
+6. **Additional Weather Data:**
    - :wind_face:**Wind:** Current wind speed and direction.
    - :stopwatch:**Pressure:** Current atmospheric pressure.
    - :droplet:**Humidity:** Current air humidity.

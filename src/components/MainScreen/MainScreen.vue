@@ -277,7 +277,7 @@ export default {
               if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
                   this.refresh();
-                }, 60000);
+                }, 70000);
               }
 
               if (response.status === 200) this.weatherDone = true;

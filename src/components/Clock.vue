@@ -12,8 +12,8 @@ export default {
       localTime: "",
       intervalID: 0,
       seconds: new Date().getSeconds(),
-      minutes: this.time.getMinutes(),
-      hours: this.time.getHours(),
+      minutes: this.time[1],
+      hours: this.time[0],
     };
   },
   methods: {
@@ -47,6 +47,7 @@ export default {
   },
   computed: {
     passTime() {
+      console.log(this.time);
       return this.localTime;
     },
   },
