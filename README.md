@@ -27,6 +27,32 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - **Pressure:** Current atmospheric pressure.
    - **Humidity:** Current air humidity.
 
+## Languages and Units:
+Breeze Buddy is available in three languages: English, Polish, and German. 
+You can select your preferred language during the first launch of the app or later in the settings section.
+
+**Changing the Language:**
+1. **Welcome Screen:** Choose your language during the first launch of the app.
+2. **Settings:** Go to the settings section to change the language at any time.
+
+**Changing Units:**
+In the settings section, you can also adjust the units of the displayed weather parameters (e.g., Celsius to Fahrenheit, wind speed from km/h to mph, etc.).
+
+## Using the App:
+1. **Launching the App:** 
+Upon launching the Breeze Buddy, it automatically detects your location and displays current weather data.
+When you first start it, the browser should ask whether to allow geolocation.
+If geolocation is not supported or is not allowed, this feature is unavailable.
+
+2. **Location Search:** 
+To check the weather in another location, enter the name of the location in the search field.
+
+3. **Main Screen:** 
+Browse current weather conditions, the forecast for the next few days, and additional weather data.
+
+4. **Settings:** 
+Go to the settings section to change the app language or the units of the displayed weather parameters.
+
 ## Technologies:
 
 - Vue
