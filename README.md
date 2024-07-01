@@ -12,18 +12,18 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 2. **Location Search:** Enter the name of a place in the search field to get weather data for the selected location.
 
 3. **Main Screen:**
-   - **Location:** Current location.
-   - **Local Time:** Current time in the selected location.
-   - **Weather Icon:** Graphical representation of the current weather conditions.
-   - **Temperature:** Current temperature in the selected location.
-   - **Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
-   - **Temperature range:** Today's minimum and maximum temperature.
+   - **Location:** Current location. :pushpin:
+   - **Local Time:** Current time in the selected location. :watch:
+   - **Weather Icon:** Graphical representation of the current weather conditions. :partly_sunny:
+   - **Temperature:** Current temperature in the selected location. :thermometer:
+   - **Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy). :sunny:
+   - **Temperature range:** Today's minimum and maximum temperature. :thermometer:
 
 4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
 
 5. **Additional Weather Data:**
    - **Wind:** Current wind speed and direction. :wind_face:
-   - **Pressure:** Current atmospheric pressure. :thermometer:
+   - **Pressure:** Current atmospheric pressure. :stopwatch:
    - **Humidity:** Current air humidity. :droplet:
 
 ## Languages and Units:
