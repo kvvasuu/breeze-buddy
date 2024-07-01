@@ -47,8 +47,7 @@ export default {
   },
   computed: {
     passTime() {
-      console.log(this.time);
-      return this.localTime;
+      return this.time ? this.localTime : "";
     },
   },
   mounted() {

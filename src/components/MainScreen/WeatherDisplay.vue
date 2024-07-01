@@ -94,9 +94,9 @@ export default {
     },
     passLocalTime() {
       const regex = /\b([01]?[0-9]|2[0-3]):([0-5][0-9])(?::([0-9][0-9]))?\b/gm;
-      if (this.localTime)
-        return this.localTime.match(regex).toString().split(":");
-      else return ["00", "00"];
+      return this.localTime
+        ? this.localTime.match(regex).toString().split(":")
+        : false;
     },
   },
 };
