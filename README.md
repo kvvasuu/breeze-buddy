@@ -1,7 +1,5 @@
 # Breeze Buddy
 
-![App demo](https://raw.githubusercontent.com/kvvasuu/lay-ler/main/demo.gif "App demo")
-
 ## General info
 
 Welcome to Breeze Buddy! My app provides quick and easy access to current weather information.
@@ -19,12 +17,19 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - **Temperature:** Current temperature in the selected location.
    - **Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
    - **Temperature range:** Today's minimum and maximum temperature.
-
+4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
+5. **Additional Weather Data:**
+   - **Wind:** Current wind speed and direction.
+   - **Pressure:** Current atmospheric pressure.
+   - **Humidity:** Current air humidity.
 
 ## Technologies:
 
 - Vue
+- WeatherAPI.com
 - FontAwesome
+- Blender
+- Photoshop
 
 ## Setup
 
@@ -47,3 +52,5 @@ npm run unit
 # run all tests
 npm test
 ```
+
+Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
