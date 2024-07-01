@@ -1,12 +1,14 @@
 <template>
   <div class="welcome-container">
     <div class="logo-container">
-      <img
-        class="logo"
-        :src="toggleLogo"
-        alt="Breeze Buddy"
-        draggable="false"
-      />
+      <a href="https://github.com/kvvasuu/breeze-buddy" target="_blank"
+        ><img
+          class="logo"
+          :src="toggleLogo"
+          alt="Breeze Buddy"
+          draggable="false"
+      /></a>
+
       <div class="title" :style="{ color: toggleTitle }">Breeze Buddy</div>
     </div>
     <div>
@@ -74,6 +76,10 @@ $font-color-second: rgb(36, 36, 36);
     height: 16rem;
     filter: drop-shadow(0.2rem 0.6rem 0.6rem rgba(0, 0, 0, 0.3));
     margin: 2rem;
+    transition: scale 0.4s ease;
+    &:hover {
+      scale: 1.04;
+    }
   }
   .title {
     margin: 4rem 0 0 0;
