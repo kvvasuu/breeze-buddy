@@ -9,7 +9,9 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 
 ## Features:
 1. **Automatic Location Detection:** Upon launching the Breeze Buddy app, it automatically detects your location and displays weather information based on it.
+
 2. **Location Search:** Enter the name of a place in the search field to get weather data for the selected location.
+
 3. **Main Screen:**
    - **Location:** Current location.
    - **Local Time:** Current time in the selected location.
@@ -17,7 +19,9 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - **Temperature:** Current temperature in the selected location.
    - **Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
    - **Temperature range:** Today's minimum and maximum temperature.
+
 4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
+
 5. **Additional Weather Data:**
    - **Wind:** Current wind speed and direction.
    - **Pressure:** Current atmospheric pressure.
