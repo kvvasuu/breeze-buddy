@@ -31,7 +31,6 @@ export default {
           : this.hour.time.split(" ")[1].split(":")[0];
       }
     },
-
     passTemp() {
       if (!this.sunsetOrSunrise) {
         return Math.round(this.hour[`temp_${this.tempUnit}`]);

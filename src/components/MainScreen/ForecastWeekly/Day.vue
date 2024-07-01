@@ -40,10 +40,14 @@ export default {
   },
   computed: {
     passMinTemp() {
-      return Math.round(this.day.day[`mintemp_${this.tempUnit}`]);
+      return Math.min(
+        ...this.day.hour.map((el) => Math.round(el[`temp_${this.tempUnit}`]))
+      );
     },
     passMaxTemp() {
-      return Math.round(this.day.day[`maxtemp_${this.tempUnit}`]);
+      return Math.max(
+        ...this.day.hour.map((el) => Math.round(el[`temp_${this.tempUnit}`]))
+      );
     },
     actualTempIndicatorPosition() {
       if (this.actual) {

@@ -276,7 +276,6 @@ export default {
 
               if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
-                  console.log(response);
                   this.refresh();
                 }, 60000);
               }
@@ -373,6 +372,7 @@ export default {
       }
     },
     refresh() {
+      console.log("REFRESH");
       this.getWeather(undefined, true);
     },
     pinShake() {

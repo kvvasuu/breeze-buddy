@@ -73,23 +73,23 @@ export default {
     passMinTemp() {
       return this.currentWeather.forecast.forecastday[0].day[
         `mintemp_${this.tempUnit}`
-      ] === undefined
+      ] === ""
         ? "-"
-        : Math.round(
-            this.currentWeather.forecast.forecastday[0].day[
-              `mintemp_${this.tempUnit}`
-            ]
+        : Math.min(
+            ...this.currentWeather.forecast.forecastday[0].hour.map((el) =>
+              Math.round(el[`temp_${this.tempUnit}`])
+            )
           );
     },
     passMaxTemp() {
       return this.currentWeather.forecast.forecastday[0].day[
         `maxtemp_${this.tempUnit}`
-      ] === undefined
+      ] === ""
         ? "-"
-        : Math.round(
-            this.currentWeather.forecast.forecastday[0].day[
-              `maxtemp_${this.tempUnit}`
-            ]
+        : Math.max(
+            ...this.currentWeather.forecast.forecastday[0].hour.map((el) =>
+              Math.round(el[`temp_${this.tempUnit}`])
+            )
           );
     },
     passLocalTime() {
