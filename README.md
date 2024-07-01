@@ -2,14 +2,14 @@
 
 ![App demo](https://raw.githubusercontent.com/kvvasuu/breeze-buddy/main/demo.gif "App demo")
 
-## General info
+## :globe_with_meridians: General info
 
 Welcome to Breeze Buddy! My app provides quick and easy access to current weather information.
 Breeze Buddy automatically detects your location to deliver accurate weather forecasts, but you can also enter the name of any place to see the weather conditions there.
 
 The application has been deployed on Netlify - [https://breezebuddy.netlify.app/](https://breezebuddy.netlify.app/)
 
-## Features:
+## :eight_pointed_black_star: Features:
 
 1. **Automatic Location Detection:** Upon launching the Breeze Buddy app, it automatically detects your location and displays weather information based on it.
 
@@ -33,7 +33,7 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - :stopwatch:**Pressure:** Current atmospheric pressure.
    - :droplet:**Humidity:** Current air humidity.
 
-## Languages and Units:
+## :checkered_flag: Languages and Units:
 
 Breeze Buddy is available in three languages: English ![GB](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png), Polish ![PL](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/pl.png), and German ![DE](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/de.png).
 You can select your preferred language during the first launch of the app or later in the settings section.
@@ -46,7 +46,7 @@ You can select your preferred language during the first launch of the app or lat
 **Changing Units:**
 In the settings section, you can also adjust the units of the displayed weather parameters (e.g., Celsius to Fahrenheit, wind speed from km/h to mph, etc.).
 
-## Using the App:
+## :arrow_forward: Using the App:
 
 1. **Launching the App:**
    Upon launching the Breeze Buddy, it automatically detects your location and displays current weather data.
@@ -68,7 +68,7 @@ If you have any questions or issues with the Breeze Buddy app, please contact.
 
 ## Technologies:
 
-- Vue
+- Vue 
 - WeatherAPI.com
 - FontAwesome
 - Blender
