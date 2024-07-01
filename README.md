@@ -52,9 +52,8 @@ Browse current weather conditions, the forecast for the next few days, and addit
 
 4. **Settings:** 
 Go to the settings section to change the app language or the units of the displayed weather parameters.
-
+---
 If you have any questions or issues with the Breeze Buddy app, please contact.
-
 
 ## Technologies:
 
