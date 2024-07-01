@@ -12,19 +12,19 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 2. **Location Search:** Enter the name of a place in the search field to get weather data for the selected location.
 
 3. **Main Screen:**
-   - **Location:** Current location. :pushpin:
-   - **Local Time:** Current time in the selected location. :watch:
-   - **Weather Icon:** Graphical representation of the current weather conditions. :partly_sunny:
-   - **Temperature:** Current temperature in the selected location. :thermometer:
-   - **Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy). :sunny:
-   - **Temperature range:** Today's minimum and maximum temperature. :thermometer:
+   - :pushpin:**Location:** Current location. 
+   - :watch:**Local Time:** Current time in the selected location. 
+   - :partly_sunny:**Weather Icon:** Graphical representation of the current weather conditions. 
+   - :thermometer:**Temperature:** Current temperature in the selected location. 
+   - :sunny:**Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy). 
+   - :thermometer:**Temperature range:** Today's minimum and maximum temperature. 
 
 4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
 
 5. **Additional Weather Data:**
-   - **Wind:** Current wind speed and direction. :wind_face:
-   - **Pressure:** Current atmospheric pressure. :stopwatch:
-   - **Humidity:** Current air humidity. :droplet:
+   - :wind_face:**Wind:** Current wind speed and direction. 
+   - :stopwatch:**Pressure:** Current atmospheric pressure. 
+   - :droplet:**Humidity:** Current air humidity. 
 
 ## Languages and Units:
 Breeze Buddy is available in three languages: English ![GB](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png), Polish ![PL](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/pl.png), and German ![DE](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/de.png). 
