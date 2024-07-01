@@ -1,5 +1,4 @@
-# Breeze Buddy
-
+# Breeze Buddy <img src="https://raw.githubusercontent.com/kvvasuu/breeze-buddy/main/src/assets/favicon.png" alt="icon" width="24"/>
 ## General info
 
 Welcome to Breeze Buddy! My app provides quick and easy access to current weather information.
@@ -23,12 +22,12 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 4. **Weather Forecast:** Forecast for the next few days displayed below the main information.
 
 5. **Additional Weather Data:**
-   - **Wind:** Current wind speed and direction.
-   - **Pressure:** Current atmospheric pressure.
-   - **Humidity:** Current air humidity.
+   - **Wind:** Current wind speed and direction. :wind_face:
+   - **Pressure:** Current atmospheric pressure. :thermometer:
+   - **Humidity:** Current air humidity. :droplet:
 
 ## Languages and Units:
-Breeze Buddy is available in three languages: English, Polish, and German. 
+Breeze Buddy is available in three languages: English ![GB](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png), Polish ![PL](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/pl.png), and German ![DE](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/de.png). 
 You can select your preferred language during the first launch of the app or later in the settings section.
 
 **Changing the Language:**
