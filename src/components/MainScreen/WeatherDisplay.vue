@@ -16,7 +16,7 @@
             />
           </svg>
         </Transition>
-        <Clock :time="passLocalTime"> </Clock>
+        <Clock :time="passLocalTime" :key="passLocalTime"> </Clock>
       </div>
     </Transition>
     <div class="icon-container">

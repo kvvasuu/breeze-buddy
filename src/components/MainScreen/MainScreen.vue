@@ -228,13 +228,15 @@ export default {
     toggleShowSearchInput() {
       this.showSearchInput = !this.showSearchInput;
     },
-    async getWeather(value) {
+    async getWeather(value, isRefresh) {
       let q = "";
       if (value === undefined && this.isGeolocationDone) {
         q = `${this.position.lat},${this.position.lon}`;
       } else q = latinise(value);
       if (q !== "" && !this.loading) {
-        this.loading = true;
+        if (!isRefresh) {
+          this.loading = true;
+        }
 
         try {
           return await axios
@@ -261,7 +263,6 @@ export default {
               } else this.isCurrentLocation = false;
 
               this.weather = response.data;
-              this.searchInput = "";
               this.is_Day = !!response.data.current.is_day;
 
               response.data.current.is_day
@@ -273,20 +274,21 @@ export default {
 
               localStorage.setItem("isDay", response.data.current.is_day);
 
-              /* if (this.refreshIntervalID === 0) {
+              if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
+                  console.log(response);
                   this.refresh();
-                }, 60000);
-              } */
-              console.log(response);
+                }, 10000);
+              }
 
               if (response.status === 200) this.weatherDone = true;
 
-              if (response.data)
+              if (response.data && !isRefresh)
                 setTimeout(() => {
                   this.transitionChange = true;
                 }, 3000);
-              if (this.showSearchInput) {
+              if (this.showSearchInput && !isRefresh) {
+                this.searchInput = "";
                 this.toggleShowSearchInput();
               }
               setTimeout(() => {
@@ -371,7 +373,7 @@ export default {
       }
     },
     refresh() {
-      this.getWeather();
+      this.getWeather(undefined, true);
     },
     pinShake() {
       if (!this.pinShakeAnimation) {
