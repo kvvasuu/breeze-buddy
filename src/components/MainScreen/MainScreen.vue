@@ -371,6 +371,13 @@ export default {
         );
       }
     },
+    onVisibilityChange() {
+      if (document.visibilityState === "hidden") {
+        return;
+      } else {
+        this.refresh();
+      }
+    },
     refresh() {
       console.log("REFRESH");
       this.getWeather(undefined, true);
@@ -396,6 +403,11 @@ export default {
     },
   },
   beforeMount() {
+    document.addEventListener(
+      "visibilitychange",
+      this.onVisibilityChange,
+      false
+    );
     this.getLocationWeather();
   },
   computed: {
