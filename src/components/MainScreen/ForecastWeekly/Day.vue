@@ -1,5 +1,5 @@
 <template>
-  <div class="day-container">
+  <div class="day-container" @click="toggleDayModal">
     <div class="day">{{ dayName }}</div>
     <div class="icon-container">
       <img class="icon" :src="iconSrc" draggable="false" />
@@ -28,15 +28,30 @@
       </div>
       <div class="temperature-high temp">{{ passMaxTemp }}</div>
     </div>
+    <Teleport to="body">
+      <DayModal
+        v-if="showDayModal"
+        @toggle-modal="toggleDayModal"
+        :dayName="dayName"
+      ></DayModal>
+    </Teleport>
   </div>
 </template>
 
 <script>
+import DayModal from "./DayModal.vue";
+
 export default {
+  components: {
+    DayModal,
+  },
   props: ["day", "dayName", "tempMinMax", "actual", "currentTemp", "iconSrc"],
   inject: ["isDay", "tempUnit"],
+  emits: ["toggle-modal"],
   data() {
-    return {};
+    return {
+      showDayModal: false,
+    };
   },
   computed: {
     passMinTemp() {
@@ -72,6 +87,12 @@ export default {
     },
     thumbPosition() {
       return -(this.tempRangePosition / 100) * 80;
+    },
+  },
+  methods: {
+    toggleDayModal() {
+      this.$emit("toggle-modal");
+      this.showDayModal = !this.showDayModal;
     },
   },
 };

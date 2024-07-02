@@ -1,5 +1,5 @@
 <template>
-  <div class="weather-display" :class="{ 'scale-down': showSettings }">
+  <div class="weather-display" :class="{ 'scale-down': showModal }">
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
@@ -63,7 +63,7 @@ export default {
     Clock,
   },
   props: ["currentWeather", "iconSrc", "geolocationIcon"],
-  inject: ["showSettings", "t", "tempUnit", "localTime"],
+  inject: ["showModal", "t", "tempUnit", "localTime"],
   computed: {
     passTemperature() {
       return this.currentWeather.current[`temp_${this.tempUnit}`] === "-"

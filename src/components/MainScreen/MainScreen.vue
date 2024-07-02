@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container" :class="{ 'scale-down': showSettings }">
+  <div class="main-container" :class="{ 'scale-down': showModal }">
     <Teleport to="body">
       <Transition name="notification" mode="out-in">
         <ContainerNotification v-if="notificationVisible">
@@ -81,7 +81,7 @@
     </div>
     <Transition
       :name="
-        showSettings
+        showModal
           ? ''
           : transitionChange
           ? 'slide-horizontal-fade'
@@ -90,14 +90,14 @@
       mode="out-in"
     >
       <ForecastHourly
-        v-if="weatherDone && !showSettings"
+        v-if="weatherDone && !showModal"
         :weather="weather.forecast.forecastday"
         :key="weather.location.name"
       ></ForecastHourly>
     </Transition>
     <Transition
       :name="
-        showSettings
+        showModal
           ? ''
           : transitionChange
           ? 'slide-horizontal-fade'
@@ -106,16 +106,17 @@
       mode="out-in"
     >
       <ForecastWeekly
-        v-if="weatherDone && !showSettings"
+        v-show="weatherDone && !showModal"
         :forecast="weather.forecast.forecastday"
         :currentWeather="weather.current"
         :key="weather.location.name"
+        @toggle-modal="() => $emit('toggle-modal')"
       ></ForecastWeekly>
     </Transition>
     <div class="other-values">
       <Transition
         :name="
-          showSettings
+          showModal
             ? ''
             : transitionChange
             ? 'slide-horizontal-fade'
@@ -124,14 +125,14 @@
         mode="out-in"
       >
         <Wind
-          v-if="weatherDone && !showSettings"
+          v-if="weatherDone && !showModal"
           :currentWeather="weather.forecast.forecastday"
           :key="weather.location.name"
         ></Wind>
       </Transition>
       <Transition
         :name="
-          showSettings
+          showModal
             ? ''
             : transitionChange
             ? 'slide-horizontal-fade'
@@ -139,14 +140,14 @@
         "
         mode="out-in"
         ><Pressure
-          v-if="weatherDone && !showSettings"
+          v-if="weatherDone && !showModal"
           :currentWeather="weather.current"
           :key="weather.location.name"
         ></Pressure
       ></Transition>
       <Transition
         :name="
-          showSettings
+          showModal
             ? ''
             : transitionChange
             ? 'slide-horizontal-fade'
@@ -154,7 +155,7 @@
         "
         mode="out-in"
         ><Humidity
-          v-if="weatherDone && !showSettings"
+          v-if="weatherDone && !showModal"
           :currentWeather="weather.current"
           :key="weather.location.name"
         ></Humidity
@@ -186,8 +187,8 @@ export default {
     ContainerNotification,
   },
   props: ["forecastDays"],
-  emits: ["is-day-emit", "show-settings"],
-  inject: ["showSettings", "isDay", "language", "t"],
+  emits: ["is-day-emit", "show-settings", "toggle-modal"],
+  inject: ["showModal", "isDay", "language", "t"],
   provide() {
     return {
       localTime: computed(() => this.weather.location.localtime),

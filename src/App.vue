@@ -13,12 +13,13 @@
           :forecastDays="forecastDays"
           @is-day-emit="toggleNight"
           @show-settings="toggleSettings"
+          @toggle-modal="toggleModal"
         ></MainScreen> </Transition
       ><Teleport to="body">
         <Transition name="slide-fade-fast" mode="out-in">
           <Settings
             v-if="showSettings"
-            @toggle-settings="toggleSettings"
+            @toggle-modal="toggleSettings"
             @language="changeLanguage"
             @temp-unit="changeTempUnit"
             @wind-unit="changeWindUnit"
@@ -47,7 +48,7 @@ export default {
   },
   provide() {
     return {
-      showSettings: computed(() => this.showSettings),
+      showModal: computed(() => this.showModal),
       isDay: computed(() => this.is_Day),
       language: computed(() => this.lang),
       t: computed(
@@ -63,6 +64,7 @@ export default {
     return {
       showWelcomeScreen: true,
       showSettings: false,
+      showModal: false,
       forecastDays: 3, // minimum 3
       is_Day: true,
       lang: "en", // "en", "pl" or "de"
@@ -112,10 +114,10 @@ export default {
       this.pressureUnit = unit;
       localStorage.setItem("pressureUnit", this.pressureUnit);
     },
-    toggleSettings() {
-      if (window.scrollY > 32 && !this.showSettings) {
+    toggleModal() {
+      if (window.scrollY > 32 && !this.showModal) {
         document.body.classList.add("scroll-disable");
-        window.addEventListener("scroll", this.toggleSettingsScroll);
+        window.addEventListener("scroll", this.toggleModalScroll);
         setTimeout(() => {
           window.scrollTo({
             top: 0,
@@ -124,16 +126,20 @@ export default {
         }, 100);
         setTimeout(() => {
           document.body.classList.remove("scroll-disable");
-          window.removeEventListener("scroll", this.toggleSettingsScroll);
+          window.removeEventListener("scroll", this.toggleModalScroll);
         }, 1000);
       } else {
-        this.showSettings = !this.showSettings;
+        this.showModal = !this.showModal;
       }
     },
-    toggleSettingsScroll() {
+    toggleSettings() {
+      this.toggleModal();
+      this.showSettings = !this.showSettings;
+    },
+    toggleModalScroll() {
       if (window.scrollY <= 32) {
         setTimeout(() => {
-          this.showSettings = true;
+          this.showModal = true;
         }, 100);
       }
     },
