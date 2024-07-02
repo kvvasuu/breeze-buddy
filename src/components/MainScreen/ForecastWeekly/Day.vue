@@ -1,6 +1,6 @@
 <template>
   <div class="day-container" @click="toggleDayModal">
-    <div class="day">{{ dayName }}</div>
+    <div class="day">{{ dayName.short }}</div>
     <div class="icon-container">
       <img class="icon" :src="iconSrc" draggable="false" />
     </div>
@@ -29,11 +29,14 @@
       <div class="temperature-high temp">{{ passMaxTemp }}</div>
     </div>
     <Teleport to="body">
-      <DayModal
-        v-if="showDayModal"
-        @toggle-modal="toggleDayModal"
-        :dayName="dayName"
-      ></DayModal>
+      <Transition name="slide-fade-fast" mode="out-in">
+        <DayModal
+          v-if="showDayModal"
+          @toggle-modal="toggleDayModal"
+          :dayName="dayName"
+          :weather="day"
+        ></DayModal>
+      </Transition>
     </Teleport>
   </div>
 </template>

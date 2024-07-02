@@ -80,33 +80,21 @@
       </div>
     </div>
     <Transition
-      :name="
-        showModal
-          ? ''
-          : transitionChange
-          ? 'slide-horizontal-fade'
-          : 'slide-fade'
-      "
+      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
       mode="out-in"
     >
       <ForecastHourly
-        v-if="weatherDone && !showModal"
+        v-if="weatherDone"
         :weather="weather.forecast.forecastday"
         :key="weather.location.name"
       ></ForecastHourly>
     </Transition>
     <Transition
-      :name="
-        showModal
-          ? ''
-          : transitionChange
-          ? 'slide-horizontal-fade'
-          : 'slide-fade'
-      "
+      :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
       mode="out-in"
     >
       <ForecastWeekly
-        v-show="weatherDone && !showModal"
+        v-if="weatherDone"
         :forecast="weather.forecast.forecastday"
         :currentWeather="weather.current"
         :key="weather.location.name"
@@ -115,47 +103,29 @@
     </Transition>
     <div class="other-values">
       <Transition
-        :name="
-          showModal
-            ? ''
-            : transitionChange
-            ? 'slide-horizontal-fade'
-            : 'slide-fade'
-        "
+        :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
         mode="out-in"
       >
         <Wind
-          v-if="weatherDone && !showModal"
+          v-if="weatherDone"
           :currentWeather="weather.forecast.forecastday"
           :key="weather.location.name"
         ></Wind>
       </Transition>
       <Transition
-        :name="
-          showModal
-            ? ''
-            : transitionChange
-            ? 'slide-horizontal-fade'
-            : 'slide-fade'
-        "
+        :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
         mode="out-in"
         ><Pressure
-          v-if="weatherDone && !showModal"
+          v-if="weatherDone"
           :currentWeather="weather.current"
           :key="weather.location.name"
         ></Pressure
       ></Transition>
       <Transition
-        :name="
-          showModal
-            ? ''
-            : transitionChange
-            ? 'slide-horizontal-fade'
-            : 'slide-fade'
-        "
+        :name="transitionChange ? 'slide-horizontal-fade' : 'slide-fade'"
         mode="out-in"
         ><Humidity
-          v-if="weatherDone && !showModal"
+          v-if="weatherDone"
           :currentWeather="weather.current"
           :key="weather.location.name"
         ></Humidity

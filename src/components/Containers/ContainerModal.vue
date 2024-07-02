@@ -1,6 +1,7 @@
 <template>
   <div class="modal-outer" @click="() => this.$emit('toggle-modal')">
     <div class="container" :class="{ 'container-dark': !isDay }" @click.stop="">
+      <div class="header" v-if="$slots.header"><slot name="header"></slot></div>
       <slot></slot>
     </div>
   </div>
@@ -10,6 +11,11 @@
 export default {
   emits: ["toggle-modal"],
   inject: ["isDay"],
+  data() {
+    return {
+      backgroundDark: false,
+    };
+  },
 };
 </script>
 
@@ -17,7 +23,7 @@ export default {
 $font-color: rgb(240, 240, 240);
 
 .modal-outer {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,14 +35,13 @@ $font-color: rgb(240, 240, 240);
   cursor: default;
   user-select: none;
   overflow: auto;
-  transition: background-color 0.6s ease;
 }
 
 .container {
   position: fixed;
   width: 60rem;
   max-height: 90dvh;
-  top: 8rem;
+  top: 6rem;
   background-image: linear-gradient(
     30deg,
     rgb(31, 134, 194) 0%,
@@ -60,6 +65,18 @@ $font-color: rgb(240, 240, 240);
     rgb(35, 67, 94) 100%
   ) !important;
 }
+.header {
+  position: relative;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  margin: 0.3rem 0.3rem 0.3rem 0.3rem;
+  opacity: 0.8;
+}
 
 //@media
 
@@ -72,7 +89,7 @@ $font-color: rgb(240, 240, 240);
 @media only screen and (max-width: 600px) {
   .container {
     top: 3rem;
-    width: 90dvw;
+    width: 22rem;
   }
 }
 </style>

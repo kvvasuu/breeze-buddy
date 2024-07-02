@@ -115,33 +115,11 @@ export default {
       localStorage.setItem("pressureUnit", this.pressureUnit);
     },
     toggleModal() {
-      if (window.scrollY > 32 && !this.showModal) {
-        document.body.classList.add("scroll-disable");
-        window.addEventListener("scroll", this.toggleModalScroll);
-        setTimeout(() => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        }, 100);
-        setTimeout(() => {
-          document.body.classList.remove("scroll-disable");
-          window.removeEventListener("scroll", this.toggleModalScroll);
-        }, 1000);
-      } else {
-        this.showModal = !this.showModal;
-      }
+      this.showModal = !this.showModal;
     },
     toggleSettings() {
       this.toggleModal();
       this.showSettings = !this.showSettings;
-    },
-    toggleModalScroll() {
-      if (window.scrollY <= 32) {
-        setTimeout(() => {
-          this.showModal = true;
-        }, 100);
-      }
     },
   },
   created() {
