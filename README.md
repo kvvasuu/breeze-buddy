@@ -4,7 +4,7 @@
 
 ## :globe_with_meridians: General info
 
-Welcome to Breeze Buddy! My app provides quick and easy access to current weather information.
+Welcome to Breeze Buddy! My app provides quick and easy access to current weather information.<br>
 Breeze Buddy automatically detects your location to deliver accurate weather forecasts, but you can also enter the name of any place to see the weather conditions there.
 
 The application has been deployed on Netlify - [https://breezebuddy.netlify.app/](https://breezebuddy.netlify.app/)
@@ -26,7 +26,9 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - :sunny:**Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
    - :thermometer:**Temperature range:** Today's minimum and maximum temperature.
 
-5. **Weather Forecast:** Forecast for the next few days displayed below the main information.
+5. **Weather Forecast:**<br>
+   Forecast for the next few days displayed below the main information.<br>
+   Tap on a day to open a modal with detailed forecast information.
 
 6. **Additional Weather Data:**
    - :wind_face:**Wind:** Current wind speed and direction.
@@ -35,7 +37,7 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
 
 ## :checkered_flag: Languages and Units:
 
-Breeze Buddy is available in three languages: English ![GB](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png), Polish ![PL](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/pl.png), and German ![DE](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/de.png).
+Breeze Buddy is available in three languages: English ![GB](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/gb.png), Polish ![PL](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/pl.png), and German ![DE](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/de.png).<br>
 You can select your preferred language during the first launch of the app or later in the settings section.
 
 **Changing the Language:**
@@ -64,7 +66,10 @@ In the settings section, you can also adjust the units of the displayed weather 
 
 ## :grey_question: Info: 
 
-Most of the assets, i.e. background, weather condition icons, compass, gauges, etc., were made by me using <img src="https://cdn3.emoji.gg/emojis/8027-blender.png" width="14px" height="14px" alt=""> Blender, <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png" width="14px" height="14px" alt=""> Adobe Photoshop and <img src="https://raw.githubusercontent.com/wjramos/flat.icns/inkscape/pngs/inkscape.png" width="14px" height="14px" alt=""> InkScape.
+The current version of the application runs on the free version of WeatherAPI, so only 3 days of weather forecast are displayed.<br>
+If you want, you can register at [WeatherAPI.com](https://www.weatherapi.com/) and obtain your own key, which you can provide in the application code as a request parameter.
+
+Most of the assets, i.e. background, weather condition icons, compass, gauges, etc., were made by me using <img src="https://cdn3.emoji.gg/emojis/8027-blender.png" width="14px" height="14px" alt=""> Blender, <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png" width="14px" height="14px" alt=""> Adobe Photoshop and <img src="https://raw.githubusercontent.com/wjramos/flat.icns/inkscape/pngs/inkscape.png" width="14px" height="14px" alt=""> InkScape.<br>
 Some of the icons, i.e. buttons, icons before component titles and the location tag come from [FontAwesome](https://fontawesome.com/)
 
 If you have any questions or issues with the Breeze Buddy app, please contact.
@@ -72,7 +77,7 @@ If you have any questions or issues with the Breeze Buddy app, please contact.
 ## Technologies:
 
 - Vue 
-- WeatherAPI.com
+- [WeatherAPI](https://www.weatherapi.com/)
 - FontAwesome
 - Blender
 - Photoshop
