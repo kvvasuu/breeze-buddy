@@ -65,6 +65,9 @@ In the settings section, you can also adjust the units of the displayed weather 
 
 ## :grey_question: Info: 
 
+The current version of the application runs on the free version of WeatherAPI, so only 3 days of weather forecast are displayed.<br>
+If you want, you can register at [WeatherAPI.com](https://www.weatherapi.com/) and obtain your own key, which you can provide in the application code as a request parameter.
+
 Most of the assets, i.e. background, weather condition icons, compass, gauges, etc., were made by me using <img src="https://cdn3.emoji.gg/emojis/8027-blender.png" width="14px" height="14px" alt=""> Blender, <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/512px-Adobe_Photoshop_CC_icon.svg.png" width="14px" height="14px" alt=""> Adobe Photoshop and <img src="https://raw.githubusercontent.com/wjramos/flat.icns/inkscape/pngs/inkscape.png" width="14px" height="14px" alt=""> InkScape.<br>
 Some of the icons, i.e. buttons, icons before component titles and the location tag come from [FontAwesome](https://fontawesome.com/)
 
@@ -73,7 +76,7 @@ If you have any questions or issues with the Breeze Buddy app, please contact.
 ## Technologies:
 
 - Vue 
-- [WeatherAPI.com](https://www.weatherapi.com/)
+- [WeatherAPI](https://www.weatherapi.com/)
 - FontAwesome
 - Blender
 - Photoshop
