@@ -233,3 +233,9 @@ button {
     background-size: 120rem 100%;
   }
 }
+
+@media only screen and (max-width: 360px) {
+  :root {
+    font-size: 14px;
+  }
+}

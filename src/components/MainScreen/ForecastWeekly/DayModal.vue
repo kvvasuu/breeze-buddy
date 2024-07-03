@@ -149,9 +149,6 @@ export default {
     },
     passIconSrc() {
       let iconName = iconMap[this.weather.day.condition.code];
-      if (!this.isDay) {
-        iconName++;
-      }
       return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
         .href;
     },

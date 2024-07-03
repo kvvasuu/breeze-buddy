@@ -11,11 +11,6 @@
 export default {
   emits: ["toggle-modal"],
   inject: ["isDay"],
-  data() {
-    return {
-      backgroundDark: false,
-    };
-  },
 };
 </script>
 
@@ -63,7 +58,7 @@ $font-color: rgb(240, 240, 240);
   background-image: linear-gradient(
     30deg,
     rgb(22, 56, 107) 0%,
-    rgb(35, 67, 94) 100%
+    rgb(51, 103, 145) 100%
   ) !important;
 }
 .header {
