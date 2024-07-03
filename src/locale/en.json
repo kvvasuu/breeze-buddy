@@ -52,5 +52,7 @@
   "humidity": "Humidity",
   "dewpoint": "Dew point",
   "rainChance": "Chance of rain",
-  "rain": "Rain"
+  "rain": "Rain",
+  "feelslike": "Feelslike",
+  "visibility": "Visibility"
 }

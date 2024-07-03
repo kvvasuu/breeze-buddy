@@ -40,7 +40,9 @@
     "saturday": "Sobota",
     "sunday": "Niedziela",
     "rainChance": "Szansa opadów",
-    "rain": "Deszcz"
+    "rain": "Deszcz",
+    "feelslike": "Odczuwalna",
+    "visibility": "Widoczność"
   },
   "temperature": "Temperatura",
   "celsius": "Stopnie Celsiusza",

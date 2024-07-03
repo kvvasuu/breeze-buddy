@@ -52,5 +52,7 @@
   "humidity": "Luftfeuchte",
   "dewpoint": "Taupunkt",
   "rainChance": "Niederschlag",
-  "rain": "Regen"
+  "rain": "Regen",
+  "feelslike": "Gefühlte",
+  "visibility": "Sichtweite"
 }

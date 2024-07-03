@@ -417,7 +417,7 @@ $font-color: rgb(250, 250, 250);
   backdrop-filter: blur(0.4rem);
   overflow: hidden;
   padding: 2rem 0;
-  transition: all 1s ease;
+  transition: all 0.6s ease;
 }
 
 .scale-down {

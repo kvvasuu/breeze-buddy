@@ -35,6 +35,7 @@ $font-color: rgb(240, 240, 240);
   cursor: default;
   user-select: none;
   overflow: auto;
+  backdrop-filter: blur(2px);
 }
 
 .container {

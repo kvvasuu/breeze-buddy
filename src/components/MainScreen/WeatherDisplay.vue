@@ -108,7 +108,7 @@ export default {
   height: auto;
   margin: 1rem;
   user-select: none;
-  transition: scale 1s ease;
+  transition: scale 0.6s ease;
 }
 
 .location {
