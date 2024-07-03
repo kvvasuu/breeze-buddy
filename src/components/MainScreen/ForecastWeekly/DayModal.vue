@@ -193,9 +193,6 @@ export default {
         : `${this.weather.day.avgvis_km} km`;
     },
   },
-  mounted() {
-    console.log(this.weather);
-  },
 };
 </script>
 
