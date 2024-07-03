@@ -50,5 +50,7 @@
   "hectopascal": "Hectopascals",
   "inchesOfMercury": "Inches of mercury",
   "humidity": "Humidity",
-  "dewpoint": "Dew point"
+  "dewpoint": "Dew point",
+  "rainChance": "Chance of rain",
+  "rain": "Rain"
 }

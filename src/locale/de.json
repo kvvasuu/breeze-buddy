@@ -50,5 +50,7 @@
   "hectopascal": "Hektopascal",
   "inchesOfMercury": "Zoll Quecksilbersäule",
   "humidity": "Luftfeuchte",
-  "dewpoint": "Taupunkt"
+  "dewpoint": "Taupunkt",
+  "rainChance": "Niederschlag",
+  "rain": "Regen"
 }
