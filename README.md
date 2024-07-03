@@ -26,7 +26,8 @@ The application has been deployed on Netlify - [https://breezebuddy.netlify.app/
    - :sunny:**Weather Conditions:** Description of weather conditions (e.g., sunny, cloudy).
    - :thermometer:**Temperature range:** Today's minimum and maximum temperature.
 
-5. **Weather Forecast:** Forecast for the next few days displayed below the main information.<br>
+5. **Weather Forecast:**<br>
+   Forecast for the next few days displayed below the main information.<br>
    Tap on a day to open a modal with detailed forecast information.
 
 6. **Additional Weather Data:**
