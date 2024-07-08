@@ -1,6 +1,6 @@
 # Breeze Buddy <img src="https://raw.githubusercontent.com/kvvasuu/breeze-buddy/main/src/assets/favicon.png" alt="icon" width="24"/>
 
-![App demo](https://raw.githubusercontent.com/kvvasuu/breeze-buddy/main/demo1.gif "App demo")
+![App demo](https://raw.githubusercontent.com/kvvasuu/breeze-buddy/main/demo.gif "App demo")
 
 ## :globe_with_meridians: General info
 
