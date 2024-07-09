@@ -201,9 +201,14 @@ export default {
     },
     async getWeather(value, isRefresh) {
       let q = "";
-      if (value === undefined && this.isGeolocationDone) {
+      if (value === undefined && this.isGeolocationDone && !isRefresh) {
         q = `${this.position.lat},${this.position.lon}`;
-      } else q = latinise(value);
+      } else if (isRefresh) {
+        q = this.weather.location.name;
+      } else {
+        q = latinise(value);
+      }
+
       if (q !== "" && !this.loading) {
         if (!isRefresh) {
           this.loading = true;
@@ -240,9 +245,6 @@ export default {
                 ? this.$emit("is-day-emit", true)
                 : this.$emit("is-day-emit", false);
 
-              this.position.lat = response.data.location.lat;
-              this.position.lon = response.data.location.lon;
-
               localStorage.setItem("isDay", response.data.current.is_day);
 
               if (this.refreshIntervalID === 0) {
@@ -264,7 +266,7 @@ export default {
               setTimeout(() => {
                 this.loading = false;
               }, 1500);
-              return response.data.location.name;
+              return response.data.location;
             })
             .catch((error) => {
               if (this.showSearchInput) {
@@ -309,15 +311,17 @@ export default {
               (position) => {
                 this.isGeolocationDone = true;
                 if (
-                  this.position.lat !==
+                  this.weather.location.lat !==
                     Math.round(position.coords.latitude * 100) / 100 &&
-                  this.position.lon !==
+                  this.weather.location.lon !==
                     Math.round(position.coords.longitude * 100) / 100
                 ) {
                   this.position.lat = position.coords.latitude;
                   this.position.lon = position.coords.longitude;
-                  this.getWeather().then((name) => {
-                    this.position.name = name;
+                  this.getWeather().then((location) => {
+                    this.position.name = location.name;
+                    this.position.lat = location.lat;
+                    this.position.lon = location.lon;
                   });
                 } else {
                   this.pinShake();

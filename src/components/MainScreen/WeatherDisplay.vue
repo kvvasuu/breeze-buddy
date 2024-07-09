@@ -3,6 +3,7 @@
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
+        <span class="country">({{ passCountry }})</span>
         <Transition name="notification-slide">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,6 +58,7 @@
 
 <script>
 import Clock from "../Clock.vue";
+import codes from "../../codes.json";
 
 export default {
   components: {
@@ -98,6 +100,15 @@ export default {
         ? this.localTime.match(regex).toString().split(":")
         : false;
     },
+    passCountry() {
+      if (this.currentWeather.location.country) {
+        return codes.find(
+          (el) =>
+            el.name.toLowerCase() ===
+            this.currentWeather.location.country.toLowerCase()
+        ).code;
+      } else return "-";
+    },
   },
 };
 </script>
@@ -115,6 +126,9 @@ export default {
   font-size: 1.6rem;
   font-family: "Helvetica Bold";
   text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.3);
+  .country {
+    font-size: 0.7rem;
+  }
 }
 
 .geolocation-icon {
