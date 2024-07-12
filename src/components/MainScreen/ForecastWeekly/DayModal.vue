@@ -122,7 +122,7 @@ export default {
   },
   emits: ["toggle-modal"],
   props: ["weather", "dayName"],
-  inject: ["isDay", "t", "tempUnit", "windUnit", "pressureUnit"],
+  inject: ["t"],
   data() {
     return {
       months: [
@@ -153,17 +153,19 @@ export default {
         .href;
     },
     passTemperature() {
-      return Math.round(this.weather.day[`avgtemp_${this.tempUnit}`]);
+      return Math.round(
+        this.weather.day[`avgtemp_${this.$store.state.tempUnit}`]
+      );
     },
     passFellsLikeTemperature() {
       return Math.round(
         this.weather.hour
-          .map((el) => el[`feelslike_${this.tempUnit}`])
+          .map((el) => el[`feelslike_${this.$store.state.tempUnit}`])
           .reduce((a, b) => a + b) / 24
       );
     },
     passWindSpeed() {
-      switch (this.windUnit) {
+      switch (this.$store.state.windUnit) {
         case "kph":
           return `${Math.round(this.weather.day.maxwind_kph)} km/h`;
         case "mph":
@@ -175,7 +177,7 @@ export default {
       }
     },
     passPressure() {
-      return this.pressureUnit === "mb"
+      return this.$store.state.pressureUnit === "mb"
         ? `${Math.round(
             this.weather.hour
               .map((el) => el.pressure_mb)
@@ -188,7 +190,7 @@ export default {
           )} inHg`;
     },
     passVisibility() {
-      return this.windUnit === "mph"
+      return this.$store.state.windUnit === "mph"
         ? `${this.weather.day.avgvis_miles} mi`
         : `${this.weather.day.avgvis_km} km`;
     },

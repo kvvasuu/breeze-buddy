@@ -40,16 +40,14 @@
 
 <script>
 export default {
-  emits: ["language"],
-  inject: ["language"],
   data() {
     return {
-      lang: this.language,
+      lang: this.$store.state.lang,
     };
   },
   methods: {
     changeLanguage(event) {
-      this.$emit("language", event.target.value);
+      this.$store.state.lang = event.target.value;
     },
   },
 };

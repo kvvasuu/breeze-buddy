@@ -12,9 +12,7 @@
       <div class="title" :style="{ color: toggleTitle }">Breeze Buddy</div>
     </div>
     <div>
-      <LanguageSelect
-        @language="(lang) => $emit('language', lang)"
-      ></LanguageSelect>
+      <LanguageSelect></LanguageSelect>
       <button class="button-1" @click="welcomeScreenHide">
         {{ t.getStarted }}
       </button>
@@ -31,8 +29,8 @@ export default {
   components: {
     LanguageSelect,
   },
-  emits: ["welcome-screen-toggle", "language"],
-  inject: ["isDay", "t"],
+  emits: ["welcome-screen-toggle"],
+  inject: ["t"],
   methods: {
     welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");
@@ -40,10 +38,10 @@ export default {
   },
   computed: {
     toggleLogo() {
-      return this.isDay ? logo : logoDark;
+      return this.$store.state.isDay ? logo : logoDark;
     },
     toggleTitle() {
-      return this.isDay ? "rgb(51, 51, 51)" : "rgb(240, 240, 240)";
+      return this.$store.state.isDay ? "rgb(51, 51, 51)" : "rgb(240, 240, 240)";
     },
   },
 };

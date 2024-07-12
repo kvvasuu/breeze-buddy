@@ -31,16 +31,22 @@
         </div>
       </div>
       <div class="compass">
-        <img src="../../assets/compass.png" :class="{ dark: !isDay }" />
+        <img
+          src="../../assets/compass.png"
+          :class="{ dark: !this.$store.state.isDay }"
+        />
         <div class="arrow">
           <img
             src="../../assets/compass-arrow.png"
             alt=""
             :style="{ rotate: passWindDegree }"
-            :class="{ dark: !isDay }"
+            :class="{ dark: !this.$store.state.isDay }"
           />
         </div>
-        <div class="direction" :class="{ 'direction-dark': !isDay }">
+        <div
+          class="direction"
+          :class="{ 'direction-dark': !this.$store.state.isDay }"
+        >
           {{ passWindDirection }}
         </div>
       </div>
@@ -51,7 +57,7 @@
 <script>
 export default {
   props: ["currentWeather"],
-  inject: ["isDay", "t", "windUnit", "localTime"],
+  inject: ["t", "localTime"],
   data() {
     return {};
   },
@@ -68,7 +74,7 @@ export default {
       );
     },
     passWindSpeed() {
-      switch (this.windUnit) {
+      switch (this.$store.state.windUnit) {
         case "kph":
           return Math.round(
             this.currentWeather[0].hour[this.passLocalTime].wind_kph
@@ -85,7 +91,7 @@ export default {
       }
     },
     passGustSpeed() {
-      switch (this.windUnit) {
+      switch (this.$store.state.windUnit) {
         case "kph":
           return Math.round(
             this.currentWeather[0].hour[this.passLocalTime].gust_kph
@@ -102,7 +108,7 @@ export default {
       }
     },
     passWindUnit() {
-      switch (this.windUnit) {
+      switch (this.$store.state.windUnit) {
         case "kph":
           return "km/h";
         case "mph":

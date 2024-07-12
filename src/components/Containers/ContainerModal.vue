@@ -1,6 +1,10 @@
 <template>
   <div class="modal-outer" @click="() => this.$emit('toggle-modal')">
-    <div class="container" :class="{ 'container-dark': !isDay }" @click.stop="">
+    <div
+      class="container"
+      :class="{ 'container-dark': !this.$store.state.isDay }"
+      @click.stop=""
+    >
       <div class="header" v-if="$slots.header"><slot name="header"></slot></div>
       <slot></slot>
     </div>
@@ -10,7 +14,6 @@
 <script>
 export default {
   emits: ["toggle-modal"],
-  inject: ["isDay"],
 };
 </script>
 
@@ -37,7 +40,7 @@ $font-color: rgb(240, 240, 240);
   position: fixed;
   width: 60rem;
   max-height: 90dvh;
-  top: 30%;
+  top: 6rem;
   background-image: linear-gradient(
     30deg,
     rgb(31, 134, 194) 0%,

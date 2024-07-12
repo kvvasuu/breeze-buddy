@@ -15,13 +15,16 @@
     </template>
     <div class="container-inner">
       <div class="gauge">
-        <img src="../../assets/pressure-gauge.png" :class="{ dark: !isDay }" />
+        <img
+          src="../../assets/pressure-gauge.png"
+          :class="{ dark: !this.$store.state.isDay }"
+        />
         <div class="indicator">
           <img
             src="../../assets/indicator.png"
             alt=""
             :style="{ rotate: passPressureDegree }"
-            :class="{ dark: !isDay }"
+            :class="{ dark: !this.$store.state.isDay }"
           />
         </div>
         <div class="value">
@@ -55,11 +58,11 @@
 
 <script>
 export default {
-  inject: ["isDay", "t", "pressureUnit"],
+  inject: ["t"],
   props: ["currentWeather"],
   computed: {
     passPressure() {
-      return this.pressureUnit === "mb"
+      return this.$store.state.pressureUnit === "mb"
         ? this.currentWeather.pressure_mb
         : this.currentWeather.pressure_in;
     },
@@ -67,7 +70,7 @@ export default {
       return (this.currentWeather.pressure_mb - 1000) * 1.4 + "deg";
     },
     passPressureUnit() {
-      return this.pressureUnit === "mb" ? "hPa" : "inHg";
+      return this.$store.state.pressureUnit === "mb" ? "hPa" : "inHg";
     },
   },
 };

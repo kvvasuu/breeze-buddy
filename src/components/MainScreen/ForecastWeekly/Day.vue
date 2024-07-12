@@ -11,7 +11,7 @@
         <div class="bar-track">
           <div
             class="bar-thumb"
-            :class="{ dark: !isDay }"
+            :class="{ dark: !this.$store.state.isDay }"
             :style="{
               left: tempRangePosition + '%',
               width: tempRangeWidth + '%',
@@ -49,7 +49,6 @@ export default {
     DayModal,
   },
   props: ["day", "dayName", "tempMinMax", "actual", "currentTemp", "iconSrc"],
-  inject: ["isDay", "tempUnit"],
   emits: ["toggle-modal"],
   data() {
     return {
@@ -59,12 +58,16 @@ export default {
   computed: {
     passMinTemp() {
       return Math.min(
-        ...this.day.hour.map((el) => Math.round(el[`temp_${this.tempUnit}`]))
+        ...this.day.hour.map((el) =>
+          Math.round(el[`temp_${this.$store.state.tempUnit}`])
+        )
       );
     },
     passMaxTemp() {
       return Math.max(
-        ...this.day.hour.map((el) => Math.round(el[`temp_${this.tempUnit}`]))
+        ...this.day.hour.map((el) =>
+          Math.round(el[`temp_${this.$store.state.tempUnit}`])
+        )
       );
     },
     actualTempIndicatorPosition() {
