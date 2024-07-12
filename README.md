@@ -76,7 +76,8 @@ If you have any questions or issues with the Breeze Buddy app, please contact.
 
 ## Technologies:
 
-- Vue 
+- Vue
+- Vuex
 - [WeatherAPI](https://www.weatherapi.com/)
 - FontAwesome
 - Blender
