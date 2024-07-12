@@ -99,12 +99,15 @@ export default {
       !localStorage.getItem("forecastDays") ||
       localStorage.getItem("forecastDays") <= 3
     ) {
-      localStorage.setItem("forecastDays", 10);
+      localStorage.setItem("forecastDays", 3);
     }
     localStorage.getItem("isDay") === "0"
-      ? (this.$store.state.isDay = false)
-      : (this.$store.state.isDay = true);
-    this.$store.state.forecastDays = localStorage.getItem("forecastDays");
+      ? this.$store.commit("changeIsDay", false)
+      : this.$store.commit("changeIsDay", true);
+    this.$store.commit(
+      "changeForecastDays",
+      localStorage.getItem("forecastDays")
+    );
   },
 };
 </script>

@@ -182,7 +182,18 @@ export default {
             text: this.t.unknown,
           },
         },
-        forecast: { forecastday: [{ day: { mintemp_c: "", maxtemp_c: "" } }] },
+        forecast: {
+          forecastday: [
+            {
+              day: {
+                mintemp_c: "",
+                maxtemp_c: "",
+                mintemp_f: "",
+                maxtemp_f: "",
+              },
+            },
+          ],
+        },
       },
       weatherDone: false,
       searchInput: "",
@@ -241,8 +252,8 @@ export default {
               this.is_Day = !!response.data.current.is_day;
 
               response.data.current.is_day
-                ? (this.$store.state.isDay = true)
-                : (this.$store.state.isDay = false);
+                ? this.$store.commit("changeIsDay", true)
+                : this.$store.commit("changeIsDay", false);
 
               localStorage.setItem("isDay", response.data.current.is_day);
 

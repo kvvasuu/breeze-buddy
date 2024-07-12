@@ -18,6 +18,26 @@ const store = createStore({
       isDay: true,
     };
   },
+  mutations: {
+    changeLang(state, lang) {
+      state.lang = lang;
+    },
+    changeTempUnit(state, unit) {
+      state.tempUnit = unit;
+    },
+    changeWindUnit(state, unit) {
+      state.windUnit = unit;
+    },
+    changePressureUnit(state, unit) {
+      state.PressureUnit = unit;
+    },
+    changeIsDay(state, value) {
+      state.isDay = value;
+    },
+    changeForecastDays(state, days) {
+      state.forecastDays = days;
+    },
+  },
 });
 
 const app = createApp(App);

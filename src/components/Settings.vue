@@ -159,15 +159,15 @@ export default {
   },
   methods: {
     changeTempUnit(event) {
-      this.$store.state.tempUnit = event.target.value;
+      this.$store.commit("changeTempUnit", event.target.value);
       localStorage.setItem("tempUnit", this.$store.state.tempUnit);
     },
     changeWindUnit(event) {
-      this.$store.state.windUnit = event.target.value;
+      this.$store.commit("changeWindUnit", event.target.value);
       localStorage.setItem("windUnit", this.$store.state.windUnit);
     },
     changePressureUnit(event) {
-      this.$store.state.pressureUnit = event.target.value;
+      this.$store.commit("changePressureUnit", event.target.value);
       localStorage.setItem("pressureUnit", this.$store.state.pressureUnit);
     },
   },

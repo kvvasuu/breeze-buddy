@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     changeLanguage(event) {
-      this.$store.state.lang = event.target.value;
+      this.$store.commit("changeLang", event.target.value);
     },
   },
 };
