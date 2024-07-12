@@ -1,7 +1,7 @@
 <template>
   <ContainerSmall>
     <template #header>
-      {{ t.humidity }}
+      {{ $store.getters.t.humidity }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 384 512"
@@ -16,7 +16,9 @@
     <div class="container-inner">
       <div class="value">{{ currentWeather.humidity }}%</div>
       <div class="dewpoint">
-        <div class="temperature">{{ t.dewpoint + ": " + passDewPoint }}</div>
+        <div class="temperature">
+          {{ $store.getters.t.dewpoint + ": " + passDewPoint }}
+        </div>
       </div>
     </div>
   </ContainerSmall>
@@ -24,7 +26,6 @@
 
 <script>
 export default {
-  inject: ["t"],
   props: ["currentWeather"],
   computed: {
     passDewPoint() {

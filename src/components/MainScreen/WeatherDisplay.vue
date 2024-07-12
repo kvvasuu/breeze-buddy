@@ -44,12 +44,12 @@
     <div class="temp-range">
       <Transition name="slide-horizontal-fade" mode="out-in">
         <div class="temp" :key="passMinTemp">
-          {{ t.low }}: {{ passMinTemp }}
+          {{ $store.getters.t.low }}: {{ passMinTemp }}
         </div>
       </Transition>
       <Transition name="slide-horizontal-fade" mode="out-in">
         <div class="temp" :key="passMaxTemp">
-          {{ t.high }}: {{ passMaxTemp }}
+          {{ $store.getters.t.high }}: {{ passMaxTemp }}
         </div>
       </Transition>
     </div>
@@ -65,7 +65,7 @@ export default {
     Clock,
   },
   props: ["currentWeather", "iconSrc", "geolocationIcon"],
-  inject: ["showModal", "t", "localTime"],
+  inject: ["showModal", "localTime"],
   computed: {
     passTemperature() {
       return this.currentWeather.current[

@@ -6,6 +6,9 @@ import VueDragscroll from "vue-dragscroll";
 import ContainerBig from "./components/Containers/ContainerBig.vue";
 import ContainerMedium from "./components/Containers/ContainerMedium.vue";
 import ContainerSmall from "./components/Containers/ContainerSmall.vue";
+import en from "./locale/en.json";
+import pl from "./locale/pl.json";
+import de from "./locale/de.json";
 
 const store = createStore({
   state() {
@@ -16,6 +19,23 @@ const store = createStore({
       pressureUnit: "mb", // "mb" or "in"
       forecastDays: 3,
       isDay: true,
+      availableLanguages: [
+        {
+          code: "en",
+          name: "English",
+          file: en,
+        },
+        {
+          code: "pl",
+          name: "Polski",
+          file: pl,
+        },
+        {
+          code: "de",
+          name: "Deutsch",
+          file: de,
+        },
+      ],
     };
   },
   mutations: {
@@ -36,6 +56,12 @@ const store = createStore({
     },
     changeForecastDays(state, days) {
       state.forecastDays = days;
+    },
+  },
+  getters: {
+    t(state) {
+      return state.availableLanguages.find((lang) => lang.code === state.lang)
+        .file;
     },
   },
 });

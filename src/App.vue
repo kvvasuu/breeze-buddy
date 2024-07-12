@@ -31,9 +31,6 @@ import WelcomeScreen from "./components/WelcomeScreen.vue";
 import MainScreen from "./components/MainScreen/MainScreen.vue";
 import Settings from "./components/Settings.vue";
 import { computed } from "vue";
-import en from "./locale/en.json";
-import pl from "./locale/pl.json";
-import de from "./locale/de.json";
 
 export default {
   name: "App",
@@ -45,12 +42,6 @@ export default {
   provide() {
     return {
       showModal: computed(() => this.showModal),
-      t: computed(
-        () =>
-          this.availableLanguages.find(
-            (lang) => lang.code === this.$store.state.lang
-          ).file
-      ),
     };
   },
   data() {
@@ -58,23 +49,6 @@ export default {
       showWelcomeScreen: true,
       showSettings: false,
       showModal: false,
-      availableLanguages: [
-        {
-          code: "en",
-          name: "English",
-          file: en,
-        },
-        {
-          code: "pl",
-          name: "Polski",
-          file: pl,
-        },
-        {
-          code: "de",
-          name: "Deutsch",
-          file: de,
-        },
-      ],
     };
   },
   methods: {

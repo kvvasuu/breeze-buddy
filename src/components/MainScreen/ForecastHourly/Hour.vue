@@ -22,12 +22,11 @@
 <script>
 export default {
   props: ["hour", "actual", "sunsetOrSunrise", "iconSrc"],
-  inject: ["t"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
         return this.actual
-          ? this.t.now
+          ? this.$store.getters.t.now
           : this.hour.time.split(" ")[1].split(":")[0];
       }
     },
@@ -37,7 +36,9 @@ export default {
       }
     },
     sunsetOrSunriseCheck() {
-      return this.hour.type === "sunrise" ? this.t.sunrise : this.t.sunset;
+      return this.hour.type === "sunrise"
+        ? this.$store.getters.t.sunrise
+        : this.$store.getters.t.sunset;
     },
     isNow() {
       if (this.actual) return "now";

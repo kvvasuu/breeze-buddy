@@ -1,7 +1,7 @@
 <template>
   <ContainerSmall>
     <template #header>
-      {{ t.pressure }}
+      {{ $store.getters.t.pressure }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
@@ -58,7 +58,6 @@
 
 <script>
 export default {
-  inject: ["t"],
   props: ["currentWeather"],
   computed: {
     passPressure() {

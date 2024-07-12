@@ -14,7 +14,7 @@
     <div>
       <LanguageSelect></LanguageSelect>
       <button class="button-1" @click="welcomeScreenHide">
-        {{ t.getStarted }}
+        {{ $store.getters.t.getStarted }}
       </button>
     </div>
   </div>
@@ -30,7 +30,6 @@ export default {
     LanguageSelect,
   },
   emits: ["welcome-screen-toggle"],
-  inject: ["t"],
   methods: {
     welcomeScreenHide() {
       this.$emit("welcome-screen-toggle");

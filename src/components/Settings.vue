@@ -1,11 +1,11 @@
 <template>
   <ContainerModal @toggle-modal="() => this.$emit('toggle-modal')">
     <div class="settings-container-inner">
-      <div class="title">{{ t.settings }}</div>
+      <div class="title">{{ $store.getters.t.settings }}</div>
       <div class="units">
         <div class="temperature-unit unit-select">
           <div class="caption">
-            {{ t.temperature }}
+            {{ $store.getters.t.temperature }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512"
@@ -26,7 +26,9 @@
                 @click="changeTempUnit"
                 v-model="temp_unit"
               />
-              <label for="c" class="label">{{ t.celsius }} (&deg;C)</label>
+              <label for="c" class="label"
+                >{{ $store.getters.t.celsius }} (&deg;C)</label
+              >
             </div>
             <div class="input-group">
               <input
@@ -37,13 +39,15 @@
                 @click="changeTempUnit"
                 v-model="temp_unit"
               />
-              <label for="f" class="label">{{ t.farenheit }} (&deg;F)</label>
+              <label for="f" class="label"
+                >{{ $store.getters.t.farenheit }} (&deg;F)</label
+              >
             </div>
           </div>
         </div>
         <div class="wind-unit unit-select">
           <div class="caption">
-            {{ t.wind }}
+            {{ $store.getters.t.wind }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -92,7 +96,7 @@
         </div>
         <div class="pressure-unit unit-select">
           <div class="caption">
-            {{ t.pressure }}
+            {{ $store.getters.t.pressure }}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"
@@ -113,7 +117,9 @@
                 @click="changePressureUnit"
                 v-model="pressure_unit"
               />
-              <label for="mb" class="label">{{ t.hectopascal }} (hPa)</label>
+              <label for="mb" class="label"
+                >{{ $store.getters.t.hectopascal }} (hPa)</label
+              >
             </div>
             <div class="input-group">
               <input
@@ -125,7 +131,7 @@
                 v-model="pressure_unit"
               />
               <label for="in" class="label"
-                >{{ t.inchesOfMercury }} (inHg)</label
+                >{{ $store.getters.t.inchesOfMercury }} (inHg)</label
               >
             </div>
           </div>
@@ -148,7 +154,6 @@ export default {
     ContainerModal,
   },
   emits: ["toggle-modal"],
-  inject: ["t"],
   data() {
     return {
       lang: this.$store.state.lang,

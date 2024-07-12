@@ -157,7 +157,7 @@ export default {
     ContainerNotification,
   },
   emits: ["show-settings", "toggle-modal"],
-  inject: ["showModal", "t"],
+  inject: ["showModal"],
   provide() {
     return {
       localTime: computed(() => this.weather.location.localtime),
@@ -172,14 +172,14 @@ export default {
       position: { lat: 0, lon: 0, name: "" },
       weather: {
         location: {
-          name: this.t.myLocation,
+          name: this.$store.getters.t.myLocation,
         },
         current: {
           temp_c: "-",
           temp_f: "-",
           condition: {
             code: 100,
-            text: this.t.unknown,
+            text: this.$store.getters.t.unknown,
           },
         },
         forecast: {

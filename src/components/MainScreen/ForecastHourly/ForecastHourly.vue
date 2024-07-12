@@ -1,7 +1,7 @@
 <template>
   <ContainerBig>
     <div class="header">
-      <div class="day">{{ t.today }}</div>
+      <div class="day">{{ $store.getters.t.today }}</div>
       <div class="date">{{ passCurrentDate }}</div>
     </div>
     <div
@@ -31,7 +31,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["t", "localTime"],
+  inject: ["localTime"],
   data() {
     return {
       currentDate: new Date(),
@@ -55,7 +55,7 @@ export default {
     passCurrentDate() {
       const day = this.currentDate.getDate();
       const month = this.currentDate.getMonth();
-      return `${this.t.months[this.months[month]]}, ${day}`;
+      return `${this.$store.getters.t.months[this.months[month]]}, ${day}`;
     },
 
     pass24Hours() {

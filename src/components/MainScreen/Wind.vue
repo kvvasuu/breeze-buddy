@@ -1,7 +1,7 @@
 <template>
   <ContainerMedium>
     <template #header>
-      {{ t.wind }}
+      {{ $store.getters.t.wind }}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
@@ -19,14 +19,14 @@
           <div class="value">{{ passWindSpeed }}</div>
           <div class="wind-caption">
             <div class="unit">{{ passWindUnit }}</div>
-            <div class="type">{{ t.wind }}</div>
+            <div class="type">{{ $store.getters.t.wind }}</div>
           </div>
         </div>
         <div class="wind" id="gust">
           <div class="value">{{ passGustSpeed }}</div>
           <div class="wind-caption">
             <div class="unit">{{ passWindUnit }}</div>
-            <div class="type">{{ t.gust }}</div>
+            <div class="type">{{ $store.getters.t.gust }}</div>
           </div>
         </div>
       </div>
@@ -57,10 +57,7 @@
 <script>
 export default {
   props: ["currentWeather"],
-  inject: ["t", "localTime"],
-  data() {
-    return {};
-  },
+  inject: ["localTime"],
   computed: {
     passLocalTime() {
       return this.localTime.split(" ")[1].split(":")[0];
