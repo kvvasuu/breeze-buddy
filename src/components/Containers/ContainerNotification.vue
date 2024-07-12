@@ -1,14 +1,15 @@
 <template>
-  <div class="container" :class="{ 'container-dark': !isDay }">
+  <div
+    class="container"
+    :class="{ 'container-dark': !this.$store.state.isDay }"
+  >
     <div class="content"><slot name="header"></slot></div>
     <div class="info" v-if="$slots.info"><slot name="info"></slot></div>
   </div>
 </template>
 
 <script>
-export default {
-  inject: ["isDay"],
-};
+export default {};
 </script>
 
 //

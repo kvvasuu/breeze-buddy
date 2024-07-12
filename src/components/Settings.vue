@@ -147,31 +147,28 @@ export default {
     LanguageSelect,
     ContainerModal,
   },
-  emits: [
-    "toggle-modal",
-    "language",
-    "temp-unit",
-    "wind-unit",
-    "pressure-unit",
-  ],
-  inject: ["language", "tempUnit", "windUnit", "pressureUnit", "t"],
+  emits: ["toggle-modal"],
+  inject: ["t"],
   data() {
     return {
-      lang: this.language,
-      temp_unit: this.tempUnit,
-      wind_unit: this.windUnit,
-      pressure_unit: this.pressureUnit,
+      lang: this.$store.state.lang,
+      temp_unit: this.$store.state.tempUnit,
+      wind_unit: this.$store.state.windUnit,
+      pressure_unit: this.$store.state.pressureUnit,
     };
   },
   methods: {
     changeTempUnit(event) {
-      this.$emit("temp-unit", event.target.value);
+      this.$store.state.tempUnit = event.target.value;
+      localStorage.setItem("tempUnit", this.$store.state.tempUnit);
     },
     changeWindUnit(event) {
-      this.$emit("wind-unit", event.target.value);
+      this.$store.state.windUnit = event.target.value;
+      localStorage.setItem("windUnit", this.$store.state.windUnit);
     },
     changePressureUnit(event) {
-      this.$emit("pressure-unit", event.target.value);
+      this.$store.state.pressureUnit = event.target.value;
+      localStorage.setItem("pressureUnit", this.$store.state.pressureUnit);
     },
   },
 };

@@ -156,9 +156,8 @@ export default {
     Humidity,
     ContainerNotification,
   },
-  props: ["forecastDays"],
-  emits: ["is-day-emit", "show-settings", "toggle-modal"],
-  inject: ["showModal", "isDay", "language", "t"],
+  emits: ["show-settings", "toggle-modal"],
+  inject: ["showModal", "t"],
   provide() {
     return {
       localTime: computed(() => this.weather.location.localtime),
@@ -221,8 +220,8 @@ export default {
                 key: "e4ee231ca8574dfc85f123549241106",
                 q: q,
                 aqi: "no",
-                lang: this.language,
-                days: this.forecastDays,
+                lang: this.$store.state.lang,
+                days: this.$store.state.forecastDays,
               },
             })
             .then((response) => {
@@ -242,8 +241,8 @@ export default {
               this.is_Day = !!response.data.current.is_day;
 
               response.data.current.is_day
-                ? this.$emit("is-day-emit", true)
-                : this.$emit("is-day-emit", false);
+                ? (this.$store.state.isDay = true)
+                : (this.$store.state.isDay = false);
 
               localStorage.setItem("isDay", response.data.current.is_day);
 

@@ -22,7 +22,7 @@
 <script>
 export default {
   props: ["hour", "actual", "sunsetOrSunrise", "iconSrc"],
-  inject: ["isDay", "t", "tempUnit"],
+  inject: ["t"],
   computed: {
     passTime() {
       if (!this.sunsetOrSunrise) {
@@ -33,7 +33,7 @@ export default {
     },
     passTemp() {
       if (!this.sunsetOrSunrise) {
-        return Math.round(this.hour[`temp_${this.tempUnit}`]);
+        return Math.round(this.hour[`temp_${this.$store.state.tempUnit}`]);
       }
     },
     sunsetOrSunriseCheck() {

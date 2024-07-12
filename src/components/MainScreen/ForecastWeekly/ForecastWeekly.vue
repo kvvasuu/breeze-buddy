@@ -20,7 +20,7 @@
         :dayName="passDayOfWeek(index)"
         :tempMinMax="getMinMaxTemp"
         :actual="index === 0"
-        :currentTemp="currentWeather[`temp_${tempUnit}`]"
+        :currentTemp="currentWeather[`temp_${$store.state.tempUnit}`]"
         :iconSrc="passIconSrc(day)"
         @toggle-modal="() => $emit('toggle-modal')"
       ></Day>
@@ -37,7 +37,7 @@ export default {
     Day,
   },
   props: ["forecast", "currentWeather"],
-  inject: ["isDay", "t", "tempUnit"],
+  inject: ["t"],
   emits: ["toggle-modal"],
   data() {
     return {
@@ -79,7 +79,7 @@ export default {
           ...this.forecast.map((el) =>
             Math.min(
               ...el.hour
-                .map((hour) => hour[`temp_${this.tempUnit}`])
+                .map((hour) => hour[`temp_${this.$store.state.tempUnit}`])
                 .filter((el) => el !== undefined)
             )
           )
@@ -90,7 +90,7 @@ export default {
           ...this.forecast.map((el) =>
             Math.max(
               ...el.hour
-                .map((hour) => hour[`temp_${this.tempUnit}`])
+                .map((hour) => hour[`temp_${this.$store.state.tempUnit}`])
                 .filter((el) => el !== undefined)
             )
           )

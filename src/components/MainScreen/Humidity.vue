@@ -24,11 +24,11 @@
 
 <script>
 export default {
-  inject: ["isDay", "t", "tempUnit"],
+  inject: ["t"],
   props: ["currentWeather"],
   computed: {
     passDewPoint() {
-      return this.tempUnit === "c"
+      return this.$store.state.tempUnit === "c"
         ? Math.round(this.currentWeather.dewpoint_c)
         : Math.round(this.currentWeather.dewpoint_f);
     },

@@ -1,17 +1,17 @@
 <template>
-  <div id="app-background" :class="{ 'app-background-night': !is_Day }">
+  <div
+    id="app-background"
+    :class="{ 'app-background-night': !this.$store.state.isDay }"
+  >
     <div id="app-inner">
       <Transition name="slide-fade" mode="out-in" appear>
         <WelcomeScreen
           v-if="showWelcomeScreen"
           @welcome-screen-toggle="welcomeScreenToggle"
-          @language="changeLanguage"
         ></WelcomeScreen>
         <MainScreen
           v-else
-          :key="lang"
-          :forecastDays="forecastDays"
-          @is-day-emit="toggleNight"
+          :key="this.$store.state.lang"
           @show-settings="toggleSettings"
           @toggle-modal="toggleModal"
         ></MainScreen> </Transition
@@ -20,10 +20,6 @@
           <Settings
             v-if="showSettings"
             @toggle-modal="toggleSettings"
-            @language="changeLanguage"
-            @temp-unit="changeTempUnit"
-            @wind-unit="changeWindUnit"
-            @pressure-unit="changePressureUnit"
           ></Settings> </Transition
       ></Teleport>
     </div>
@@ -49,15 +45,12 @@ export default {
   provide() {
     return {
       showModal: computed(() => this.showModal),
-      isDay: computed(() => this.is_Day),
-      language: computed(() => this.lang),
       t: computed(
         () =>
-          this.availableLanguages.find((lang) => lang.code === this.lang).file
+          this.availableLanguages.find(
+            (lang) => lang.code === this.$store.state.lang
+          ).file
       ),
-      tempUnit: computed(() => this.tempUnit),
-      windUnit: computed(() => this.windUnit),
-      pressureUnit: computed(() => this.pressureUnit),
     };
   },
   data() {
@@ -65,9 +58,6 @@ export default {
       showWelcomeScreen: true,
       showSettings: false,
       showModal: false,
-      forecastDays: 3, // minimum 3
-      is_Day: true,
-      lang: "en", // "en", "pl" or "de"
       availableLanguages: [
         {
           code: "en",
@@ -85,34 +75,12 @@ export default {
           file: de,
         },
       ],
-      tempUnit: "c", // "c" or "f"
-      windUnit: "kph", // "kph", "m/s" or "mph"
-      pressureUnit: "mb", // "mb" or "in"
     };
   },
   methods: {
     welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
-      localStorage.setItem("language", this.lang);
-    },
-    toggleNight(isDay) {
-      isDay ? (this.is_Day = true) : (this.is_Day = false);
-    },
-    changeLanguage(lang) {
-      this.lang = lang;
-      localStorage.setItem("language", this.lang);
-    },
-    changeTempUnit(unit) {
-      this.tempUnit = unit;
-      localStorage.setItem("tempUnit", this.tempUnit);
-    },
-    changeWindUnit(unit) {
-      this.windUnit = unit;
-      localStorage.setItem("windUnit", this.windUnit);
-    },
-    changePressureUnit(unit) {
-      this.pressureUnit = unit;
-      localStorage.setItem("pressureUnit", this.pressureUnit);
+      localStorage.setItem("language", this.$store.state.lang);
     },
     toggleModal() {
       this.showModal = !this.showModal;
@@ -123,9 +91,9 @@ export default {
     },
   },
   created() {
-    this.lang = localStorage.getItem("language") || "en";
-    this.tempUnit = localStorage.getItem("tempUnit") || "c";
-    this.windUnit = localStorage.getItem("windUnit") || "kph";
+    this.$store.state.lang = localStorage.getItem("language") || "en";
+    this.$store.state.tempUnit = localStorage.getItem("tempUnit") || "c";
+    this.$store.state.windUnit = localStorage.getItem("windUnit") || "kph";
 
     if (
       !localStorage.getItem("forecastDays") ||
@@ -134,9 +102,9 @@ export default {
       localStorage.setItem("forecastDays", 10);
     }
     localStorage.getItem("isDay") === "0"
-      ? (this.is_Day = false)
-      : (this.is_Day = true);
-    this.forecastDays = localStorage.getItem("forecastDays");
+      ? (this.$store.state.isDay = false)
+      : (this.$store.state.isDay = true);
+    this.$store.state.forecastDays = localStorage.getItem("forecastDays");
   },
 };
 </script>

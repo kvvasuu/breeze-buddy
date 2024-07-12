@@ -31,7 +31,7 @@ export default {
     Hour,
   },
   props: ["weather"],
-  inject: ["isDay", "t", "localTime"],
+  inject: ["t", "localTime"],
   data() {
     return {
       currentDate: new Date(),

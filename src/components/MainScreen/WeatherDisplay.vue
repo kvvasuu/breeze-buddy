@@ -65,32 +65,36 @@ export default {
     Clock,
   },
   props: ["currentWeather", "iconSrc", "geolocationIcon"],
-  inject: ["showModal", "t", "tempUnit", "localTime"],
+  inject: ["showModal", "t", "localTime"],
   computed: {
     passTemperature() {
-      return this.currentWeather.current[`temp_${this.tempUnit}`] === "-"
-        ? this.currentWeather.current[`temp_${this.tempUnit}`]
-        : Math.round(this.currentWeather.current[`temp_${this.tempUnit}`]);
+      return this.currentWeather.current[
+        `temp_${this.$store.state.tempUnit}`
+      ] === "-"
+        ? this.currentWeather.current[`temp_${this.$store.state.tempUnit}`]
+        : Math.round(
+            this.currentWeather.current[`temp_${this.$store.state.tempUnit}`]
+          );
     },
     passMinTemp() {
       return this.currentWeather.forecast.forecastday[0].day[
-        `mintemp_${this.tempUnit}`
+        `mintemp_${this.$store.state.tempUnit}`
       ] === ""
         ? "-"
         : Math.min(
             ...this.currentWeather.forecast.forecastday[0].hour.map((el) =>
-              Math.round(el[`temp_${this.tempUnit}`])
+              Math.round(el[`temp_${this.$store.state.tempUnit}`])
             )
           );
     },
     passMaxTemp() {
       return this.currentWeather.forecast.forecastday[0].day[
-        `maxtemp_${this.tempUnit}`
+        `maxtemp_${this.$store.state.tempUnit}`
       ] === ""
         ? "-"
         : Math.max(
             ...this.currentWeather.forecast.forecastday[0].hour.map((el) =>
-              Math.round(el[`temp_${this.tempUnit}`])
+              Math.round(el[`temp_${this.$store.state.tempUnit}`])
             )
           );
     },
