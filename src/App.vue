@@ -64,7 +64,19 @@ export default {
     },
   },
   created() {
-    this.$store.commit("changeLang", localStorage.getItem("language") || "en");
+    if (localStorage.getItem("language") === null) {
+      const prefferedLang = this.$store.state.availableLanguages.find(
+        (lang) => lang.code === navigator.language.split("-")[0]
+      );
+      if (prefferedLang !== undefined) {
+        this.$store.commit("changeLang", prefferedLang.code);
+        localStorage.setItem("language", prefferedLang.code);
+      } else {
+        this.$store.commit("changeLang", "en");
+        localStorage.setItem("language", "en");
+      }
+    }
+
     this.$store.commit(
       "changeTempUnit",
       localStorage.getItem("tempUnit") || "c"
