@@ -54,9 +54,6 @@ const store = createStore({
     changeIsDay(state, value) {
       state.isDay = value;
     },
-    changeForecastDays(state, days) {
-      state.forecastDays = days;
-    },
   },
   getters: {
     t(state) {

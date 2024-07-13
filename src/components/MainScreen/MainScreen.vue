@@ -226,7 +226,7 @@ export default {
           return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
               params: {
-                key: "e4ee231ca8574dfc85f123549241106",
+                key: "7daa3061b866483791e125836241307",
                 q: q,
                 aqi: "no",
                 lang: this.$store.state.lang,
@@ -250,7 +250,7 @@ export default {
               this.$store.commit("changeIsDay", !!response.data.current.is_day);
               localStorage.setItem("isDay", this.$store.state.isDay);
 
-              console.log(response.data);
+              console.log(response);
               if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
                   this.refresh();

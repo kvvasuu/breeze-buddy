@@ -74,23 +74,11 @@ export default {
       localStorage.getItem("windUnit") || "kph"
     );
 
-    if (
-      !localStorage.getItem("forecastDays") ||
-      localStorage.getItem("forecastDays") <= 3
-    ) {
-      localStorage.setItem("forecastDays", 3);
-    }
-
     if (localStorage.getItem("isDay") != null) {
       this.$store.commit("changeIsDay", localStorage.getItem("isDay"));
     } else {
       localStorage.setItem("isDay", true);
     }
-
-    this.$store.commit(
-      "changeForecastDays",
-      localStorage.getItem("forecastDays")
-    );
   },
 };
 </script>
