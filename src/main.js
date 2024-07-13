@@ -17,7 +17,6 @@ const store = createStore({
       tempUnit: "c", // "c" or "f"
       windUnit: "kph", // "kph", "m/s" or "mph"
       pressureUnit: "mb", // "mb" or "in"
-      forecastDays: 3,
       isDay: true,
       availableLanguages: [
         {
@@ -59,6 +58,9 @@ const store = createStore({
     t(state) {
       return state.availableLanguages.find((lang) => lang.code === state.lang)
         .file;
+    },
+    lang(state) {
+      return state.lang;
     },
   },
 });

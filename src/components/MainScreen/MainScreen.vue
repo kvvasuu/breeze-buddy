@@ -229,8 +229,8 @@ export default {
                 key: "7daa3061b866483791e125836241307",
                 q: q,
                 aqi: "no",
-                lang: this.$store.state.lang,
-                days: this.$store.state.forecastDays,
+                lang: this.$store.getters.lang,
+                days: 3,
               },
             })
             .then((response) => {
@@ -246,7 +246,6 @@ export default {
                 this.isCurrentLocation = true;
               } else this.isCurrentLocation = false;
 
-              this.weather = response.data;
               this.$store.commit("changeIsDay", !!response.data.current.is_day);
               localStorage.setItem("isDay", this.$store.state.isDay);
 
@@ -257,8 +256,10 @@ export default {
                 }, 70000);
               }
 
-              if (response.data.current && response.data.forecast)
+              if (response.data.current && response.data.forecast) {
                 this.weatherDone = true;
+                this.weather = response.data;
+              }
 
               if (response.data && !isRefresh)
                 setTimeout(() => {
