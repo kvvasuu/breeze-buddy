@@ -3,7 +3,7 @@
     <Transition name="slide-horizontal-fade" mode="out-in">
       <div class="location" :key="currentWeather.location.name">
         {{ currentWeather.location.name }}
-        <span class="country">({{ passCountry }})</span>
+        <span class="country">{{ passCountry }}</span>
         <Transition name="notification-slide">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@
       <Transition name="slide-horizontal-fade" mode="out-in">
         <img
           class="icon"
-          :src="iconSrc"
+          :src="passIconSrc"
           draggable="false"
           :key="this.currentWeather.current.condition.code"
         />
@@ -59,12 +59,13 @@
 <script>
 import Clock from "../Clock.vue";
 import codes from "../../codes.json";
+import { iconMap } from "../../functions";
 
 export default {
   components: {
     Clock,
   },
-  props: ["currentWeather", "iconSrc", "geolocationIcon"],
+  props: ["currentWeather", "geolocationIcon"],
   inject: ["showModal", "localTime"],
   computed: {
     passTemperature() {
@@ -98,6 +99,14 @@ export default {
             )
           );
     },
+    passIconSrc() {
+      let iconName = iconMap[this.currentWeather.current.condition.code];
+      if (!this.$store.state.isDay) {
+        iconName++;
+      }
+      return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
+        .href;
+    },
     passLocalTime() {
       const regex = /\b([01]?[0-9]|2[0-3]):([0-5][0-9])(?::([0-9][0-9]))?\b/gm;
       return this.localTime
@@ -106,12 +115,13 @@ export default {
     },
     passCountry() {
       if (this.currentWeather.location.country) {
-        return codes.find(
+        let code = codes.find(
           (el) =>
             el.name.toLowerCase() ===
             this.currentWeather.location.country.toLowerCase()
-        ).code;
-      } else return "-";
+        );
+        return code ? `(${code.code})` : "";
+      } else return "";
     },
   },
 };

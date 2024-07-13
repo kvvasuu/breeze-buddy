@@ -54,7 +54,6 @@ export default {
   methods: {
     welcomeScreenToggle() {
       this.showWelcomeScreen = !this.showWelcomeScreen;
-      localStorage.setItem("language", this.$store.state.lang);
     },
     toggleModal() {
       this.showModal = !this.showModal;
@@ -65,9 +64,15 @@ export default {
     },
   },
   created() {
-    this.$store.state.lang = localStorage.getItem("language") || "en";
-    this.$store.state.tempUnit = localStorage.getItem("tempUnit") || "c";
-    this.$store.state.windUnit = localStorage.getItem("windUnit") || "kph";
+    this.$store.commit("changeLang", localStorage.getItem("language") || "en");
+    this.$store.commit(
+      "changeTempUnit",
+      localStorage.getItem("tempUnit") || "c"
+    );
+    this.$store.commit(
+      "changeWindUnit",
+      localStorage.getItem("windUnit") || "kph"
+    );
 
     if (
       !localStorage.getItem("forecastDays") ||
@@ -75,9 +80,13 @@ export default {
     ) {
       localStorage.setItem("forecastDays", 3);
     }
-    localStorage.getItem("isDay") === "0"
-      ? this.$store.commit("changeIsDay", false)
-      : this.$store.commit("changeIsDay", true);
+
+    if (localStorage.getItem("isDay") != null) {
+      this.$store.commit("changeIsDay", localStorage.getItem("isDay"));
+    } else {
+      localStorage.setItem("isDay", true);
+    }
+
     this.$store.commit(
       "changeForecastDays",
       localStorage.getItem("forecastDays")

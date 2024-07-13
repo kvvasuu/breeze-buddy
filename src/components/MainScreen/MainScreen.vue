@@ -12,7 +12,6 @@
     </Teleport>
     <WeatherDisplay
       :currentWeather="weather"
-      :iconSrc="passIconSrc"
       :geolocationIcon="isCurrentLocation"
     ></WeatherDisplay>
     <div class="buttons">
@@ -42,8 +41,8 @@
             placeholder="Search"
             v-if="showSearchInput"
             v-model.trim="searchInput"
-            @keydown.enter="getWeather(searchInput)"
-            @blur="getWeather(searchInput)"
+            @keydown.enter="getWeather(searchInput, false)"
+            @blur="getWeather(searchInput, false)"
             autocomplete="off"
             ref="search"
             autofocus
@@ -197,7 +196,6 @@ export default {
       },
       weatherDone: false,
       searchInput: "",
-      is_Day: true,
       refreshIntervalID: 0,
       notificationContent: {},
       notificationVisible: false,
@@ -249,21 +247,18 @@ export default {
               } else this.isCurrentLocation = false;
 
               this.weather = response.data;
-              this.is_Day = !!response.data.current.is_day;
+              this.$store.commit("changeIsDay", !!response.data.current.is_day);
+              localStorage.setItem("isDay", this.$store.state.isDay);
 
-              response.data.current.is_day
-                ? this.$store.commit("changeIsDay", true)
-                : this.$store.commit("changeIsDay", false);
-
-              localStorage.setItem("isDay", response.data.current.is_day);
-
+              console.log(response.data);
               if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
                   this.refresh();
                 }, 70000);
               }
 
-              if (response.status === 200) this.weatherDone = true;
+              if (response.data.current && response.data.forecast)
+                this.weatherDone = true;
 
               if (response.data && !isRefresh)
                 setTimeout(() => {
@@ -364,8 +359,10 @@ export default {
       }
     },
     refresh() {
-      console.log("REFRESH");
-      this.getWeather(undefined, true);
+      if (!this.loading) {
+        console.log("REFRESH");
+        this.getWeather(undefined, true);
+      }
     },
     pinShake() {
       if (!this.pinShakeAnimation) {
@@ -395,16 +392,7 @@ export default {
     );
     this.getLocationWeather();
   },
-  computed: {
-    passIconSrc() {
-      let iconName = iconMap[this.weather.current.condition.code];
-      if (!this.is_Day) {
-        iconName++;
-      }
-      return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
-        .href;
-    },
-  },
+
   unmounted() {
     clearInterval(this.refreshIntervalID);
   },

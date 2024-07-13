@@ -48,6 +48,7 @@ export default {
   methods: {
     changeLanguage(event) {
       this.$store.commit("changeLang", event.target.value);
+      localStorage.setItem("language", this.$store.state.lang);
     },
   },
 };

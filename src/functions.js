@@ -17,6 +17,7 @@ function timeConversion(num) {
 
 const iconMap = {
   100: 100,
+  101: 100,
   1000: 113,
   1001: 114,
   1003: 116,
