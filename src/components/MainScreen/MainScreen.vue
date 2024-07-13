@@ -221,7 +221,31 @@ export default {
         if (!isRefresh) {
           this.loading = true;
         }
-
+        this.weather = {
+          location: {
+            name: this.$store.getters.t.myLocation,
+          },
+          current: {
+            temp_c: "-",
+            temp_f: "-",
+            condition: {
+              code: 100,
+              text: this.$store.getters.t.unknown,
+            },
+          },
+          forecast: {
+            forecastday: [
+              {
+                day: {
+                  mintemp_c: "",
+                  maxtemp_c: "",
+                  mintemp_f: "",
+                  maxtemp_f: "",
+                },
+              },
+            ],
+          },
+        };
         try {
           return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
