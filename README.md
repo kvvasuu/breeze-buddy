@@ -56,7 +56,7 @@ In the settings section, you can also adjust the units of the displayed weather 
    If geolocation is not supported or is not allowed, this feature is unavailable.
 
 2. **Location Search:**
-   To check the weather in another location, enter the name of the location in the search field.
+   To check the weather in another location, enter the name of the location in the search field, then select location from list.
 
 3. **Main Screen:**
    Browse current weather conditions, the forecast for the next few days, and additional weather data.
