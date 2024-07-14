@@ -542,11 +542,11 @@ $font-color: rgb(250, 250, 250);
   max-width: 10rem;
   transition: all 0.3s ease;
   font-family: Helvetica Bold;
+  text-transform: uppercase;
   z-index: 3;
   &::placeholder {
     color: rgba(35, 188, 199, 0.8);
     opacity: 1;
-    text-transform: uppercase;
   }
   &:focus {
     box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
