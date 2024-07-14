@@ -377,6 +377,7 @@ export default {
                   "Geolocation must be on.",
                   "Turn on the geolocation to use this feature."
                 );
+                console.log(error);
               },
               { enableHighAccuracy: true, maximumAge: 10000000 }
             );
@@ -400,7 +401,6 @@ export default {
           })
           .then((response) => {
             this.autocompleteList = response.data;
-            console.log(this.autocompleteList);
           })
           .catch((error) => {
             console.log(error);
