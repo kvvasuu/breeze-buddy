@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createStore } from "vuex";
+import vueDebounce from "vue-debounce";
 import "./style.scss";
 import App from "./App.vue";
 import VueDragscroll from "vue-dragscroll";
@@ -71,4 +72,5 @@ app.component("ContainerMedium", ContainerMedium);
 app.component("ContainerSmall", ContainerSmall);
 app.use(VueDragscroll);
 app.use(store);
+app.directive("debounce", vueDebounce({ lock: true }));
 app.mount("#app");
