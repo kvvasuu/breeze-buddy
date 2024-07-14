@@ -220,32 +220,33 @@ export default {
       if (q !== "" && !this.loading) {
         if (!isRefresh) {
           this.loading = true;
-        }
-        this.weather = {
-          location: {
-            name: this.$store.getters.t.myLocation,
-          },
-          current: {
-            temp_c: "-",
-            temp_f: "-",
-            condition: {
-              code: 100,
-              text: this.$store.getters.t.unknown,
+          this.weather = {
+            location: {
+              name: this.$store.getters.t.myLocation,
             },
-          },
-          forecast: {
-            forecastday: [
-              {
-                day: {
-                  mintemp_c: "",
-                  maxtemp_c: "",
-                  mintemp_f: "",
-                  maxtemp_f: "",
-                },
+            current: {
+              temp_c: "-",
+              temp_f: "-",
+              condition: {
+                code: 100,
+                text: this.$store.getters.t.unknown,
               },
-            ],
-          },
-        };
+            },
+            forecast: {
+              forecastday: [
+                {
+                  day: {
+                    mintemp_c: "",
+                    maxtemp_c: "",
+                    mintemp_f: "",
+                    maxtemp_f: "",
+                  },
+                },
+              ],
+            },
+          };
+        }
+
         try {
           return await axios
             .get("https://api.weatherapi.com/v1/forecast.json", {
@@ -273,7 +274,6 @@ export default {
               this.$store.commit("changeIsDay", !!response.data.current.is_day);
               localStorage.setItem("isDay", this.$store.state.isDay);
 
-              console.log(response);
               if (this.refreshIntervalID === 0) {
                 this.refreshIntervalID = setInterval(() => {
                   this.refresh();
