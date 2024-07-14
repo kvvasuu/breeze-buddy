@@ -38,15 +38,16 @@
             class="search-input"
             id="search"
             type="text"
-            placeholder="Search"
             v-if="showSearchInput"
+            placeholder="Search"
             v-model.trim="searchInput"
-            @keydown.enter="getWeather(searchInput, false)"
-            @blur="getWeather(searchInput, false)"
+            v-debounce:500ms="getAutocomplete"
+            :debounce-events="['click', 'keydown']"
             autocomplete="off"
             ref="search"
             autofocus
           />
+
           <img
             src="../../assets/spinner.gif"
             class="loader"
@@ -64,6 +65,17 @@
             </svg>
           </div>
         </Transition>
+        <ul class="autocomplete-list" v-if="autocompleteList.length != 0">
+          <li
+            v-for="location in autocompleteList"
+            @click="getWeather(location.id, false)"
+          >
+            {{ location.name }}
+            <span class="country">{{
+              location.country ? `(${location.country})` : ""
+            }}</span>
+          </li>
+        </ul>
       </div>
 
       <div class="icon" @click="() => $emit('show-settings')">
@@ -141,7 +153,6 @@ import Pressure from "./Pressure.vue";
 import Humidity from "./Humidity.vue";
 import Wind from "./Wind.vue";
 import axios from "axios";
-import { latinise, iconMap } from "../../functions";
 import { computed } from "vue";
 import ContainerNotification from "../Containers/ContainerNotification.vue";
 
@@ -196,6 +207,7 @@ export default {
       },
       weatherDone: false,
       searchInput: "",
+      autocompleteList: [],
       refreshIntervalID: 0,
       notificationContent: {},
       notificationVisible: false,
@@ -212,9 +224,10 @@ export default {
       if (value === undefined && this.isGeolocationDone && !isRefresh) {
         q = `${this.position.lat},${this.position.lon}`;
       } else if (isRefresh) {
-        q = this.weather.location.name;
+        q = `${this.weather.location.lat},${this.weather.location.lon}`;
       } else {
-        q = latinise(value);
+        q = `id:${value}`;
+        this.autocompleteList = [];
       }
 
       if (q !== "" && !this.loading) {
@@ -364,6 +377,7 @@ export default {
                   "Geolocation must be on.",
                   "Turn on the geolocation to use this feature."
                 );
+                console.log(error);
               },
               { enableHighAccuracy: true, maximumAge: 10000000 }
             );
@@ -374,6 +388,25 @@ export default {
           "Geolocation impossible.",
           "Geolocation is not supported on your device."
         );
+      }
+    },
+    getAutocomplete() {
+      if (this.searchInput !== "") {
+        axios
+          .get("https://api.weatherapi.com/v1/search.json", {
+            params: {
+              key: "7daa3061b866483791e125836241307",
+              q: this.searchInput,
+            },
+          })
+          .then((response) => {
+            this.autocompleteList = response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        this.autocompleteList = [];
       }
     },
     onVisibilityChange() {
@@ -494,18 +527,23 @@ $font-color: rgb(250, 250, 250);
   transform-origin: bottom;
 }
 
+.search-container {
+  position: relative;
+}
+
 .search-input {
-  border-radius: 2rem;
+  border-radius: 1rem;
   text-align: center;
   height: 2rem;
   background-color: rgba(255, 255, 255, 0.5);
   outline: none;
   border: none;
-  color: rgba(35, 188, 199, 0.8);
+  color: rgb(35, 188, 199);
   max-width: 10rem;
   transition: all 0.3s ease;
   font-family: Helvetica Bold;
   text-transform: uppercase;
+  z-index: 3;
   &::placeholder {
     color: rgba(35, 188, 199, 0.8);
     opacity: 1;
@@ -514,14 +552,62 @@ $font-color: rgb(250, 250, 250);
     box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
     translate: 0 -1px;
     color: $font-color;
-    background-color: rgba(35, 188, 199, 0.8);
-
+    background-color: rgb(35, 188, 199);
     &::placeholder {
       color: rgba(250, 250, 250, 0.5);
     }
   }
   &:hover {
     translate: 0 -1px;
+  }
+}
+
+.search-input:focus + .autocomplete-list {
+  opacity: 1;
+}
+.autocomplete-list {
+  position: absolute;
+  padding: 1rem 0 0 0;
+  top: 2.5rem;
+  opacity: 0;
+  left: 1.125rem;
+  border-radius: 2rem;
+  text-align: center;
+  width: 8.25rem;
+  list-style: none;
+  height: auto;
+  outline: none;
+  background-color: rgb(35, 188, 199);
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  font-family: Helvetica Bold;
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  box-shadow: 0.1rem 0.2rem 0.3rem rgba(0, 0, 0, 0.2);
+  li {
+    padding: 0.4rem;
+    margin: 0;
+    background-color: rgb(35, 188, 199);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      color: rgb(35, 188, 199);
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+    &:first-of-type {
+      border-top-left-radius: 0.8rem;
+      border-top-right-radius: 0.8rem;
+    }
+    &:last-of-type {
+      border-bottom-left-radius: 0.8rem;
+      border-bottom-right-radius: 0.8rem;
+    }
+    .country {
+      font-size: 0.7rem;
+    }
   }
 }
 
