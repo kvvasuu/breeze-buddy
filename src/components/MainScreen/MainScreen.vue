@@ -69,6 +69,7 @@
           <li
             v-for="location in autocompleteList"
             @click="getWeather(location.id, false)"
+            :key="location.id"
           >
             {{ location.name }}
             <span class="country">{{
