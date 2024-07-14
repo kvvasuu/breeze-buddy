@@ -69,6 +69,7 @@
           <li
             v-for="location in autocompleteList"
             @click="getWeather(location.id, false)"
+            :key="location.id"
           >
             {{ location.name }}
             <span class="country">{{
@@ -153,6 +154,7 @@ import Pressure from "./Pressure.vue";
 import Humidity from "./Humidity.vue";
 import Wind from "./Wind.vue";
 import axios from "axios";
+import { latinise } from "../../functions";
 import { computed } from "vue";
 import ContainerNotification from "../Containers/ContainerNotification.vue";
 
@@ -392,11 +394,12 @@ export default {
     },
     getAutocomplete() {
       if (this.searchInput !== "") {
+        let q = latinise(this.searchInput);
         axios
           .get("https://api.weatherapi.com/v1/search.json", {
             params: {
               key: "7daa3061b866483791e125836241307",
-              q: this.searchInput,
+              q: q,
             },
           })
           .then((response) => {
