@@ -54,5 +54,7 @@
   "rainChance": "Niederschlag",
   "rain": "Regen",
   "feelslike": "Gefühlte",
-  "visibility": "Sichtweite"
+  "visibility": "Sichtweite",
+  "search": "Suchen",
+  "noResults": "Keine Ergebnisse"
 }

@@ -54,5 +54,7 @@
   "rainChance": "Chance of rain",
   "rain": "Rain",
   "feelslike": "Feelslike",
-  "visibility": "Visibility"
+  "visibility": "Visibility",
+  "search": "Search",
+  "noResults": "No results"
 }

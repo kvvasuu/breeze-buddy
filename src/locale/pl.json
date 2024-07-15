@@ -54,5 +54,7 @@
   "hectopascal": "Hektopaskale",
   "inchesOfMercury": "Cale słupka rtęci",
   "humidity": "Wilgotność",
-  "dewpoint": "Punkt rosy"
+  "dewpoint": "Punkt rosy",
+  "search": "Szukaj",
+  "noResults": "Brak wyników"
 }

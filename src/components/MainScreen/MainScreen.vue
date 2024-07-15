@@ -39,9 +39,9 @@
             id="search"
             type="text"
             v-if="showSearchInput"
-            placeholder="Search"
+            :placeholder="$store.getters.t.search"
             v-model.trim="searchInput"
-            v-debounce:500ms="getAutocomplete"
+            v-debounce:300ms="getAutocomplete"
             :debounce-events="['click', 'keydown']"
             autocomplete="off"
             ref="search"
@@ -65,7 +65,15 @@
             </svg>
           </div>
         </Transition>
-        <ul class="autocomplete-list" v-if="autocompleteList.length != 0">
+        <ul
+          class="autocomplete-list"
+          v-if="autocompleteList[0] === 'noResults'"
+        >
+          <li class="no-results">
+            <span class="country">{{ $store.getters.t.noResults }}</span>
+          </li>
+        </ul>
+        <ul class="autocomplete-list" v-else-if="autocompleteList.length != 0">
           <li
             v-for="location in autocompleteList"
             @click="getWeather(location.id, false)"
@@ -403,7 +411,9 @@ export default {
             },
           })
           .then((response) => {
-            this.autocompleteList = response.data;
+            response.data.length === 0
+              ? (this.autocompleteList[0] = "noResults")
+              : (this.autocompleteList = response.data);
           })
           .catch((error) => {
             console.log(error);
@@ -595,11 +605,11 @@ $font-color: rgb(250, 250, 250);
     padding: 0.4rem;
     margin: 0;
     background-color: rgb(35, 188, 199);
-    cursor: pointer;
     transition: all 0.3s ease;
-    &:hover {
+    &:hover:not(.no-results) {
       color: rgb(35, 188, 199);
       background-color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
     }
     &:first-of-type {
       border-top-left-radius: 0.8rem;
