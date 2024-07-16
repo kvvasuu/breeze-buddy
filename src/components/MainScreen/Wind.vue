@@ -32,7 +32,7 @@
       </div>
       <div class="compass">
         <img
-          src="../../assets/compass.png"
+          src="../../assets/compass.webp"
           :class="{ dark: !this.$store.state.isDay }"
         />
         <div class="arrow">

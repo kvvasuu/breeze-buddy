@@ -126,8 +126,10 @@ export default {
         if (hour.is_day === 0) {
           iconName++;
         }
-        return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
-          .href;
+        return new URL(
+          `../../../assets/icons/${iconName}.webp`,
+          import.meta.url
+        ).href;
       }
     },
   },

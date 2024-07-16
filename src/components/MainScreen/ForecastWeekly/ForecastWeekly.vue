@@ -75,8 +75,10 @@ export default {
     passIconSrc(day) {
       if (day.day.condition !== undefined) {
         let iconName = iconMap[day.day.condition.code];
-        return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
-          .href;
+        return new URL(
+          `../../../assets/icons/${iconName}.webp`,
+          import.meta.url
+        ).href;
       }
     },
   },

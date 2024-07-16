@@ -149,7 +149,7 @@ export default {
     },
     passIconSrc() {
       let iconName = iconMap[this.weather.day.condition.code];
-      return new URL(`../../../assets/icons/${iconName}.png`, import.meta.url)
+      return new URL(`../../../assets/icons/${iconName}.webp`, import.meta.url)
         .href;
     },
     passTemperature() {

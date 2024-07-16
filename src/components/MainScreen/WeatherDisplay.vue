@@ -104,7 +104,7 @@ export default {
       if (!this.$store.state.isDay) {
         iconName++;
       }
-      return new URL(`../../assets/icons/${iconName}.png`, import.meta.url)
+      return new URL(`../../assets/icons/${iconName}.webp`, import.meta.url)
         .href;
     },
     passLocalTime() {
