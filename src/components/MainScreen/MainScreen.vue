@@ -294,7 +294,6 @@ export default {
                 this.isCurrentLocation = true;
               } else this.isCurrentLocation = false;
 
-              console.log(response);
               this.$store.commit("changeIsDay", !!response.data.current.is_day);
               localStorage.setItem("isDay", this.$store.state.isDay);
 
