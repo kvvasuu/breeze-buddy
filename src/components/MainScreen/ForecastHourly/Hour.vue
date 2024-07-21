@@ -45,9 +45,9 @@ export default {
     },
     sunsetOrSunriseIcon() {
       if (this.hour.type === "sunrise") {
-        return new URL(`../../../assets/icons/400.png`, import.meta.url).href;
+        return new URL(`../../../assets/icons/400.webp`, import.meta.url).href;
       } else
-        return new URL(`../../../assets/icons/401.png`, import.meta.url).href;
+        return new URL(`../../../assets/icons/401.webp`, import.meta.url).href;
     },
   },
 };
