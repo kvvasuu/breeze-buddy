@@ -89,7 +89,7 @@ If you have any questions or issues with the Breeze Buddy app, please contact.
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:5173
 npm run dev
 
 # build for production with minification
